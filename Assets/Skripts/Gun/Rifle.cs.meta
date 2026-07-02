@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 1c2a89dbe5464ff4d97148c188270d8f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - anim: {instanceID: 0}
+  - metalEffect: {fileID: 1198341093462415517, guid: 7428648aabf888145bf47baf50c46125, type: 3}
+  - localOrigin: {instanceID: 0}
+  - ammoOutUi: {fileID: 5555702485117203360, guid: 087f05ece62d7654bb773c8ff10e4ea2, type: 3}
+  - ammoLeft: {fileID: 1698553034275047984, guid: d587600aebdbcf8439c32050054ce824, type: 3}
+  - magLeft: {fileID: 197802251033105166, guid: f0a8f57b0ae0db144b89eb7db5610b84, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
