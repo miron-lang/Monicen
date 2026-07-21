@@ -35,7 +35,7 @@ public class PiliceNavigator : MonoBehaviour
 
         if (shouldBranch)
         {
-            currentWaypoint = currentWaypoint.branches[Random.Range(0, currentWaypoint.branches.Count - 1)];
+            currentWaypoint = currentWaypoint.branches[Random.Range(0, currentWaypoint.branches.Count)];
         }
 
         else

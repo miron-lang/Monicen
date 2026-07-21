@@ -17,7 +17,6 @@ public class PoliceOfficer : MonoBehaviour
     public int maxHealthPolice = 100;
     public float armorPolice = 0;
 
-    [SerializeField] bool isISothing = false;
     [SerializeField] bool isVoidStarted = false;
 
     [Range(0, 4)]
@@ -58,13 +57,6 @@ public class PoliceOfficer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (isISothing && isVoidStarted)
-        {
-            isVoidStarted = true;
-            EvryTimeHeted();
-        }
-
         playerInVisionRadius = Physics.CheckSphere(transform.position, visionRadius, playerLayer);
         playerInShootingRedius = Physics.CheckSphere(transform.position, shootingRadius, playerLayer);
 
@@ -161,18 +153,24 @@ public class PoliceOfficer : MonoBehaviour
 
     public void PoliceGetDamage(float takeDamage)
     {
+        wantedPlayer.firstDamage = true;
+
+        if (!isVoidStarted)
+        {
+            isVoidStarted = true;
+            EvryTimeHeted();
+        }
+
         if (armorPolice <= 0)
         {
-            isISothing = true;
-        if (armorPolice <= 0)
-            healthPolice -= takeDamage;
+            if (armorPolice <= 0)
+                healthPolice -= takeDamage;
         }
 
         else if (armorPolice >= 1)
         {
             armorPolice -= takeDamage;
             healthPolice -= takeDamage % 4;
-            isISothing = true;
         }
 
         if (healthPolice <= 0f)
@@ -184,7 +182,8 @@ public class PoliceOfficer : MonoBehaviour
     void Death()
     {
         currentMovingSpeed = 0f;
-        shootingRadius = 0f;        player.kills ++;
+        shootingRadius = 0f;
+        player.kills++;
         anim.SetBool("Walk", false);
         anim.SetBool("Shoot", false);
         anim.SetBool("Run", false);

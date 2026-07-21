@@ -8,6 +8,8 @@ public class WantedPlayer : MonoBehaviour
     public List<GameObject> starsLevel = new List<GameObject> { };
     public Player player;
 
+    public bool firstDamage = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,7 +19,7 @@ public class WantedPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.kills >= 1)
+        if (player.kills >= 1 || firstDamage)
         {
             wantedLevel[0] = true;
             starsLevel[0].SetActive(true);
