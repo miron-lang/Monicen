@@ -1,71 +1,51 @@
+
+
 using UnityEditor;
 using UnityEngine;
 
-[InitializeOnLoad]
+[InitializeOnLoad()]
 public class WaypointEditor
 {
     [DrawGizmo(GizmoType.NonSelected | GizmoType.Selected | GizmoType.Pickable)]
     public static void OnDrawSceneGizmos(WayPoint waypoint, GizmoType gizmoType)
     {
-        if (waypoint == null) return;
-
-        bool isSelected = (gizmoType & GizmoType.Selected) != 0;
-
-        Gizmos.color = isSelected ? Color.blue : Color.blue * 0.5f;
-        Gizmos.DrawSphere(waypoint.transform.position, 0.2f);
+        if ((gizmoType & GizmoType.Selected) != 0)
+        {
+            Gizmos.color = Color.blue;
+        }
+        else
+        {
+            Gizmos.color = Color.blue * 0.5f;
+        }
+        Gizmos.DrawSphere(waypoint.transform.position, 0.25f);
 
         Gizmos.color = Color.white;
-        Vector3 myRightPos = waypoint.GetPosition(1);
-        Vector3 myLeftPos = waypoint.GetPosition(0);
-        Gizmos.DrawLine(myLeftPos, myRightPos);
+        Gizmos.DrawLine(waypoint.transform.position + waypoint.transform.right * waypoint.waypointWidth / 2f, waypoint.transform.position - waypoint.transform.right * waypoint.waypointWidth / 2f);
+        if (waypoint.peviousWaypoint != null)
+        {
+            Gizmos.color = Color.red;
+            Vector3 offset = waypoint.transform.right * waypoint.waypointWidth / 2f;
+            Vector3 offsetTo = waypoint.peviousWaypoint.transform.right * waypoint.peviousWaypoint.waypointWidth / 2f;
 
-        // œ–¿¬¿ﬂ “–¿——¿ (¬œ≈–≈ƒ / «≈À≈Õ¿ﬂ)
+            Gizmos.DrawLine(waypoint.transform.position + offset, waypoint.peviousWaypoint.transform.position + offsetTo);
+        }
         if (waypoint.nextWaypoint != null)
         {
             Gizmos.color = Color.green;
-            Vector3 nextRightPos = waypoint.nextWaypoint.GetPosition(1);
-            Gizmos.DrawLine(myRightPos, nextRightPos);
-            DrawArrowAtEnd(myRightPos, nextRightPos);
+            Vector3 offset = -waypoint.transform.right * waypoint.waypointWidth / 2f;
+            Vector3 offsetTo = -waypoint.nextWaypoint.transform.right * waypoint.nextWaypoint.waypointWidth / 2f;
+
+            Gizmos.DrawLine(waypoint.transform.position + offset, waypoint.nextWaypoint.transform.position + offsetTo);
         }
 
-        // À≈¬¿ﬂ “–¿——¿ (Õ¿«¿ƒ /  –¿—Õ¿ﬂ)
-        if (waypoint.previousWaypoint != null) // —ÌÓ‚‡ Ò ÓÔÂ˜‡ÚÍÓÈ!
-        {
-            Gizmos.color = Color.red;
-            Vector3 prevLeftPos = waypoint.previousWaypoint.GetPosition(0); // —ÌÓ‚‡ Ò ÓÔÂ˜‡ÚÍÓÈ!
-            Gizmos.DrawLine(myLeftPos, prevLeftPos);
-            DrawArrowAtEnd(myLeftPos, prevLeftPos);
-        }
-
-        // –¿«¬»À » (∆≈À“€≈)
         if (waypoint.branches != null)
         {
-            Gizmos.color = Color.yellow;
             foreach (WayPoint branch in waypoint.branches)
             {
-                if (branch != null)
-                {
-                    Gizmos.DrawLine(waypoint.transform.position, branch.transform.position);
-                    DrawArrowAtEnd(waypoint.transform.position, branch.transform.position);
-                }
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawLine(waypoint.transform.position, branch.transform.position);
             }
         }
-    }
 
-    private static void DrawArrowAtEnd(Vector3 from, Vector3 to)
-    {
-        Vector3 direction = (to - from).normalized;
-        if (direction == Vector3.zero) return;
-
-        Vector3 arrowTip = to;
-
-        Quaternion lookRotation = Quaternion.LookRotation(direction);
-        Vector3 wingRight = lookRotation * Quaternion.Euler(0, 145, 0) * Vector3.forward;
-        Vector3 wingLeft = lookRotation * Quaternion.Euler(0, -145, 0) * Vector3.forward;
-
-        float arrowLength = 0.5f;
-
-        Gizmos.DrawLine(arrowTip, arrowTip + wingRight * arrowLength);
-        Gizmos.DrawLine(arrowTip, arrowTip + wingLeft * arrowLength);
     }
 }

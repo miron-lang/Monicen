@@ -1,7 +1,9 @@
+using StarterAssets;
 using UnityEngine;
 
 public class PiliceNavigator : MonoBehaviour
 {
+
     [Header("AI Police")]
     public PoliceOfficer charcater;
     public WayPoint currentWaypoint;
@@ -13,62 +15,55 @@ public class PiliceNavigator : MonoBehaviour
         charcater = GetComponent<PoliceOfficer>();
     }
 
-    void Start()
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
         diraction = Mathf.RoundToInt(Random.Range(0f, 1f));
-        if (currentWaypoint != null && charcater != null)
-        {
-            charcater.LoceteDesination(currentWaypoint.GetPosition(diraction));
-        }
+        charcater.LoceteDesination(currentWaypoint.GetPosition(diraction));
     }
 
-    void Update()
+    // Update is called once per frame
+    void Update()
     {
-        if (currentWaypoint == null || charcater == null) return;
 
-        // Ждем завершения пути до вейпоинта
-        if (charcater.destinationReached)
+        bool shouldBranch = false;
+
+        if (currentWaypoint && currentWaypoint.branches != null && currentWaypoint.branches.Count > 0)
         {
-            bool shouldBranch = false;
+            shouldBranch = Random.Range(0f, 1f) <= currentWaypoint.branchRatio ? true : false;
+        }
 
-            if (currentWaypoint.branches != null && currentWaypoint.branches.Count > 0)
-            {
-                shouldBranch = Random.Range(0f, 1f) <= currentWaypoint.branchRatio;
-            }
+        if (shouldBranch)
+        {
+            currentWaypoint = currentWaypoint.branches[Random.Range(0, currentWaypoint.branches.Count - 1)];
+        }
 
-            if (shouldBranch)
-            {
-                currentWaypoint = currentWaypoint.branches[Random.Range(0, currentWaypoint.branches.Count)];
-            }
-            else
+        else
+        {
+            if (charcater.destinationReached)
             {
                 if (diraction == 0)
-                {
-                    if (currentWaypoint.previousWaypoint != null)
-                        currentWaypoint = currentWaypoint.previousWaypoint;
+                    if (currentWaypoint.peviousWaypoint != null)
+                        currentWaypoint = currentWaypoint.peviousWaypoint;
+
                     else
                     {
                         currentWaypoint = currentWaypoint.nextWaypoint;
                         diraction = 1;
                     }
-                }
+
+                else
+                  if (currentWaypoint.nextWaypoint != null)
+                    currentWaypoint = currentWaypoint.nextWaypoint;
+
                 else
                 {
-                    if (currentWaypoint.nextWaypoint != null)
-                        currentWaypoint = currentWaypoint.nextWaypoint;
-                    else
-                    {
-                        currentWaypoint = currentWaypoint.previousWaypoint;
-                        diraction = 0;
-                    }
+                    currentWaypoint = currentWaypoint.peviousWaypoint;
+                    diraction = 0;
                 }
-            }
 
-            // Установка следующей цели
-            if (currentWaypoint != null)
-            {
-                charcater.LoceteDesination(currentWaypoint.GetPosition(diraction));
             }
         }
+        charcater.LoceteDesination(currentWaypoint.GetPosition(diraction));
     }
 }

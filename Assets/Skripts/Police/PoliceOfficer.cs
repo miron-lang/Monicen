@@ -24,7 +24,7 @@ public class PoliceOfficer : MonoBehaviour
     public int startStars;
 
     [Header("Police Ai")]
-    public GameObject playerBody;
+    private GameObject playerBody;
     public LayerMask playerLayer;
     public float visionRadius;
     public float shootingRadius;
@@ -49,7 +49,7 @@ public class PoliceOfficer : MonoBehaviour
     void Start()
     {
         healthPolice = maxHealthPolice;
-        playerBody = GameObject.Find("PlayerArmature Variant");
+        playerBody = GameObject.Find("PlayerArmature");
         wantedPlayer = GameObject.FindFirstObjectByType<WantedPlayer>();
         currentMovingSpeed = walkingSpeed;
         player = GameObject.FindFirstObjectByType<Player>();

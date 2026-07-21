@@ -11,6 +11,8 @@ TagManager:
   - ShootGunPickup
   - BazukaPickup
   - UziPickup
+  - HandGunWhithAMuferPickup
+  - BayoutPickup
   layers:
   - Default
   - TransparentFX

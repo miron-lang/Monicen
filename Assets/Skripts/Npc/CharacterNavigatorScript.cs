@@ -3,7 +3,7 @@ using UnityEngine;
 public class CharacterNavigatorScript : MonoBehaviour
 {
     [Header("Character Info")]
-    public float movingSpeed = 1f;
+    public float moveingSpeed = 1f;
     public float turningSpeed = 300f;
     [SerializeField] float stopSpeed = 0.3f;
 
@@ -11,15 +11,22 @@ public class CharacterNavigatorScript : MonoBehaviour
     public Vector3 destination;
     public bool destinationReached;
 
+    private bool dedth = false;
+
     public float healthNpc = 100;
     public int maxHealthNpc = 100;
 
-    void Start()
+    private Player player;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
+        player = FindAnyObjectByType<Player>();
         healthNpc = maxHealthNpc;
     }
 
-    void Update()
+    // Update is called once per frame
+    void Update()
     {
         Walk();
     }
@@ -27,16 +34,22 @@ public class CharacterNavigatorScript : MonoBehaviour
     public void NpcGetDamage(float takeDamage)
     {
         healthNpc -= takeDamage;
-        if (healthNpc <= 0f) Death();
+
+        if (healthNpc <= 0f && !dedth)
+        {
+            Death();
+        }
     }
 
     void Death()
     {
+        dedth = true;
         print("Òû ëîõ");
+        player.kills++;
         Object.Destroy(gameObject, 1f);
     }
 
-    public void LocateDestination(Vector3 destination)
+    public void LoceteDesination(Vector3 destination)
     {
         this.destination = destination;
         destinationReached = false;
@@ -44,21 +57,24 @@ public class CharacterNavigatorScript : MonoBehaviour
 
     public void Walk()
     {
-        float distance = Vector3.Distance(transform.position, destination);
-        if (distance >= stopSpeed)
+        if (transform.position != destination)
         {
-            destinationReached = false;
-            Vector3 dir = (destination - transform.position).normalized;
-            if (dir != Vector3.zero)
+            Vector3 destinationDirection = destination - transform.position;
+
+            float destinationDistance = destinationDirection.magnitude;
+
+            if (destinationDistance >= stopSpeed)
             {
-                Quaternion targetRotation = Quaternion.LookRotation(dir);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turningSpeed * Time.deltaTime);
+                destinationReached = false;
+                Quaternion targetRatation = Quaternion.LookRotation(destinationDirection);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRatation, turningSpeed * Time.deltaTime);
+                transform.Translate(Vector3.forward * moveingSpeed * Time.deltaTime);
             }
-            transform.Translate(Vector3.forward * movingSpeed * Time.deltaTime);
-        }
-        else
-        {
-            destinationReached = true;
+            else
+            {
+                destinationReached = true;
+            }
         }
     }
+
 }

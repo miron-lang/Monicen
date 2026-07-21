@@ -1,84 +1,77 @@
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+
+using UnityEditor;
 using UnityEngine;
 
 public class WaypointNavigator : MonoBehaviour
 {
+
     [Header("AI Вася")]
-    public CharacterNavigatorScript character;
-
-    //private WayPoint _currentWaypoint;
+    public CharacterNavigatorScript charcater;
     public WayPoint currentWaypoint;
-    //{
-    //    get => _currentWaypoint;
-    //    set
-    //    {
-    //        if (_currentWaypoint != null) _currentWaypoint.incomingNPCs--;
-    //        _currentWaypoint = value;
-    //        if (_currentWaypoint != null) _currentWaypoint.incomingNPCs++;
-    //    }
-    //}
 
-    int direction;
+    int diraction;
 
     private void Awake()
     {
-        character = GetComponent<CharacterNavigatorScript>();
+        charcater = GetComponent<CharacterNavigatorScript>();
     }
 
-    void Start()
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
-        direction = Random.Range(0, 2);
-        if (currentWaypoint != null)
-            character.LocateDestination(currentWaypoint.GetPosition(direction));
+        diraction = Mathf.RoundToInt(Random.Range(0f, 1f));
+        charcater.LoceteDesination(currentWaypoint.GetPosition(diraction));
     }
 
-    void Update()
+    // Update is called once per frame
+    void Update()
     {
-        if (currentWaypoint == null || character == null) return;
 
-        if (character.destinationReached)
+        bool shouldBranch = false;
+
+        if (currentWaypoint.branches != null && currentWaypoint.branches.Count > 0)
         {
-            bool shouldBranch = false;
-            if (currentWaypoint.branches != null && currentWaypoint.branches.Count > 0)
-            {
-                shouldBranch = Random.Range(0f, 1f) <= currentWaypoint.branchRatio;
-            }
+            shouldBranch = Random.Range(0f, 1f) <= currentWaypoint.branchRatio ? true : false;
+        }
 
-            if (shouldBranch)
+        if (shouldBranch)
+        {
+            currentWaypoint = currentWaypoint.branches[Random.Range(0, currentWaypoint.branches.Count - 1)];
+        }
+
+        else
+        {
+            if (charcater.destinationReached)
             {
-                currentWaypoint = currentWaypoint.branches[Random.Range(0, currentWaypoint.branches.Count)];
-            }
-            else
-            {
-                if (direction == 0)
+                if (diraction == 0)
                 {
-                    if (currentWaypoint.previousWaypoint != null) // Снова с опечаткой!
-                        currentWaypoint = currentWaypoint.previousWaypoint;
+                    if (currentWaypoint.peviousWaypoint != null)
+                        currentWaypoint = currentWaypoint.peviousWaypoint;
+
                     else
                     {
                         currentWaypoint = currentWaypoint.nextWaypoint;
-                        direction = 1;
+                        diraction = 1;
                     }
                 }
+
                 else
                 {
                     if (currentWaypoint.nextWaypoint != null)
                         currentWaypoint = currentWaypoint.nextWaypoint;
+
                     else
                     {
-                        if (currentWaypoint.previousWaypoint != null) // Снова с опечаткой!
-                            currentWaypoint = currentWaypoint.previousWaypoint;
-                        direction = 0;
+                        currentWaypoint = currentWaypoint.peviousWaypoint;
+                        diraction = 0;
                     }
                 }
+
             }
-
-            if (currentWaypoint != null)
-                character.LocateDestination(currentWaypoint.GetPosition(direction));
         }
+        charcater.LoceteDesination(currentWaypoint.GetPosition(diraction));
     }
-
-    //private void OnDestroy()
-    //{
-    //    if (currentWaypoint != null) currentWaypoint.incomingNPCs--;
-    //}
 }

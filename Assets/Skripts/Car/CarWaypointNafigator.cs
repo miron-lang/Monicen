@@ -13,62 +13,55 @@ public class CarWaypointNafigator : MonoBehaviour
         car = GetComponent<CarNavigator>();
     }
 
-    void Start()
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
         diraction = Mathf.RoundToInt(Random.Range(0f, 1f));
-        if (currentWaypoint != null && car != null)
-        {
-            car.LoceteDesination(currentWaypoint.GetPosition(diraction));
-        }
+        car.LoceteDesination(currentWaypoint.GetPosition(diraction));
     }
 
-    void Update()
+    // Update is called once per frame
+    void Update()
     {
-        if (currentWaypoint == null || car == null) return;
 
-        // Корректное условие: переключаем точку только когда доехали
-        if (car.destinationReached)
+        bool shouldBranch = false;
+
+        if (currentWaypoint.branches != null && currentWaypoint.branches.Count > 0)
         {
-            bool shouldBranch = false;
+            shouldBranch = Random.Range(0f, 1f) <= currentWaypoint.branchRatio ? true : false;
+        }
 
-            if (currentWaypoint.branches != null && currentWaypoint.branches.Count > 0)
-            {
-                shouldBranch = Random.Range(0f, 1f) <= currentWaypoint.branchRatio;
-            }
+        if (shouldBranch)
+        {
+            currentWaypoint = currentWaypoint.branches[Random.Range(0, currentWaypoint.branches.Count - 1)];
+        }
 
-            if (shouldBranch)
-            {
-                currentWaypoint = currentWaypoint.branches[Random.Range(0, currentWaypoint.branches.Count)];
-            }
-            else
+        else
+        {
+            if (car.destinationReached)
             {
                 if (diraction == 0)
-                {
-                    if (currentWaypoint.previousWaypoint != null)
-                        currentWaypoint = currentWaypoint.previousWaypoint;
+                    if (currentWaypoint.peviousWaypoint != null)
+                        currentWaypoint = currentWaypoint.peviousWaypoint;
+
                     else
                     {
                         currentWaypoint = currentWaypoint.nextWaypoint;
                         diraction = 1;
                     }
-                }
+
+                else
+                  if (currentWaypoint.nextWaypoint != null)
+                    currentWaypoint = currentWaypoint.nextWaypoint;
+
                 else
                 {
-                    if (currentWaypoint.nextWaypoint != null)
-                        currentWaypoint = currentWaypoint.nextWaypoint;
-                    else
-                    {
-                        currentWaypoint = currentWaypoint.previousWaypoint;
-                        diraction = 0;
-                    }
+                    currentWaypoint = currentWaypoint.peviousWaypoint;
+                    diraction = 0;
                 }
-            }
 
-            // Назначаем новую цель один раз после выбора новой точки
-            if (currentWaypoint != null)
-            {
-                car.LoceteDesination(currentWaypoint.GetPosition(diraction));
             }
         }
+        car.LoceteDesination(currentWaypoint.GetPosition(diraction));
     }
 }

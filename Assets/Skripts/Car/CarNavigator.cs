@@ -14,14 +14,14 @@ public class CarNavigator : MonoBehaviour
     public Vector3 destination;
     public bool destinationReached;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
 
     }
 
-    // Update is called once per frame
-    void Update()
+    // Update is called once per frame
+    void Update()
     {
         RaycastHit hitInfo;
         if (Physics.Raycast(senser.transform.position, senser.transform.forward, out hitInfo, detectionRange))

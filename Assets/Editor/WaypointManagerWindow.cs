@@ -1,13 +1,15 @@
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class WaypointManagerWindow : EditorWindow
+public class WayPointMenedgerWindow : EditorWindow
 {
     [MenuItem("Waypoint/Waypoints Tools")]
     public static void ShowWindow()
     {
-        GetWindow<WaypointManagerWindow>("Waypoints Editor Tools");
+        GetWindow<WayPointMenedgerWindow>("Waypoints Editor Tools");
     }
 
     public Transform waypointOrigin;
@@ -19,25 +21,17 @@ public class WaypointManagerWindow : EditorWindow
 
         if (waypointOrigin == null)
         {
-            EditorGUILayout.HelpBox("Ïמזאכףיסעא, ןונועאשט ס‏הא ןףסעמי GameObject (נמהטעוכü גויןמטםעמג).", MessageType.Warning);
+            EditorGUILayout.HelpBox("Please assign a waypoint origin transform.", MessageType.Warning);
         }
         else
         {
             EditorGUILayout.BeginVertical("box");
-            if (GUILayout.Button("Create Waypoint (F1)")) CreateWaypoint();
-            if (GUILayout.Button("Delete Waypoint (F2)")) DeleteWaypoint();
-            if (GUILayout.Button("Previous Waypoint (F8)")) PreviousWaypoint();
-            if (GUILayout.Button("Next Waypoint (F9)")) NextWaypoint();
-            if (GUILayout.Button("Add Branch (F3)")) AddBranch();
-            if (GUILayout.Button("Rotate Left (F5)")) RotateLeft();
-            if (GUILayout.Button("Rotate Right (F6)")) RotateRight();
-            if (GUILayout.Button("Empty Waypoint (F7)")) EmptyWaypoint();
-            if (GUILayout.Button("Connect View Branches (F4)")) ConnectWaypointsBranches();
-            if (GUILayout.Button("Connect Waypoints (F10)")) ConnectWaypointsDirect();
+            CreateButtons();
             EditorGUILayout.EndVertical();
         }
 
-        if (Selection.activeGameObject != null)
+        // Slider for waypointWidth of the selected WayPoint
+        if (Selection.activeGameObject != null)
         {
             WayPoint selectedWaypoint = Selection.activeGameObject.GetComponent<WayPoint>();
             if (selectedWaypoint != null)
@@ -59,131 +53,74 @@ public class WaypointManagerWindow : EditorWindow
         obj.ApplyModifiedProperties();
     }
 
-    [MenuItem("Waypoint/Actions/Create Waypoint _F1")]
-    public static void CallCreate() { if (HasOpenInstances<WaypointManagerWindow>()) GetWindow<WaypointManagerWindow>().CreateWaypoint(); }
-
-    [MenuItem("Waypoint/Actions/Delete Waypoint _F2")]
-    public static void CallDelete() { if (HasOpenInstances<WaypointManagerWindow>()) GetWindow<WaypointManagerWindow>().DeleteWaypoint(); }
-
-    [MenuItem("Waypoint/Actions/Add Branch _F3")]
-    public static void CallAddBranch() { if (HasOpenInstances<WaypointManagerWindow>()) GetWindow<WaypointManagerWindow>().AddBranch(); }
-
-    [MenuItem("Waypoint/Actions/Connect View Branches _F4")]
-    public static void CallConnectBranches() { if (HasOpenInstances<WaypointManagerWindow>()) GetWindow<WaypointManagerWindow>().ConnectWaypointsBranches(); }
-
-    [MenuItem("Waypoint/Actions/Rotate Left _F5")]
-    public static void CallRotateLeft() { if (HasOpenInstances<WaypointManagerWindow>()) GetWindow<WaypointManagerWindow>().RotateLeft(); }
-
-    [MenuItem("Waypoint/Actions/Rotate Right _F6")]
-    public static void CallRotateRight() { if (HasOpenInstances<WaypointManagerWindow>()) GetWindow<WaypointManagerWindow>().RotateRight(); }
-
-    [MenuItem("Waypoint/Actions/Empty Waypoint _F7")]
-    public static void CallEmpty() { if (HasOpenInstances<WaypointManagerWindow>()) GetWindow<WaypointManagerWindow>().EmptyWaypoint(); }
-
-    [MenuItem("Waypoint/Actions/Previous Waypoint _F8")]
-    public static void CallPrevious() { if (HasOpenInstances<WaypointManagerWindow>()) GetWindow<WaypointManagerWindow>().PreviousWaypoint(); }
-
-    [MenuItem("Waypoint/Actions/Next Waypoint _F9")]
-    public static void CallNext() { if (HasOpenInstances<WaypointManagerWindow>()) GetWindow<WaypointManagerWindow>().NextWaypoint(); }
-
-    [MenuItem("Waypoint/Actions/Connect Waypoints _F10")]
-    public static void CallConnectDirect() { if (HasOpenInstances<WaypointManagerWindow>()) GetWindow<WaypointManagerWindow>().ConnectWaypointsDirect(); }
-
-
-    void CreateWaypoint()
+    void CreateButtons()
     {
-        if (waypointOrigin == null) return;
-
-        GameObject waypointObj = new GameObject("waypoint " + waypointOrigin.childCount, typeof(WayPoint));
-        waypointObj.transform.SetParent(waypointOrigin, false);
-        WayPoint waypoint = waypointObj.GetComponent<WayPoint>();
-
-        if (waypointOrigin.childCount > 1)
+        if (GUILayout.Button("Create Waypoint"))
         {
-            waypoint.previousWaypoint = waypointOrigin.GetChild(waypointOrigin.childCount - 2).GetComponent<WayPoint>();
-            waypoint.previousWaypoint.nextWaypoint = waypoint;
-            waypoint.transform.position = waypoint.previousWaypoint.transform.position;
-            waypoint.transform.forward = waypoint.previousWaypoint.transform.forward;
-            waypoint.waypointWidth = waypoint.previousWaypoint.waypointWidth;
+            CreateWaypoint();
         }
-
-        Selection.activeGameObject = waypointObj;
+        if (GUILayout.Button("Delete Waypoint"))
+        {
+            DeleteWaypoint();
+        }
+        if (GUILayout.Button("Previus Waypoint"))
+        {
+            PreviusWaypoint();
+        }
+        if (GUILayout.Button("Next Waypoint"))
+        {
+            NextWaypoint();
+        }
+        if (GUILayout.Button("Add Branch"))
+        {
+            AddBranch();
+        }
+        if (GUILayout.Button("Left"))
+        {
+            Selection.activeObject.GetComponent<WayPoint>().transform.Rotate(0, -45, 0);
+        }
+        if (GUILayout.Button("Right"))
+        {
+            Selection.activeObject.GetComponent<WayPoint>().transform.Rotate(0, 45, 0);
+        }
+        if (GUILayout.Button("Empty Waypoint"))
+        {
+            EmptyWaypoint();
+        }
+        if (GUILayout.Button("Conect Waypoints"))
+        {
+            ConectWaypoints();
+        }
     }
 
-    void DeleteWaypoint()
+    void PreviusWaypoint()
     {
-        if (Selection.activeGameObject == null) return;
-        WayPoint selectedWaypoint = Selection.activeGameObject.GetComponent<WayPoint>();
-        if (selectedWaypoint == null) return;
-
-        Undo.IncrementCurrentGroup();
-        int groupIndex = Undo.GetCurrentGroup();
-
-        if (selectedWaypoint.previousWaypoint != null)
-        {
-            Undo.RecordObject(selectedWaypoint.previousWaypoint, "Delete Waypoint Connection");
-            selectedWaypoint.previousWaypoint.nextWaypoint = selectedWaypoint.nextWaypoint;
-            EditorUtility.SetDirty(selectedWaypoint.previousWaypoint);
-        }
-
-        if (selectedWaypoint.nextWaypoint != null)
-        {
-            Undo.RecordObject(selectedWaypoint.nextWaypoint, "Delete Waypoint Connection");
-            selectedWaypoint.nextWaypoint.previousWaypoint = selectedWaypoint.previousWaypoint;
-            EditorUtility.SetDirty(selectedWaypoint.nextWaypoint);
-        }
-
-        if (selectedWaypoint.branches != null)
-        {
-            foreach (WayPoint branch in selectedWaypoint.branches)
-            {
-                if (branch != null && branch.branches.Contains(selectedWaypoint))
-                {
-                    Undo.RecordObject(branch, "Clean Branch Connection");
-                    branch.branches.Remove(selectedWaypoint);
-                    EditorUtility.SetDirty(branch);
-                }
-            }
-        }
-
-        Undo.DestroyObjectImmediate(selectedWaypoint.gameObject);
-        Undo.CollapseUndoOperations(groupIndex);
-    }
-
-    void PreviousWaypoint()
-    {
-        if (Selection.activeGameObject == null || waypointOrigin == null) return;
-        WayPoint selectedWaypoint = Selection.activeGameObject.GetComponent<WayPoint>();
-        if (selectedWaypoint == null) return;
-
         GameObject waypointObj = new GameObject("waypoint " + waypointOrigin.childCount, typeof(WayPoint));
         waypointObj.transform.SetParent(waypointOrigin, false);
         WayPoint newWaypoint = waypointObj.GetComponent<WayPoint>();
+        WayPoint selectedWaypoint = Selection.activeObject.GetComponent<WayPoint>();
 
         waypointObj.transform.position = selectedWaypoint.transform.position;
         waypointObj.transform.forward = selectedWaypoint.transform.forward;
 
-        if (selectedWaypoint.previousWaypoint)
+        if (selectedWaypoint.peviousWaypoint)
         {
-            newWaypoint.previousWaypoint = selectedWaypoint.previousWaypoint;
-            selectedWaypoint.previousWaypoint.nextWaypoint = newWaypoint;
+            newWaypoint.peviousWaypoint = selectedWaypoint.peviousWaypoint;
+            selectedWaypoint.peviousWaypoint.nextWaypoint = newWaypoint;
         }
 
-        selectedWaypoint.previousWaypoint = newWaypoint;
+        selectedWaypoint.peviousWaypoint = newWaypoint;
         newWaypoint.nextWaypoint = selectedWaypoint;
         newWaypoint.transform.SetSiblingIndex(selectedWaypoint.transform.GetSiblingIndex());
-        Selection.activeGameObject = waypointObj;
+        Selection.activeObject = newWaypoint.gameObject;
     }
 
     void NextWaypoint()
     {
-        if (Selection.activeGameObject == null || waypointOrigin == null) return;
-        WayPoint selectedWaypoint = Selection.activeGameObject.GetComponent<WayPoint>();
-        if (selectedWaypoint == null) return;
-
         GameObject waypointObj = new GameObject("waypoint " + waypointOrigin.childCount, typeof(WayPoint));
         waypointObj.transform.SetParent(waypointOrigin, false);
         WayPoint newWaypoint = waypointObj.GetComponent<WayPoint>();
+        WayPoint selectedWaypoint = Selection.activeObject.GetComponent<WayPoint>();
 
         waypointObj.transform.position = selectedWaypoint.transform.position;
         waypointObj.transform.forward = selectedWaypoint.transform.forward;
@@ -191,108 +128,100 @@ public class WaypointManagerWindow : EditorWindow
         if (selectedWaypoint.nextWaypoint)
         {
             newWaypoint.nextWaypoint = selectedWaypoint.nextWaypoint;
-            selectedWaypoint.nextWaypoint.previousWaypoint = newWaypoint;
+            selectedWaypoint.nextWaypoint.peviousWaypoint = newWaypoint;
         }
-        newWaypoint.previousWaypoint = selectedWaypoint;
+        newWaypoint.peviousWaypoint = selectedWaypoint;
         selectedWaypoint.nextWaypoint = newWaypoint;
 
         newWaypoint.transform.SetSiblingIndex(selectedWaypoint.transform.GetSiblingIndex());
-        Selection.activeGameObject = waypointObj;
+        Selection.activeObject = newWaypoint.gameObject;
+    }
+
+    void DeleteWaypoint()
+    {
+        WayPoint selectedWaypoint = Selection.activeObject.GetComponent<WayPoint>();
+
+        if (selectedWaypoint.nextWaypoint && selectedWaypoint.peviousWaypoint)
+        {
+            selectedWaypoint.nextWaypoint.peviousWaypoint = selectedWaypoint.peviousWaypoint;
+            selectedWaypoint.peviousWaypoint.nextWaypoint = selectedWaypoint.nextWaypoint;
+        }
+
+        DestroyImmediate(selectedWaypoint.gameObject);
     }
 
     void AddBranch()
     {
-        if (Selection.activeGameObject == null || waypointOrigin == null) return;
-        WayPoint selectedWaypoint = Selection.activeGameObject.GetComponent<WayPoint>();
-        if (selectedWaypoint == null) return;
-
         GameObject waypointObj = new GameObject("waypoint " + waypointOrigin.childCount, typeof(WayPoint));
         waypointObj.transform.SetParent(waypointOrigin, false);
         WayPoint waypoint = waypointObj.GetComponent<WayPoint>();
+
+        WayPoint selectedWaypoint = Selection.activeObject.GetComponent<WayPoint>();
 
         selectedWaypoint.branches.Add(waypoint);
         waypoint.branches.Add(selectedWaypoint);
         waypoint.transform.position = selectedWaypoint.transform.position;
         waypoint.transform.forward = selectedWaypoint.transform.forward;
 
-        Selection.activeGameObject = waypointObj;
+        Selection.activeObject = waypoint.gameObject;
     }
 
-    void RotateLeft()
+    void CreateWaypoint()
     {
-        if (Selection.activeGameObject == null) return;
-        WayPoint wp = Selection.activeGameObject.GetComponent<WayPoint>();
-        if (wp != null) wp.transform.Rotate(0, -45, 0);
-    }
+        GameObject waypointObj = new GameObject("waypoint " + waypointOrigin.childCount, typeof(WayPoint));
+        waypointObj.transform.SetParent(waypointOrigin, false);
+        WayPoint waypoint = waypointObj.GetComponent<WayPoint>();
+        if (waypointOrigin.childCount > 1)
+        {
+            waypoint.peviousWaypoint = waypointOrigin.GetChild(waypointOrigin.childCount - 2).GetComponent<WayPoint>();
+            waypoint.peviousWaypoint.nextWaypoint = waypoint;
+            waypoint.transform.position = waypoint.peviousWaypoint.transform.position;
+            waypoint.transform.forward = waypoint.peviousWaypoint.transform.forward;
+            waypoint.waypointWidth = waypoint.peviousWaypoint.waypointWidth;
+        }
 
-    void RotateRight()
-    {
-        if (Selection.activeGameObject == null) return;
-        WayPoint wp = Selection.activeGameObject.GetComponent<WayPoint>();
-        if (wp != null) wp.transform.Rotate(0, 45, 0);
+        Selection.activeObject = waypoint.gameObject;
     }
 
     void EmptyWaypoint()
     {
-        if (waypointOrigin == null) return;
         GameObject waypointObj = new GameObject("waypoint " + waypointOrigin.childCount, typeof(WayPoint));
         waypointObj.transform.SetParent(waypointOrigin, false);
-        Selection.activeGameObject = waypointObj;
+        WayPoint waypoint = waypointObj.GetComponent<WayPoint>();
+        Selection.activeObject = waypoint.gameObject;
     }
 
-    void ConnectWaypointsBranches()
+    void ConectWaypoints()
     {
-        GameObject[] selectedObjects = Selection.gameObjects;
+        // Get all selected WayPoints
+        GameObject[] selectedObjects = Selection.gameObjects;
         List<WayPoint> selectedWaypoints = new List<WayPoint>();
 
         foreach (GameObject go in selectedObjects)
         {
             WayPoint wp = go.GetComponent<WayPoint>();
-            if (wp != null) selectedWaypoints.Add(wp);
+            if (wp != null)
+                selectedWaypoints.Add(wp);
         }
 
-        if (selectedWaypoints.Count != 2) return;
+        if (selectedWaypoints.Count != 2)
+        {
+            Debug.LogWarning("Please select exactly two WayPoints to connect.");
+            return;
+        }
 
         WayPoint waypointA = selectedWaypoints[0];
         WayPoint waypointB = selectedWaypoints[1];
 
-        Undo.RecordObject(waypointA, "Connect Waypoint Branches");
-        Undo.RecordObject(waypointB, "Connect Waypoint Branches");
+        // Add each to the other's branch list (bidirectional branch connection)
+        if (!waypointA.branches.Contains(waypointB))
+            waypointA.branches.Add(waypointB);
+        if (!waypointB.branches.Contains(waypointA))
+            waypointB.branches.Add(waypointA);
 
-        if (!waypointA.branches.Contains(waypointB)) waypointA.branches.Add(waypointB);
-        if (!waypointB.branches.Contains(waypointA)) waypointB.branches.Add(waypointA);
-
-        EditorUtility.SetDirty(waypointA);
+        // Optional: mark as dirty for undo
+        EditorUtility.SetDirty(waypointA);
         EditorUtility.SetDirty(waypointB);
-
-        SceneView.RepaintAll();
     }
 
-    void ConnectWaypointsDirect()
-    {
-        GameObject[] selectedObjects = Selection.gameObjects;
-        List<WayPoint> selectedWaypoints = new List<WayPoint>();
-
-        foreach (GameObject go in selectedObjects)
-        {
-            WayPoint wp = go.GetComponent<WayPoint>();
-            if (wp != null) selectedWaypoints.Add(wp);
-        }
-
-        if (selectedWaypoints.Count != 2) return;
-
-        WayPoint wp1 = selectedWaypoints[0];
-        WayPoint wp2 = selectedWaypoints[1];
-
-        Undo.RecordObject(wp1, "Connect Waypoints Direct");
-        Undo.RecordObject(wp2, "Connect Waypoints Direct");
-
-        wp1.nextWaypoint = wp2;
-        wp2.previousWaypoint = wp1; // Âמחגנאשוםא "נמהםאÿ" מןוקאעךא
-
-        EditorUtility.SetDirty(wp1);
-        EditorUtility.SetDirty(wp2);
-
-        SceneView.RepaintAll();
-    }
 }

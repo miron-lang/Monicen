@@ -4,42 +4,35 @@ using TMPro;
 
 public class PlayerBar : MonoBehaviour
 {
+
     public Slider helthBar;
     public Slider armorBar;
-
-    // TMP_Text работает и с обычным TextMeshPro, и с TextMeshProUGUI на Canvas
-    public TMP_Text money;
+    public TextMeshPro money;
 
     public Player playerSkript;
 
-    void Update()
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
-        // Безопасная проверка: обновляем текст только если всё привязано в инспекторе
-        if (money != null && playerSkript != null)
-        {
-            money.text = "$ " + playerSkript.currentMoney;
-        }
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        money.text = "$ " + playerSkript.currentMoney;
     }
 
     public void SetHealth(float health)
     {
-        if (helthBar == null) return;
-
         helthBar.value = health;
-
-        // Защита на случай, если playerSkript ещё не успел проинициализироваться
-        if (playerSkript != null)
-        {
-            helthBar.maxValue = playerSkript.maxHealth;
-        }
+        helthBar.maxValue = playerSkript.maxHealth;
     }
 
     public void SetArmor(float armor)
     {
-        if (armorBar != null)
-        {
-            armorBar.value = armor;
-            armorBar.maxValue = 100;
-        }
+        armorBar.value = armor;
+        armorBar.maxValue = 100;
     }
+
 }

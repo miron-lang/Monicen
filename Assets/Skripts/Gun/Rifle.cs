@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
+using StarterAssets;
 
 public class Rifle : MonoBehaviour
 {
@@ -12,12 +13,17 @@ public class Rifle : MonoBehaviour
     private float nextTimeToShoot = 1.5f;
     public float fireCharge = 10f;
 
-    public float rifleDamage = 25f;
+    [SerializeField] float rifleDamage = 25f;
 
-    public float shootLengthRange = 40f;
+    public GameObject player;
+
+    [SerializeField] RuntimeAnimatorController animationController;
+
+    public float shootLengthRange = 60f;
 
     public GameObject metalEffect;
     public GameObject lazer;
+
 
     public Transform localOrigin;
 
@@ -28,6 +34,9 @@ public class Rifle : MonoBehaviour
     public float reloadingTime = 10.5f;
     public bool setReloading = false;
 
+
+    [SerializeField] GameObject bullet;
+
     public ParticleSystem shootEfect;
 
     public bool isItemInInfertory = false;
@@ -37,11 +46,31 @@ public class Rifle : MonoBehaviour
     public TMP_Text ammoLeft;
     public TMP_Text magLeft;
 
-    public GameObject blood;
+    [SerializeField] GameObject blood;
+
+    Camera cam;
+    
+    //public StarterAssets.ThirdPersonController controller;
+    
 
     public CharacterRetargeter characterRetarget;
 
+    [SerializeField] Transform lazerOrigin;
+
+    [SerializeField] GameObject ammoMagLeft;
+
+    [Header("Camera")]
+    [SerializeField] GameObject aimCam;
+    [SerializeField] GameObject thirdPersonCam;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    private void OnEnable()
+    {
+        player.transform.GetComponent<Animator>().runtimeAnimatorController = animationController;
+        ammoOutUi.SetActive(false);
+        ammoMagLeft.SetActive(true);
+    }
     void Start()
     {
         
@@ -49,7 +78,7 @@ public class Rifle : MonoBehaviour
 
     void Awake()
     {
-        ammoOutUi.SetActive(false);
+        cam = Camera.main;
         presentAmmunition = maxAmmunition;
 
         ammoLeft.text = "Ammo Left:" + presentAmmunition;
@@ -75,8 +104,24 @@ public class Rifle : MonoBehaviour
             StartCoroutine(Reload());
             return;
         }
-
-        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))//Input.GetButton("Fire1") || 
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            aimCam.SetActive(true);
+            thirdPersonCam.SetActive(false);
+            anim.SetBool("Aim", true);
+        }
+            else if (Input.GetKeyUp(KeyCode.Mouse1))
+        {
+            aimCam.SetActive(false);
+            thirdPersonCam.SetActive(true);
+            anim.SetBool("Aim", false);
+            lazer.SetActive(false);
+        }
+        if (anim.GetBool("Aim"))
+        {
+            Lazer();
+        }
+        if (Input.GetKey(KeyCode.Mouse0))//Input.GetButton("Fire1") || 
         {
             if (Time.time >= nextTimeToShoot)
             {
@@ -102,12 +147,22 @@ public class Rifle : MonoBehaviour
     void Lazer()
     {
         RaycastHit hitInfo;
-        if (Physics.Raycast(localOrigin.position, localOrigin.forward, out hitInfo, shootLengthRange) && characterRetarget.enabled)
+        Ray ray;
+        if (anim.GetBool("Aim"))
+        {
+            ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        }
+        else
+        {
+            ray = new Ray(lazerOrigin.position, lazerOrigin.forward);
+        }
+        if (Physics.Raycast(ray, out hitInfo, shootLengthRange))  // && characterRetarget.enabled)
         {
             //GameObject point = Instantiate(lazer, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
             lazer.SetActive(true);
             lazer.transform.position = hitInfo.point;
             lazer.transform.rotation = Quaternion.LookRotation(hitInfo.normal);
+            lazer.transform.localScale = Vector3.one * (0.02f + hitInfo.distance * 0.00425f);
         }
         else
         {
@@ -151,7 +206,18 @@ public class Rifle : MonoBehaviour
 
         print("Shoot");
         RaycastHit hitInfo;
-        if (Physics.Raycast(localOrigin.position, localOrigin.forward, out hitInfo, shootLengthRange))
+        Ray ray;
+        if (anim.GetBool("Aim"))
+        {
+            ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        }
+        else
+        {
+            ray = new Ray(lazerOrigin.position, lazerOrigin.forward);
+        }
+        GameObject newBullet = Instantiate(bullet, localOrigin.position, localOrigin.rotation);
+        newBullet.GetComponent<Bullet>().target = ray.direction;
+        if (Physics.Raycast(ray, out hitInfo, shootLengthRange))
         {
             PiliceNavigator police = hitInfo.transform.GetComponent<PiliceNavigator>();
             CharacterNavigatorScript npc = hitInfo.transform.GetComponent<CharacterNavigatorScript>();
@@ -176,6 +242,7 @@ public class Rifle : MonoBehaviour
 
             }
         }
+
     }
 
 }

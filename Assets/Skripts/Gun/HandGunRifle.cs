@@ -1,3 +1,4 @@
+using Meta.XR.Movement.Retargeting;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -14,7 +15,13 @@ public class HandGunRifle : MonoBehaviour
 
     public GameObject metalEffect;
 
+    [SerializeField] GameObject blood;
+    [SerializeField] float rifleDamage = 25f;
+
     public Transform localOrigin;
+
+    public GameObject player;
+    [SerializeField] RuntimeAnimatorController animationController;
 
     public bool isItemInInfertoryHandGunEdition = false;
 
@@ -27,12 +34,32 @@ public class HandGunRifle : MonoBehaviour
 
     public ParticleSystem shootEfect;
 
+    [SerializeField] Transform lazerOrigin;
+
+    [SerializeField] GameObject ammoMagLeft;
+
     [Header("Sound And Ui")]
     public GameObject ammoOutUi;
     public TMP_Text ammoLeft;
     public TMP_Text magLeft;
 
+    [Header("Camera")]
+    [SerializeField] GameObject aimCam;
+    [SerializeField] GameObject thirdPersonCam;
+
+    public CharacterRetargeter characterRetarget;
+    Camera cam;
+    [SerializeField] GameObject bullet;
+    public GameObject lazer;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void OnEnable()
+    {
+        player.transform.GetComponent<Animator>().runtimeAnimatorController = animationController;
+        print("сменили анимацыю");
+        ammoMagLeft.SetActive(true);
+        ammoOutUi.SetActive(false);
+    }
     void Start()
     {
 
@@ -40,10 +67,10 @@ public class HandGunRifle : MonoBehaviour
 
     void Awake()
     {
+        cam = Camera.main;
         ammoLeft.text = "Ammo Left:" + presentAmmunition;
         magLeft.text = "Mag Left:" + mag;
 
-        ammoOutUi.SetActive(false);
         presentAmmunition = maxAmmunition;
     }
 
@@ -51,6 +78,11 @@ public class HandGunRifle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (characterRetarget.enabled)
+        {
+            Lazer();
+        }
+
         if (setReloading)
         {
             return;
@@ -61,9 +93,24 @@ public class HandGunRifle : MonoBehaviour
             StartCoroutine(Reload());
             return;
         }
-
-
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            aimCam.SetActive(true);
+            thirdPersonCam.SetActive(false);
+            anim.SetBool("Aim", true);
+        }
+        else if (Input.GetKeyUp(KeyCode.Mouse1))
+        {
+            aimCam.SetActive(false);
+            thirdPersonCam.SetActive(true);
+            anim.SetBool("Aim", false);
+            lazer.SetActive(false);
+        }
+        if (anim.GetBool("Aim"))
+        {
+            Lazer();
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (Time.time >= nextTimeToShoot)
             {
@@ -86,6 +133,31 @@ public class HandGunRifle : MonoBehaviour
         ammoOutUi.SetActive(false);
     }
 
+    void Lazer()
+    {
+        RaycastHit hitInfo;
+        Ray ray;
+        if (anim.GetBool("Aim"))
+        {
+            ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        }
+        else
+        {
+            ray = new Ray(lazerOrigin.position, lazerOrigin.forward);
+        }
+        if (Physics.Raycast(ray, out hitInfo, shootLengthRange))  // && characterRetarget.enabled)
+        {
+            //GameObject point = Instantiate(lazer, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+            lazer.SetActive(true);
+            lazer.transform.position = hitInfo.point;
+            lazer.transform.rotation = Quaternion.LookRotation(hitInfo.normal);
+            lazer.transform.localScale = Vector3.one * (0.02f + hitInfo.distance * 0.00425f);
+        }
+        else
+        {
+            lazer.SetActive(false);
+        }
+    }
     IEnumerator Reload()
     {
         setReloading = true;
@@ -120,16 +192,48 @@ public class HandGunRifle : MonoBehaviour
         ammoLeft.text = "Ammo Left:" + presentAmmunition;
         magLeft.text = "Mag Left:" + mag;
 
-        print("Shoot");
         RaycastHit hitInfo;
-        if (Physics.Raycast(localOrigin.position, localOrigin.forward, out hitInfo, shootLengthRange))
+        Ray ray;
+        if (anim.GetBool("Aim"))
         {
-            if (state.IsName("ShootPrimary2GunsAim"))
+            ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        }
+        else
+        {
+            ray = new Ray(lazerOrigin.position, lazerOrigin.forward);
+        }
+        GameObject newBullet = Instantiate(bullet, localOrigin.position, localOrigin.rotation);
+        newBullet.GetComponent<Bullet>().target = ray.direction;
+        if (Physics.Raycast(ray, out hitInfo, shootLengthRange))
+        {
+            PiliceNavigator police = hitInfo.transform.GetComponent<PiliceNavigator>();
+            CharacterNavigatorScript npc = hitInfo.transform.GetComponent<CharacterNavigatorScript>();
+            print("SOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOT");
+            //if (state.IsName("ShootPrimary2GunsAim"))
             {
-                GameObject createMetalEffect = Instantiate(metalEffect, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-                print(hitInfo.transform.name);
+                print("anim sghooot ");
+                if (police != null)
+                {
+                    GameObject createBloodEffect = Instantiate(blood, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+                    hitInfo.transform.GetComponent<PoliceOfficer>().PoliceGetDamage(rifleDamage);
+                }
+
+                if (npc != null)
+                {
+                    GameObject createBloodEffect = Instantiate(blood, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+                    hitInfo.transform.GetComponent<CharacterNavigatorScript>().NpcGetDamage(rifleDamage);
+                }
+
+                else
+                {
+                    print("Effect");
+                    GameObject createMetalEffect = Instantiate(metalEffect, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+                }
+
             }
         }
     }
-
 }
+    
+
+
