@@ -1,10 +1,12 @@
-using Meta.XR.Movement.Retargeting;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 
 public class HandGunRifle : MonoBehaviour
 {
+
+    [Header("Sounds")]
+    [SerializeField] AudioSource shootSound;
 
     public Animator anim;
 
@@ -47,7 +49,7 @@ public class HandGunRifle : MonoBehaviour
     [SerializeField] GameObject aimCam;
     [SerializeField] GameObject thirdPersonCam;
 
-    public CharacterRetargeter characterRetarget;
+    //public CharacterRetarget characterRetarget;
     Camera cam;
     [SerializeField] GameObject bullet;
     public GameObject lazer;
@@ -78,10 +80,10 @@ public class HandGunRifle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (characterRetarget.enabled)
-        {
-            Lazer();
-        }
+        //if (characterRetarget.enabled)
+        //{
+        //    Lazer();
+        //}
 
         if (setReloading)
         {
@@ -203,11 +205,18 @@ public class HandGunRifle : MonoBehaviour
             ray = new Ray(lazerOrigin.position, lazerOrigin.forward);
         }
         GameObject newBullet = Instantiate(bullet, localOrigin.position, localOrigin.rotation);
-        newBullet.GetComponent<Bullet>().target = ray.direction;
+        newBullet.transform.forward = ray.direction;
+        //newBullet.GetComponent<Bullet>().target = ray.direction;
+
+        if (shootSound != null)
+            shootSound.Play();
+
         if (Physics.Raycast(ray, out hitInfo, shootLengthRange))
         {
-            PiliceNavigator police = hitInfo.transform.GetComponent<PiliceNavigator>();
+            PoliceOfficer police = hitInfo.transform.GetComponent<PoliceOfficer>();
             CharacterNavigatorScript npc = hitInfo.transform.GetComponent<CharacterNavigatorScript>();
+            SimpleGuncsterSkript guncter = hitInfo.transform.GetComponent<SimpleGuncsterSkript>();
+            Boss boss = hitInfo.transform.GetComponent<Boss>();
             print("SOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOT");
             //if (state.IsName("ShootPrimary2GunsAim"))
             {
@@ -215,13 +224,25 @@ public class HandGunRifle : MonoBehaviour
                 if (police != null)
                 {
                     GameObject createBloodEffect = Instantiate(blood, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-                    hitInfo.transform.GetComponent<PoliceOfficer>().PoliceGetDamage(rifleDamage);
+                    police.PoliceGetDamage(rifleDamage);
                 }
 
-                if (npc != null)
+                else if (npc != null)
                 {
                     GameObject createBloodEffect = Instantiate(blood, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-                    hitInfo.transform.GetComponent<CharacterNavigatorScript>().NpcGetDamage(rifleDamage);
+                    npc.NpcGetDamage(rifleDamage);
+                }
+
+                else if (guncter != null)
+                {
+                    GameObject createBloodEffect = Instantiate(blood, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+                    guncter.GuncsterGetDamage(rifleDamage);
+                }
+
+                else if (boss != null)
+                {
+                    GameObject createBloodEffect = Instantiate(blood, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+                    boss.BossGetDamage(rifleDamage);
                 }
 
                 else

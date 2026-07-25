@@ -1,4 +1,3 @@
-using Meta.XR.Movement.Retargeting;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -53,7 +52,7 @@ public class Rifle : MonoBehaviour
     //public StarterAssets.ThirdPersonController controller;
     
 
-    public CharacterRetargeter characterRetarget;
+    //public CharacterRetargeter characterRetarget;
 
     [SerializeField] Transform lazerOrigin;
 
@@ -89,10 +88,10 @@ public class Rifle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (characterRetarget.enabled)
-        {
-            Lazer();
-        }
+        //if (characterRetarget.enabled)
+        //{
+        //    Lazer();
+        //}
 
         if (setReloading)
         {

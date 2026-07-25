@@ -4,43 +4,43 @@ using UnityEngine;
 public class PoliceOfficer : MonoBehaviour
 {
     [Header("Character Info")]
-    public float walkingSpeed;
-    public float runingSpeed;
-    public float turningSpeed;
+    [SerializeField] float walkingSpeed;
+    [SerializeField] float runingSpeed;
+    [SerializeField] float turningSpeed;
     [SerializeField] float stopSpeed = 0.3f;
 
     [Header("Deatatination")]
     public Vector3 destination;
     public bool destinationReached = false;
 
-    public float healthPolice = 100;
-    public int maxHealthPolice = 100;
-    public float armorPolice = 0;
+    [SerializeField] float healthPolice = 100;
+    [SerializeField] int maxHealthPolice = 100;
+    [SerializeField] float armorPolice = 0;
 
     [SerializeField] bool isVoidStarted = false;
 
     [Range(0, 4)]
-    public int startStars;
+    [SerializeField] int startStars;
 
     [Header("Police Ai")]
     private GameObject playerBody;
-    public LayerMask playerLayer;
-    public float visionRadius;
-    public float shootingRadius;
-    public bool playerInVisionRadius;
-    public bool playerInShootingRedius;
+    [SerializeField] LayerMask playerLayer;
+    [SerializeField] float visionRadius;
+    [SerializeField] float shootingRadius;
+    [SerializeField] bool playerInVisionRadius;
+    [SerializeField] bool playerInShootingRedius;
 
     [Header("Police Shooting")]
-    public WantedPlayer wantedPlayer;
-    public GameObject shootingRaycastArea;
-    public Player player;
-    public float timeBtwShoot;
+    [SerializeField] WantedPlayer wantedPlayer;
+    [SerializeField] GameObject shootingRaycastArea;
+    [SerializeField] Player player;
+    [SerializeField] float timeBtwShoot;
     public float giveDamage = 25f;
-    public GameObject oilBlood;
+    [SerializeField] GameObject oilBlood;
 
     bool previuseShoot = false;
 
-    public Animator anim;
+    [SerializeField] Animator anim;
 
     private float currentMovingSpeed;
 
