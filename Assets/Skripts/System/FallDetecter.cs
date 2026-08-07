@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class FallDetecter : MonoBehaviour
 {
-
-    public GameObject respawn;
+    public Transform respawn;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,12 +17,9 @@ public class FallDetecter : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision hit)
+    private void OnTriggerEnter(Collider other)
     {
-        if (hit.transform.tag == "Player")
-        {
-            hit.transform.position = respawn.transform.position;
-        }
+        other.transform.position = respawn.position;
     }
 
 }

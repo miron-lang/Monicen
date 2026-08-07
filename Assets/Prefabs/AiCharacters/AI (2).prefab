@@ -1763,6 +1763,8 @@ MonoBehaviour:
   stopSpeed: 1
   destination: {x: 0, y: 0, z: 0}
   destinationReached: 0
+  healthNpc: 100
+  maxHealthNpc: 100
 --- !u!95 &5004241415997545462
 Animator:
   serializedVersion: 7
@@ -1824,7 +1826,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!1 &5887225709387502083
 GameObject:

@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] bool isISothing = false;
     [SerializeField] bool isVoidStarted = false;
+    public Inventory inventory;
+    public Misions misions;
 
     public PlayerBar playerBar;
 

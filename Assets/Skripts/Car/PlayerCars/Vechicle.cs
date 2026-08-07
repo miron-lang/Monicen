@@ -1,31 +1,32 @@
+using Oculus.Interaction.Editor;
 using System.Xml.Serialization;
 using UnityEngine;
 
 public class Vechicle : MonoBehaviour
 {
-
+    [Header("Wheel's and object's")]
     public WheelCollider[] wheelsColliders;
-
     public Transform[] wheelsTransform;
-
     public Transform collidersEmpty;
     public Transform transformsEmpty;
-
-    private float presentTurnAngle = 0f;
-    private float presentAcceleration = 0f;
-
     public Transform doorPositon;
-
-    private Rigidbody rb;
+    public Misions misionsEmpty;
+    public GameObject carCamera;
 
     [Header("Vechicle steering")]
     public float wheelsTorque;
-    
+
     [Header("Vechicle engine")]
+    public float maxSpeedKmH = 120f;
+    public float reverseMaxSpeedKmH = 45f;
+    public float additionalAcceleration = 7f;
     public float accelerationForce;
     public float breakingForce;
-    private float pressentBreakForce = 0f;
-    public GameObject carCamera;
+    public float reverseBreakingForce = 150000f;
+    public float driftBreakForce = 15000f;
+    [Range(0.05f, 1f)]
+    public float driftSidewaysStiffness = 0.55f;
+    public float driftTurnForce = 3f;
 
     [Header("Vechical security")]
     public Transform player;
@@ -35,12 +36,26 @@ public class Vechicle : MonoBehaviour
     [Header("Disable things")]
     public GameObject mainCamera;
 
+    //[Header("Pressent data")]
+    private float pressentBreakForce = 0f;
+    private float presentTurnAngle = 0f;
+    private float presentAcceleration = 0f;
+    private Rigidbody rb;
+    private float[] normalSidewaysStiffness;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
         wheelsColliders = collidersEmpty.GetComponentsInChildren<WheelCollider>();
+        rb = GetComponent<Rigidbody>();
+        rb.maxLinearVelocity = maxSpeedKmH / 3.6f;
+
+        normalSidewaysStiffness = new float[wheelsColliders.Length];
+
+        for (int i = 0; i < wheelsColliders.Length; i++)
+        {
+            normalSidewaysStiffness[i] = wheelsColliders[i].sidewaysFriction.stiffness;
+        }
 
         wheelsTransform = new Transform[transformsEmpty.childCount];
         for (int i = 0; i < transformsEmpty.childCount; i++)
@@ -63,6 +78,12 @@ public class Vechicle : MonoBehaviour
                 radius = 999999f;
 
                 player.gameObject.SetActive(false);
+
+                if (misionsEmpty.cuurentMission == 1)
+                {
+                    misionsEmpty.NextMision();
+                    player.gameObject.GetComponent<Player>().currentMoney += 750;
+                }
             }
             else if (Input.GetKeyDown(KeyCode.F) && inOpened)
             {
@@ -84,17 +105,102 @@ public class Vechicle : MonoBehaviour
 
             MoveVechicle();
             VehicleSteering();
-            ApplyBreaks();
+            //ApplyBreaks();
         }
     }
 
     void MoveVechicle()
     {
-        presentAcceleration = accelerationForce * Input.GetAxis("Vertical");
+        //presentAcceleration = accelerationForce * Input.GetAxis("Vertical");
 
-        foreach (WheelCollider wheel in wheelsColliders)
+        //foreach (WheelCollider wheel in wheelsColliders)
+        //{
+        //    wheel.motorTorque = presentAcceleration;
+        //}
+        float verticalInput = Input.GetAxis("Vertical");
+        float currentSpeedkmH = rb.linearVelocity.magnitude * 3.6f;
+        float signedSpeedKmH = Vector3.Dot(rb.linearVelocity, transform.forward) * 3.6f;
+        bool belowMaximumSpeed = currentSpeedkmH < maxSpeedKmH;
+        bool belowReverseMaximumSpeed = signedSpeedKmH > -reverseMaxSpeedKmH;
+        bool brakingBeforeReverse = verticalInput < -0.1 && signedSpeedKmH > 1f;
+        bool drifting = Input.GetKey(KeyCode.Space);
+        float steeringInput = Input.GetAxis("Horizontal");
+
+        if (brakingBeforeReverse)
         {
-            wheel.motorTorque = presentAcceleration;
+            presentAcceleration = 0;
+        }
+
+        else if (verticalInput > 0f && belowMaximumSpeed)
+        {
+            presentAcceleration = accelerationForce * verticalInput;
+        }
+
+        else if (verticalInput < 0f && belowReverseMaximumSpeed)
+        {
+            presentAcceleration = accelerationForce * verticalInput;
+        }
+
+        else
+        {
+            presentAcceleration = 0f;
+        }
+
+        for (int i = 0;i < wheelsColliders.Length; i++)
+        {
+            bool rearWheel = i >= 2;
+
+            wheelsColliders[i].motorTorque = !drifting || rearWheel ? presentAcceleration:0f;
+        }
+
+        if (verticalInput > 0f && belowMaximumSpeed && !drifting)
+        {
+            rb.AddForce(transform.forward * additionalAcceleration, ForceMode.Acceleration);
+        }
+
+        if (drifting)
+        {
+            rb.AddTorque(Vector3.up * steeringInput * driftTurnForce, ForceMode.Acceleration);
+        }
+
+        if (verticalInput < 0f && belowReverseMaximumSpeed && !brakingBeforeReverse)
+        {
+            rb.AddForce(-transform.forward * additionalAcceleration, ForceMode.Acceleration);
+        }
+
+        if (!belowMaximumSpeed)
+        {
+            rb.linearVelocity = rb.linearVelocity.normalized * (maxSpeedKmH / 3.6f);
+        }
+
+        if (!belowReverseMaximumSpeed)
+        {
+            rb.linearVelocity = rb.linearVelocity.normalized * (reverseMaxSpeedKmH / 3.6f);
+        }
+
+        for (int i = 0; i < wheelsColliders.Length; i++)
+        {
+            bool rearWheel = i >= 2;
+
+            if (brakingBeforeReverse)
+            {
+                pressentBreakForce = reverseBreakingForce;
+            }
+
+            else if (drifting && rearWheel)
+            {
+                pressentBreakForce = driftBreakForce;
+            }
+
+            else
+            {
+                pressentBreakForce = 0;
+            }
+
+            wheelsColliders[i].brakeTorque = pressentBreakForce;
+            WheelFrictionCurve sidewaysFriction = wheelsColliders[i].sidewaysFriction;
+            sidewaysFriction.stiffness = drifting && rearWheel ? driftSidewaysStiffness : normalSidewaysStiffness[i];
+            wheelsColliders[i].sidewaysFriction = sidewaysFriction;
         }
     }
 
@@ -131,9 +237,5 @@ public class Vechicle : MonoBehaviour
             pressentBreakForce = 0f;
         }
 
-        for (int i = 0; i < wheelsColliders.Length; i++)
-        {
-            wheelsColliders[i].brakeTorque = pressentBreakForce;
-        }
     }
 }

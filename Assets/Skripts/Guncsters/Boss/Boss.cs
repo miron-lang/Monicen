@@ -10,6 +10,9 @@ public class Boss : MonoBehaviour
 
     public bool isVoidStarted = false;
 
+    public Misions misionsEmpy;
+    public Player player;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -57,8 +60,10 @@ public class Boss : MonoBehaviour
     {
         anim.SetBool("Died", true);
         anim.SetBool("Shooting", false);
+        misionsEmpy.NextMision();
+        player.currentMoney += 120000;
 
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, 7f);
     }
 
     void EvryTimeHeted()
