@@ -45513,6 +45513,7 @@ GameObject:
   - component: {fileID: 1670593610}
   - component: {fileID: 1670593609}
   - component: {fileID: 1670593608}
+  - component: {fileID: 1670593612}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -45631,13 +45632,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670593607}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.06104851, y: 0, z: 0, w: 0.99813485}
-  m_LocalPosition: {x: 0.3, y: 2.3, z: -6.5}
+  m_LocalRotation: {x: 0.06104851, y: -0, z: -0, w: 0.99813485}
+  m_LocalPosition: {x: -26.108301, y: 2.530362, z: -46.563747}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1084027289526217181}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 7, y: 0, z: 0}
+--- !u!114 &1670593612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670593607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afda1f3fef394f14c8ad433b0ba044d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SmoothCarCamera
+  target: {fileID: 1084027289526217181}
+  offset: {x: 0.3, y: 2.3, z: -6.5}
+  positionSmoothTime: 0.25
+  rotationSmoothSpeed: 5
 --- !u!4 &1670732522 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 62125825e49febf4a89f76daf85d9ca7, type: 3}
@@ -68154,7 +68171,6 @@ Transform:
   m_Children:
   - {fileID: 652122741}
   - {fileID: 958295652}
-  - {fileID: 1670593611}
   - {fileID: 887373973}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -133179,13 +133195,18 @@ MonoBehaviour:
   transformsEmpty: {fileID: 958295652}
   doorPositon: {fileID: 887373973}
   misionsEmpty: {fileID: 561204833}
-  wheelsTorque: 35
-  maxSpeedKmH: 120
-  reverseMaxSpeedKmH: 45
-  additionalAcceleration: 6
-  accelerationForce: 5000
-  breakingForce: 100000
   carCamera: {fileID: 1670593607}
+  wheelsTorque: 45
+  maxSpeedKmH: 110
+  reverseMaxSpeedKmH: 45
+  additionalAcceleration: 2.25
+  accelerationForce: 2250
+  breakingForce: 100000
+  reverseBreakingForce: 1000000
+  driftBreakForce: 20000
+  driftSidewaysStiffness: 0.7
+  driftTurnForce: 1.6
+  reverseDeceleration: 35
   player: {fileID: 724415000}
   inOpened: 0
   radius: 5
@@ -135206,6 +135227,7 @@ SceneRoots:
   - {fileID: 1130004601}
   - {fileID: 491069144}
   - {fileID: 543450651701349230}
+  - {fileID: 1670593611}
   - {fileID: 1084027289526217181}
   - {fileID: 1530712743}
   - {fileID: 561204834}

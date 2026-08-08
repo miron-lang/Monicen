@@ -27,6 +27,7 @@ public class Vechicle : MonoBehaviour
     [Range(0.05f, 1f)]
     public float driftSidewaysStiffness = 0.55f;
     public float driftTurnForce = 3f;
+    public float reverseDeceleration = 35f;
 
     [Header("Vechical security")]
     public Transform player;
@@ -176,6 +177,15 @@ public class Vechicle : MonoBehaviour
         if (!belowReverseMaximumSpeed)
         {
             rb.linearVelocity = rb.linearVelocity.normalized * (reverseMaxSpeedKmH / 3.6f);
+        }
+
+        if (brakingBeforeReverse)
+        {
+            Vector3 horizantalVelosity = Vector3.ProjectOnPlane(rb.linearVelocity, Vector3.up);
+            Vector3 verticalVelosoty = rb.linearVelocity - horizantalVelosity;
+
+            horizantalVelosity = Vector3.MoveTowards(horizantalVelosity, Vector3.zero, reverseDeceleration * Time.deltaTime);
+            rb.linearVelocity = horizantalVelosity + verticalVelosoty;
         }
 
         for (int i = 0; i < wheelsColliders.Length; i++)
