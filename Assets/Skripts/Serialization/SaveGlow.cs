@@ -22,10 +22,16 @@ public class SaveGlow : MonoBehaviour
         print(other.name);
         if (other.CompareTag("Player"))
         {
+            player.SavePlayer();
+            Debug.Log("38");
             if (misionsEmpty.cuurentMission == 0)
             {
                 misionsEmpty.NextMision();
                 player.currentMoney += 643;
+                car.SetActive(true);
+            }
+            else if (misionsEmpty.cuurentMission >= 0)
+            {
                 car.SetActive(true);
             }
             else if (misionsEmpty.cuurentMission == 2)
@@ -34,7 +40,10 @@ public class SaveGlow : MonoBehaviour
                 player.currentMoney -= 125;
                 shop.SetActive(true);
             }
-                //Сохронений
+            else if (misionsEmpty.cuurentMission >= 2)
+            {
+                shop.SetActive(true);
             }
+        }
         }
 }
