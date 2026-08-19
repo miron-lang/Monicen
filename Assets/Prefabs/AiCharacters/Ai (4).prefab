@@ -2269,6 +2269,8 @@ GameObject:
   - component: {fileID: 7127517865375485477}
   - component: {fileID: 4090322068287380471}
   - component: {fileID: 4826130332653789451}
+  - component: {fileID: 7483513720206520355}
+  - component: {fileID: 9172087785862570837}
   m_Layer: 0
   m_Name: Ai (4)
   m_TagString: Untagged
@@ -2332,7 +2334,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7166426636148350043}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 75
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -2358,7 +2360,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7166426636148350043}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4142af47bb86b0348845d9da57bcbc6e, type: 3}
   m_Name: 
@@ -2370,6 +2372,11 @@ MonoBehaviour:
   destinationReached: 0
   healthNpc: 100
   maxHealthNpc: 100
+  obcstacleCheckRadius: 0.2
+  obcstacleCheckDisctance: 1.2
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &4090322068287380471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2382,7 +2389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a3c4757d550a364080279d484ee21c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaypointNavigator
-  charcater: {fileID: 7127517865375485477}
+  charcater: {fileID: 0}
   currentWaypoint: {fileID: 0}
 --- !u!95 &4826130332653789451
 Animator:
@@ -2406,6 +2413,47 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!195 &7483513720206520355
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7166426636148350043}
+  m_Enabled: 0
+  m_AgentTypeID: 0
+  m_Radius: 0.3
+  m_Speed: 2
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 300
+  m_StoppingDistance: 0.3
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.75
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &9172087785862570837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7166426636148350043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39fc0e956e2023c40b92b4c369b70da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterNavigatorScript01
+  moveingSpeed: 2.5
+  turningSpeed: 300
+  stopSpeed: 0.3
+  destination: {x: 0, y: 0, z: 0}
+  destinationReached: 0
+  healthNpc: 100
+  maxHealthNpc: 100
 --- !u!1 &7210395434713973526
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,7 @@
+using Meta.Voice.Net.WebSockets;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CharacterNavigatorScript : MonoBehaviour
 {
@@ -18,17 +21,56 @@ public class CharacterNavigatorScript : MonoBehaviour
 
     private Player player;
 
+    private NavMeshAgent navMeshAgent;
+    private bool useNavMesh;
+    private Rigidbody rb;
+
+    [SerializeField] float obcstacleCheckRadius = 0.2f;
+    [SerializeField] float obcstacleCheckDisctance = 1.2f;
+    [SerializeField] LayerMask obstacleMask = ~0;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         player = FindAnyObjectByType<Player>();
         healthNpc = maxHealthNpc;
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        NavMeshHit hit  = default;
+        useNavMesh = navMeshAgent != null && NavMesh.SamplePosition(transform.position, out hit, 2f, NavMesh.AllAreas);
+        if (navMeshAgent != null)
+        {
+            navMeshAgent.enabled = useNavMesh;
+            if (useNavMesh)
+            {
+                navMeshAgent.Warp(hit.position);
+                navMeshAgent.speed = moveingSpeed;
+                navMeshAgent.angularSpeed = turningSpeed;
+                navMeshAgent.stoppingDistance = stopSpeed;
+
+                if (rb != null)
+                {
+                    rb.isKinematic = true;
+                }
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        Walk();
+        if (useNavMesh)
+        {
+            Walk();
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (!useNavMesh)
+        {
+            Walk();
+        }
     }
 
     public void NpcGetDamage(float takeDamage)
@@ -44,8 +86,14 @@ public class CharacterNavigatorScript : MonoBehaviour
     void Death()
     {
         dedth = true;
-        print("Òû ëîõ");
-        player.kills++;
+        if (navMeshAgent != null && navMeshAgent.enabled)
+        {
+            navMeshAgent.isStopped = true;
+        }
+        if (player != null)
+        {
+            player.kills++;
+        }
         Object.Destroy(gameObject, 1f);
     }
 
@@ -53,27 +101,73 @@ public class CharacterNavigatorScript : MonoBehaviour
     {
         this.destination = destination;
         destinationReached = false;
+
+        if (useNavMesh && navMeshAgent != null && navMeshAgent.isOnNavMesh)
+        {
+            navMeshAgent.isStopped = false;
+            navMeshAgent.SetDestination(destination);
+        }
     }
 
     public void Walk()
     {
-        if (transform.position != destination)
+        if (dedth)
         {
-            Vector3 destinationDirection = destination - transform.position;
+            return;
+        }
 
-            float destinationDistance = destinationDirection.magnitude;
+        if (useNavMesh && navMeshAgent != null && navMeshAgent.isOnNavMesh)
+        {
+            destinationReached = !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
+            return;
+        }
 
-            if (destinationDistance >= stopSpeed)
+        Vector3 destinationDirection = destination - transform.position;
+        destinationDirection.y = 0f;
+
+        float destinationDistance = destinationDirection.magnitude;
+
+
+        if (destinationDistance >= stopSpeed)
+        {
+            destinationReached = false;
+            Vector3 moveDiraction = NpcMovementUtility.GetClearDirection(transform, destinationDirection, obcstacleCheckRadius, obcstacleCheckDisctance, obstacleMask);
+            if (moveDiraction == Vector3.zero)
             {
-                destinationReached = false;
-                Quaternion targetRatation = Quaternion.LookRotation(destinationDirection);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRatation, turningSpeed * Time.deltaTime);
-                transform.Translate(Vector3.forward * moveingSpeed * Time.deltaTime);
+                StopRb();
+                return;
+            }
+            Quaternion targetRotation = Quaternion.LookRotation(moveDiraction);
+            Quaternion nextRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turningSpeed * Time.fixedDeltaTime);
+
+            if (rb != null)
+            {
+                rb.MoveRotation(nextRotation);
+                Vector3 velocity = nextRotation * Vector3.forward * moveingSpeed;
+                rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z);
             }
             else
             {
-                destinationReached = true;
+                transform.rotation = nextRotation;
+                transform.position += transform.forward * moveingSpeed * Time.fixedDeltaTime;
             }
+
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turningSpeed * Time.deltaTime);
+            transform.Translate(Vector3.forward * moveingSpeed * Time.deltaTime);
+        }
+        else
+        {
+            destinationReached = true;
+            StopRb();
+        }
+
+    }
+
+    public void StopRb()
+    {
+        if (rb != null && !rb.isKinematic)
+        {
+            rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
         }
     }
 

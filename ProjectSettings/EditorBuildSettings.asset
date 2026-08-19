@@ -30,8 +30,7 @@ EditorBuildSettings:
     path: Assets/Scene.unity
     guid: f5b081cecbceab54ca7201f805c11490
   - enabled: 1
-    path: Assets/SimplePoly City - Low Poly Assets/Demo/SimplePoly City - Low Poly
-      Assets_Demo Scene.unity
+    path: Assets/Scenes/SimplePoly City - Low Poly Assets_Demo Scene.unity
     guid: 7e6d3f4e5d896154ab4438845532ac3e
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bc5e241125a216948813e3cf340e3f34, type: 2}

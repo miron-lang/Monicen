@@ -2467,6 +2467,7 @@ GameObject:
   - component: {fileID: 1689709590773950813}
   - component: {fileID: 4474505091207288403}
   - component: {fileID: 7207187187425997651}
+  - component: {fileID: 4028606067730187283}
   m_Layer: 0
   m_Name: PoliceOficer2
   m_TagString: Untagged
@@ -2584,10 +2585,8 @@ MonoBehaviour:
   healthPolice: 100
   maxHealthPolice: 100
   armorPolice: 75
-  isISothing: 0
   isVoidStarted: 0
   startStars: 2
-  playerBody: {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -2616,6 +2615,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PiliceNavigator
   charcater: {fileID: 4474505091207288403}
   currentWaypoint: {fileID: 0}
+--- !u!195 &4028606067730187283
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7520532074598924186}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.3
+  m_Speed: 2
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 300
+  m_StoppingDistance: 0.3
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.75
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &7566242884309114143
 GameObject:
   m_ObjectHideFlags: 0

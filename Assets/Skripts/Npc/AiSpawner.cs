@@ -25,10 +25,9 @@ public class AiSpawner : MonoBehaviour
         while (count < aiToSpawn)
         {
             int randomIndex = Random.Range(0, aiPrefabs.Length);
-            GameObject obj = Instantiate(aiPrefabs[randomIndex]);
-            Transform child = transform.GetChild(Random.Range(0, transform.childCount - 1));
+            Transform child = transform.GetChild(Random.Range(0, transform.childCount ));
+            GameObject obj = Instantiate(aiPrefabs[randomIndex], child.position, child.rotation);
             obj.GetComponent<WaypointNavigator>().currentWaypoint = child.GetComponent<WayPoint>();
-            obj.transform.position = child.position;
             yield return new WaitForSeconds(0.1f);
             count++;
         }

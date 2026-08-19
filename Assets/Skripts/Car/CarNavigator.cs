@@ -5,6 +5,7 @@ public class CarNavigator : MonoBehaviour
 {
     [Header("Car Info")]
     public float movingSpeed = 17f;
+    public float maxMovingSped = 20f;
     public float turningSpeed = 150f;
     [SerializeField] float stopSpeed = 0.5f;
     public GameObject senser;
@@ -39,7 +40,7 @@ public class CarNavigator : MonoBehaviour
 
             else if (characterNpc == null && player == null)
             {
-                movingSpeed = 5f;
+                movingSpeed = maxMovingSped;
             }
 
         }
@@ -54,7 +55,7 @@ public class CarNavigator : MonoBehaviour
 
     public void Drive()
     {
-        movingSpeed = 5f;
+        movingSpeed = maxMovingSped;
 
         if (transform.position != destination)
         {
