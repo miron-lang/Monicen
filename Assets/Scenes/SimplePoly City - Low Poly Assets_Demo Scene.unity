@@ -33713,7 +33713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CarSpawner
   aiPrefabs:
   - {fileID: 5651119103318528806, guid: a5acb8c286238264ea00b2f980d1e3cb, type: 3}
-  aiToSpawn: 1
+  aiToSpawn: 10
 --- !u!4 &1205111327
 Transform:
   m_ObjectHideFlags: 0

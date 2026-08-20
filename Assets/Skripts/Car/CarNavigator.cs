@@ -7,7 +7,7 @@ public class CarNavigator : MonoBehaviour
     public float movingSpeed = 17f;
     public float maxMovingSped = 20f;
     public float turningSpeed = 150f;
-    [SerializeField] float stopSpeed = 0.5f;
+    [SerializeField] float stopSpeed = 1.75f;
     public GameObject senser;
     public float detectionRange = 10f;
 
@@ -25,40 +25,38 @@ public class CarNavigator : MonoBehaviour
     void Update()
     {
         RaycastHit hitInfo;
-        if (Physics.Raycast(senser.transform.position, senser.transform.forward, out hitInfo, detectionRange))
-        {
-            print(hitInfo.transform.name);
-            CharacterNavigatorScript characterNpc = hitInfo.transform.GetComponent<CharacterNavigatorScript>();
-            ThirdPersonController player = hitInfo.transform.GetComponent<ThirdPersonController>();
+        Debug.DrawRay(senser.transform.position, senser.transform.forward * detectionRange, Color.red);
+        //if (Physics.Raycast(senser.transform.position, senser.transform.forward, out hitInfo, detectionRange))
+        //{
+        //    print(hitInfo.transform.name);
+        //    CharacterNavigatorScript characterNpc = hitInfo.transform.GetComponentInParent<CharacterNavigatorScript>();
+        //    ThirdPersonController player = hitInfo.transform.GetComponentInParent<ThirdPersonController>();
+        //    PiliceNavigator pilice = hitInfo.transform.GetComponentInParent<PiliceNavigator>();
 
-            if (characterNpc != null || player != null)
-            {
-                print("Stop");
-                movingSpeed = 0f;
-                return;
-            }
+        //    if (characterNpc != null || player != null || pilice)
+        //    {
+        //        print("Stop");
+        //        movingSpeed = 0f;
+        //        return;
+        //    }
 
-            else if (characterNpc == null && player == null)
-            {
-                movingSpeed = maxMovingSped;
-            }
+        //}
 
-        }
+        movingSpeed = maxMovingSped;
         Drive();
     }
 
     public void LoceteDesination(Vector3 destination)
     {
+        destination.y = transform.position.y;
         this.destination = destination;
         destinationReached = false;
     }
 
     public void Drive()
     {
-        movingSpeed = maxMovingSped;
+        //movingSpeed = maxMovingSped;
 
-        if (transform.position != destination)
-        {
             Vector3 destinationDirection = destination - transform.position;
             destinationDirection.y = 0f;
 
@@ -69,13 +67,12 @@ public class CarNavigator : MonoBehaviour
                 destinationReached = false;
                 Quaternion targetRatation = Quaternion.LookRotation(destinationDirection);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRatation, turningSpeed * Time.deltaTime);
-                transform.Translate(Vector3.forward * movingSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, destination, movingSpeed * Time.deltaTime);
             }
             else
             {
                 destinationReached = true;
             }
-        }
     }
 
 }

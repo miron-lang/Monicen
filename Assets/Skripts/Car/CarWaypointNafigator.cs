@@ -18,7 +18,24 @@ public class CarWaypointNafigator : MonoBehaviour
     void Start()
     {
         diraction = Random.Range(0, 2);
-        car.LoceteDesination(currentWaypoint.GetPosition(diraction));
+
+        if (car == null || currentWaypoint == null)
+        {
+            return;
+        }
+
+        Vector3 startPosition = currentWaypoint.GetPosition(diraction);
+
+        startPosition.y = transform.position.y;
+
+        transform.position = startPosition;
+
+        SelectNextWaypoint();
+
+        if (currentWaypoint != null)
+        {
+            car.LoceteDesination(currentWaypoint.GetPosition(diraction));
+        }
     }
 
     // Update is called once per frame
