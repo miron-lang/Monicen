@@ -119,6 +119,56 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &228895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 228897}
+  - component: {fileID: 228896}
+  m_Layer: 0
+  m_Name: waypoint 18
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &228896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
+  peviousWaypoint: {fileID: 754469708}
+  nextWaypoint: {fileID: 893767927}
+  isCrosswalk: 0
+  waypointWidth: 7
+  branches: []
+  branchRatio: 0.5
+--- !u!4 &228897
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228895}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.000000050343466, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0000009617988, y: 0, z: 9.55237}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1205111327}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1146069 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: b8ee657c6800ab849bb30b4375d02323, type: 3}
@@ -690,6 +740,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1050153876}
   nextWaypoint: {fileID: 1152868934}
+  isCrosswalk: 0
   waypointWidth: 2
   branches: []
   branchRatio: 0.5
@@ -851,8 +902,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
-  peviousWaypoint: {fileID: 2023628929}
+  peviousWaypoint: {fileID: 132232436}
   nextWaypoint: {fileID: 1490985556}
+  isCrosswalk: 0
   waypointWidth: 6.5
   branches: []
   branchRatio: 0.5
@@ -864,13 +916,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35235003}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 239.8051, y: 0, z: 60.32396}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1205111327}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &37253048 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4978767523243047865, guid: 6caf198193dcb08469299e80779b77fe, type: 3}
@@ -1814,6 +1866,57 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87cc36a45a321ad478c47c9fec13dbd3, type: 3}
+--- !u!1 &57955281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 57955283}
+  - component: {fileID: 57955282}
+  m_Layer: 0
+  m_Name: waypoint 49
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &57955282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57955281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
+  peviousWaypoint: {fileID: 830311287}
+  nextWaypoint: {fileID: 0}
+  isCrosswalk: 1
+  waypointWidth: 3
+  branches:
+  - {fileID: 1758085126}
+  branchRatio: 0.5
+--- !u!4 &57955283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57955281}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.7071068, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 242.13551, y: 0.35400772, z: 176.6026}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 784231241}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &58882771
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3084,6 +3187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 800344036}
   nextWaypoint: {fileID: 1355719483}
+  isCrosswalk: 0
   waypointWidth: 5
   branches: []
   branchRatio: 0.5
@@ -4104,6 +4208,56 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2509cc5763ca17f4598bf61fd585a93e, type: 3}
+--- !u!1 &132232435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 132232437}
+  - component: {fileID: 132232436}
+  m_Layer: 0
+  m_Name: waypoint 13
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &132232436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132232435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
+  peviousWaypoint: {fileID: 2023628929}
+  nextWaypoint: {fileID: 35235004}
+  isCrosswalk: 0
+  waypointWidth: 7
+  branches: []
+  branchRatio: 0.5
+--- !u!4 &132232437
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132232435}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: -0, w: 0.000000050343466}
+  m_LocalPosition: {x: 239.8051, y: 0, z: 9.546487}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1205111327}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &133419192
 GameObject:
   m_ObjectHideFlags: 0
@@ -4135,6 +4289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 395712657}
   nextWaypoint: {fileID: 1297096748}
+  isCrosswalk: 0
   waypointWidth: 2.5
   branches: []
   branchRatio: 0.5
@@ -4184,6 +4339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 2121179150}
   nextWaypoint: {fileID: 710066908}
+  isCrosswalk: 0
   waypointWidth: 2.5
   branches: []
   branchRatio: 0.5
@@ -4537,6 +4693,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1024630086}
   nextWaypoint: {fileID: 800344036}
+  isCrosswalk: 0
   waypointWidth: 5
   branches: []
   branchRatio: 0.5
@@ -8549,8 +8706,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1734148113}
   nextWaypoint: {fileID: 954702604}
+  isCrosswalk: 0
   waypointWidth: 2.5
-  branches: []
+  branches:
+  - {fileID: 664974124}
   branchRatio: 0.5
 --- !u!4 &316790133
 Transform:
@@ -9077,6 +9236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 767618434}
   nextWaypoint: {fileID: 857323957}
+  isCrosswalk: 0
   waypointWidth: 2.5
   branches: []
   branchRatio: 0.5
@@ -9405,6 +9565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 0}
   nextWaypoint: {fileID: 1443107813}
+  isCrosswalk: 0
   waypointWidth: 2
   branches:
   - {fileID: 710066908}
@@ -10485,6 +10646,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1717154340}
   nextWaypoint: {fileID: 0}
+  isCrosswalk: 0
   waypointWidth: 2.5
   branches: []
   branchRatio: 0.5
@@ -10524,6 +10686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1726738397}
   nextWaypoint: {fileID: 133419193}
+  isCrosswalk: 0
   waypointWidth: 2.5
   branches: []
   branchRatio: 0.5
@@ -12358,13 +12521,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarNavigator
   movingSpeed: 17
-  maxMovingSped: 20
   turningSpeed: 150
   stopSpeed: 0.5
   senser: {fileID: 0}
   detectionRange: 10
+  acelerationSpeed: 4
+  turnBrakingSpeed: 60
+  minimumTurnSpeed: 0.05
   destination: {x: 0, y: 0, z: 0}
   destinationReached: 0
+  detectionHalfWidht: 1.7
+  detectionHalfHeight: 0.9
+  obstacleStopDistance: 2
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  obstacleBreakingSpeed: 80
+  obstacleCheckInterval: 0.1
 --- !u!1001 &445965842
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13199,6 +13372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 889695387}
   nextWaypoint: {fileID: 807407783}
+  isCrosswalk: 0
   waypointWidth: 2
   branches: []
   branchRatio: 0.5
@@ -13302,6 +13476,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: b74c48c2e73e17c418c9394124b75daf, type: 3}
   m_PrefabInstance: {fileID: 450333034}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &472088612
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 472088614}
+  - component: {fileID: 472088613}
+  m_Layer: 0
+  m_Name: waypoint 46
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &472088613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472088612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
+  peviousWaypoint: {fileID: 1048064910}
+  nextWaypoint: {fileID: 0}
+  isCrosswalk: 1
+  waypointWidth: 3
+  branches: []
+  branchRatio: 0.5
+--- !u!4 &472088614
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472088612}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 13.764308, y: 0.35400772, z: 160.63309}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 784231241}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &473264977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13775,13 +13999,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarNavigator
   movingSpeed: 17
-  maxMovingSped: 20
   turningSpeed: 150
   stopSpeed: 0.5
   senser: {fileID: 0}
   detectionRange: 10
+  acelerationSpeed: 4
+  turnBrakingSpeed: 60
+  minimumTurnSpeed: 0.05
   destination: {x: 0, y: 0, z: 0}
   destinationReached: 0
+  detectionHalfWidht: 1.7
+  detectionHalfHeight: 0.9
+  obstacleStopDistance: 2
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  obstacleBreakingSpeed: 80
+  obstacleCheckInterval: 0.1
 --- !u!1001 &485539036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14783,6 +15017,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 4f32dfddb033d3e40b5841bc53cc1689, type: 3}
   m_PrefabInstance: {fileID: 849993798}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &535479845
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 535479847}
+  - component: {fileID: 535479846}
+  m_Layer: 0
+  m_Name: waypoint 12
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &535479846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535479845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
+  peviousWaypoint: {fileID: 1581571807}
+  nextWaypoint: {fileID: 2023628929}
+  isCrosswalk: 0
+  waypointWidth: 7
+  branches: []
+  branchRatio: 0.493
+--- !u!4 &535479847
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535479845}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 230.39726, y: 0, z: -0.000029708503}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1205111327}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &535717263
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15172,6 +15456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 0}
   nextWaypoint: {fileID: 1929821921}
+  isCrosswalk: 0
   waypointWidth: 2.5
   branches:
   - {fileID: 1162018461}
@@ -15410,11 +15695,114 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4cfcf659200d7548b90a5580c3ab18f, type: 3}
+--- !u!1 &551980899
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 551980900}
+  - component: {fileID: 551980901}
+  m_Layer: 0
+  m_Name: waypoint 20
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &551980900
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551980899}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.0000001604785, z: -0, w: 1}
+  m_LocalPosition: {x: 8.308368, y: 0.15399772, z: 199.93187}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1205111327}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &551980901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551980899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
+  peviousWaypoint: {fileID: 0}
+  nextWaypoint: {fileID: 0}
+  isCrosswalk: 0
+  waypointWidth: 1
+  branches:
+  - {fileID: 1726738397}
+  - {fileID: 2130356506}
+  branchRatio: 0.5
 --- !u!4 &552157868 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: b8ee657c6800ab849bb30b4375d02323, type: 3}
   m_PrefabInstance: {fileID: 16551170}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &552920525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 552920527}
+  - component: {fileID: 552920526}
+  m_Layer: 0
+  m_Name: waypoint 53
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &552920526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552920525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
+  peviousWaypoint: {fileID: 2130356506}
+  nextWaypoint: {fileID: 0}
+  isCrosswalk: 1
+  waypointWidth: 3.5
+  branches:
+  - {fileID: 1734148113}
+  branchRatio: 0.5
+--- !u!4 &552920527
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552920525}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.70710695, z: -0, w: 0.7071066}
+  m_LocalPosition: {x: 116.45914, y: 0.35400772, z: 208.56384}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 784231241}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &556622976
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15761,6 +16149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1109134839}
   nextWaypoint: {fileID: 0}
+  isCrosswalk: 0
   waypointWidth: 2
   branches:
   - {fileID: 1733597797}
@@ -15992,8 +16381,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 755025079}
   nextWaypoint: {fileID: 1048841603}
+  isCrosswalk: 0
   waypointWidth: 2
-  branches: []
+  branches:
+  - {fileID: 889055655}
   branchRatio: 0.5
 --- !u!4 &575806830
 Transform:
@@ -18485,6 +18876,57 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b82e76f4092b7d24aaeecddf36fe8d3b, type: 3}
+--- !u!1 &664974122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 664974123}
+  - component: {fileID: 664974124}
+  m_Layer: 0
+  m_Name: waypoint 51
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &664974123
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664974122}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.7071068, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 122.071014, y: 0.35400772, z: 176.51344}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 784231241}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &664974124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664974122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
+  peviousWaypoint: {fileID: 846503519}
+  nextWaypoint: {fileID: 0}
+  isCrosswalk: 1
+  waypointWidth: 3
+  branches:
+  - {fileID: 316790132}
+  branchRatio: 0.5
 --- !u!1001 &666500835
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18736,6 +19178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 749525162}
   nextWaypoint: {fileID: 1780340920}
+  isCrosswalk: 0
   waypointWidth: 2
   branches: []
   branchRatio: 0.5
@@ -19415,6 +19858,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 134420955}
   nextWaypoint: {fileID: 0}
+  isCrosswalk: 0
   waypointWidth: 2
   branches:
   - {fileID: 356529403}
@@ -19517,8 +19961,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
-  peviousWaypoint: {fileID: 1442177298}
-  nextWaypoint: {fileID: 1301236399}
+  peviousWaypoint: {fileID: 1431939420}
+  nextWaypoint: {fileID: 712832089}
+  isCrosswalk: 0
   waypointWidth: 10
   branches: []
   branchRatio: 0.5
@@ -19530,13 +19975,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 710809715}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.92387956, z: 0, w: 0.3826833}
+  m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: -0.97236633, y: 0, z: 160.38623}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1205111327}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
 --- !u!1001 &711294280
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19621,8 +20066,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 857323957}
   nextWaypoint: {fileID: 1726738397}
+  isCrosswalk: 0
   waypointWidth: 2.5
-  branches: []
+  branches:
+  - {fileID: 1871683299}
   branchRatio: 0.5
 --- !u!4 &712428116
 Transform:
@@ -19638,6 +20085,56 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 784231241}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &712832088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 712832090}
+  - component: {fileID: 712832089}
+  m_Layer: 0
+  m_Name: waypoint 17
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &712832089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712832088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
+  peviousWaypoint: {fileID: 710809716}
+  nextWaypoint: {fileID: 1301236399}
+  isCrosswalk: 0
+  waypointWidth: 7
+  branches: []
+  branchRatio: 0.5
+--- !u!4 &712832090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712832088}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.000000050343466, z: 0, w: 1}
+  m_LocalPosition: {x: -0.9723653, y: 0, z: 150.46883}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1205111327}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &713349724 stripped
 Transform:
@@ -20522,6 +21019,57 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2509cc5763ca17f4598bf61fd585a93e, type: 3}
+--- !u!1 &736763188
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 736763190}
+  - component: {fileID: 736763189}
+  m_Layer: 0
+  m_Name: waypoint 55
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &736763189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736763188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
+  peviousWaypoint: {fileID: 889055655}
+  nextWaypoint: {fileID: 0}
+  isCrosswalk: 1
+  waypointWidth: 3.5
+  branches:
+  - {fileID: 1242732611}
+  branchRatio: 0.5
+--- !u!4 &736763190
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736763188}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.70710695, z: -0, w: 0.7071066}
+  m_LocalPosition: {x: 236.35721, y: 0.35400772, z: 208.69879}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 784231241}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &738979206 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: ffa95796af8d5884f9d08f66e6bb627e, type: 3}
@@ -20581,13 +21129,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarNavigator
   movingSpeed: 17
-  maxMovingSped: 20
   turningSpeed: 150
   stopSpeed: 0.5
   senser: {fileID: 0}
   detectionRange: 10
+  acelerationSpeed: 4
+  turnBrakingSpeed: 60
+  minimumTurnSpeed: 0.05
   destination: {x: 0, y: 0, z: 0}
   destinationReached: 0
+  detectionHalfWidht: 1.7
+  detectionHalfHeight: 0.9
+  obstacleStopDistance: 2
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  obstacleBreakingSpeed: 80
+  obstacleCheckInterval: 0.1
 --- !u!4 &740364068 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 2d5fb229ae2945742b900a405a5e7a0b, type: 3}
@@ -20752,6 +21310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1675523452}
   nextWaypoint: {fileID: 672161034}
+  isCrosswalk: 0
   waypointWidth: 2
   branches: []
   branchRatio: 0.5
@@ -20893,7 +21452,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 754469706}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000001604785}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.9723341, y: 0, z: 59.82659}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -20913,7 +21472,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1301236399}
-  nextWaypoint: {fileID: 893767927}
+  nextWaypoint: {fileID: 228896}
+  isCrosswalk: 0
   waypointWidth: 6.5
   branches: []
   branchRatio: 0.5
@@ -20948,8 +21508,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1758085126}
   nextWaypoint: {fileID: 575806829}
+  isCrosswalk: 0
   waypointWidth: 2.5
-  branches: []
+  branches:
+  - {fileID: 846503519}
   branchRatio: 0.5
 --- !u!4 &755025080
 Transform:
@@ -21329,6 +21891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 838370866}
   nextWaypoint: {fileID: 342648288}
+  isCrosswalk: 0
   waypointWidth: 0.2
   branches: []
   branchRatio: 0.5
@@ -21694,6 +22257,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1992079493}
+  - {fileID: 1242732612}
   - {fileID: 1758085127}
   - {fileID: 755025080}
   - {fileID: 575806830}
@@ -21713,6 +22277,7 @@ Transform:
   - {fileID: 133419194}
   - {fileID: 1297096749}
   - {fileID: 1728238041}
+  - {fileID: 836702175}
   - {fileID: 1675523453}
   - {fileID: 749525163}
   - {fileID: 672161035}
@@ -21736,6 +22301,18 @@ Transform:
   - {fileID: 1152868935}
   - {fileID: 1717154339}
   - {fileID: 392898236}
+  - {fileID: 1871683300}
+  - {fileID: 1321510450}
+  - {fileID: 1048064911}
+  - {fileID: 472088614}
+  - {fileID: 830311288}
+  - {fileID: 57955283}
+  - {fileID: 846503520}
+  - {fileID: 664974123}
+  - {fileID: 2130356507}
+  - {fileID: 552920527}
+  - {fileID: 889055656}
+  - {fileID: 736763190}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &784231242
@@ -21755,7 +22332,7 @@ MonoBehaviour:
   - {fileID: 5779232022978490921, guid: 98b5b9f8d6569614eb792674b1ce2db4, type: 3}
   - {fileID: 7166426636148350043, guid: c9a89d99e4cdc38469b25baa8e703dff, type: 3}
   - {fileID: 2886885178987205240, guid: bd4e81acb9f84b047a68225bb2c1091b, type: 3}
-  aiToSpawn: 4
+  aiToSpawn: 20
 --- !u!114 &784231243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21983,6 +22560,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 147199335}
   nextWaypoint: {fileID: 107290598}
+  isCrosswalk: 0
   waypointWidth: 5
   branches: []
   branchRatio: 0.5
@@ -22154,6 +22732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 465792035}
   nextWaypoint: {fileID: 1050153876}
+  isCrosswalk: 0
   waypointWidth: 2
   branches: []
   branchRatio: 0.5
@@ -22314,6 +22893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 0}
   nextWaypoint: {fileID: 1654575708}
+  isCrosswalk: 0
   waypointWidth: 2
   branches:
   - {fileID: 1929821921}
@@ -22814,6 +23394,57 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: b8ee657c6800ab849bb30b4375d02323, type: 3}
   m_PrefabInstance: {fileID: 2024574469}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &830311286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 830311288}
+  - component: {fileID: 830311287}
+  m_Layer: 0
+  m_Name: waypoint 48
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &830311287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830311286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
+  peviousWaypoint: {fileID: 0}
+  nextWaypoint: {fileID: 57955282}
+  isCrosswalk: 1
+  waypointWidth: 3
+  branches:
+  - {fileID: 1152868934}
+  branchRatio: 0.5
+--- !u!4 &830311288
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830311286}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 253.75714, y: 0.35400772, z: 176.6026}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 784231241}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &830328938 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: e1d9101af5d96d94ca99efe2de0bac21, type: 3}
@@ -22939,6 +23570,56 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8ee657c6800ab849bb30b4375d02323, type: 3}
+--- !u!1 &836702173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 836702175}
+  - component: {fileID: 836702174}
+  m_Layer: 0
+  m_Name: waypoint 47
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &836702174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836702173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
+  peviousWaypoint: {fileID: 1728238040}
+  nextWaypoint: {fileID: 1675523452}
+  isCrosswalk: 0
+  waypointWidth: 2
+  branches: []
+  branchRatio: 0.5
+--- !u!4 &836702175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836702173}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.00000013294473}
+  m_LocalPosition: {x: -0.47412205, y: 0.35400772, z: 136.88358}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 784231241}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &837012041 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100002, guid: a98b64b77969f1e4ca8f55ec97fb531e, type: 3}
@@ -23024,6 +23705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1330797988}
   nextWaypoint: {fileID: 767618434}
+  isCrosswalk: 0
   waypointWidth: 0.2
   branches: []
   branchRatio: 0.5
@@ -23141,6 +23823,57 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65abb0f1b521f834bae80ea4c9d93734, type: 3}
+--- !u!1 &846503518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 846503520}
+  - component: {fileID: 846503519}
+  m_Layer: 0
+  m_Name: waypoint 50
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &846503519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846503518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
+  peviousWaypoint: {fileID: 0}
+  nextWaypoint: {fileID: 664974124}
+  isCrosswalk: 1
+  waypointWidth: 3
+  branches:
+  - {fileID: 755025079}
+  branchRatio: 0.5
+--- !u!4 &846503520
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846503518}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 133.93336, y: 0.35400772, z: 176.51344}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 784231241}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &846964295 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 0ee6d569ec3227e40888e8151b331e0f, type: 3}
@@ -23765,6 +24498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 342648288}
   nextWaypoint: {fileID: 712428115}
+  isCrosswalk: 0
   waypointWidth: 2.5
   branches: []
   branchRatio: 0.5
@@ -24572,13 +25306,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarNavigator
   movingSpeed: 17
-  maxMovingSped: 20
   turningSpeed: 150
   stopSpeed: 0.5
   senser: {fileID: 0}
   detectionRange: 10
+  acelerationSpeed: 4
+  turnBrakingSpeed: 60
+  minimumTurnSpeed: 0.05
   destination: {x: 0, y: 0, z: 0}
   destinationReached: 0
+  detectionHalfWidht: 1.7
+  detectionHalfHeight: 0.9
+  obstacleStopDistance: 2
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  obstacleBreakingSpeed: 80
+  obstacleCheckInterval: 0.1
 --- !u!1001 &884854962
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24708,6 +25452,57 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31bbda51eeab02f44a8e92a7da2f5ff8, type: 3}
+--- !u!1 &889055654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 889055656}
+  - component: {fileID: 889055655}
+  m_Layer: 0
+  m_Name: waypoint 54
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &889055655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889055654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
+  peviousWaypoint: {fileID: 0}
+  nextWaypoint: {fileID: 736763189}
+  isCrosswalk: 1
+  waypointWidth: 3.5
+  branches:
+  - {fileID: 575806829}
+  branchRatio: 0.5
+--- !u!4 &889055656
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889055654}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.70710695, z: 0, w: 0.70710665}
+  m_LocalPosition: {x: 138.82256, y: 0.35400772, z: 208.69884}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 784231241}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &889695386
 GameObject:
   m_ObjectHideFlags: 0
@@ -24739,6 +25534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1266496803}
   nextWaypoint: {fileID: 465792035}
+  isCrosswalk: 0
   waypointWidth: 2
   branches: []
   branchRatio: 0.5
@@ -24791,8 +25587,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
-  peviousWaypoint: {fileID: 754469708}
-  nextWaypoint: {fileID: 1020685773}
+  peviousWaypoint: {fileID: 228896}
+  nextWaypoint: {fileID: 1477965316}
+  isCrosswalk: 0
   waypointWidth: 10
   branches: []
   branchRatio: 0.5
@@ -24804,13 +25601,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 893767926}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.92387956, z: 0, w: 0.3826833}
+  m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1205111327}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
 --- !u!4 &895224644 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 769600915105623474, guid: a98b64b77969f1e4ca8f55ec97fb531e, type: 3}
@@ -25211,8 +26008,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
-  peviousWaypoint: {fileID: 1490985556}
-  nextWaypoint: {fileID: 1442177298}
+  peviousWaypoint: {fileID: 1249003474}
+  nextWaypoint: {fileID: 1735657923}
+  isCrosswalk: 0
   waypointWidth: 10
   branches: []
   branchRatio: 0.5
@@ -25224,13 +26022,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 915545552}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.38268346, z: 0, w: 0.9238795}
+  m_LocalRotation: {x: -0, y: -0.9238796, z: 0, w: -0.38268328}
   m_LocalPosition: {x: 239.8051, y: 0, z: 160.38626}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1205111327}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -225, z: 0}
 --- !u!1001 &919308664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26109,6 +26907,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 316790132}
   nextWaypoint: {fileID: 1330797988}
+  isCrosswalk: 0
   waypointWidth: 2.5
   branches: []
   branchRatio: 0.5
@@ -27029,6 +27828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1048841603}
   nextWaypoint: {fileID: 1734148113}
+  isCrosswalk: 0
   waypointWidth: 2.5
   branches: []
   branchRatio: 0.5
@@ -28890,8 +29690,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
-  peviousWaypoint: {fileID: 893767927}
+  peviousWaypoint: {fileID: 1477965316}
   nextWaypoint: {fileID: 1940202368}
+  isCrosswalk: 0
   waypointWidth: 6.5
   branches: []
   branchRatio: 0.5
@@ -28903,13 +29704,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020685772}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071067}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 60.249794, y: 0, z: -0.000007182336}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1205111327}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1001 &1020765944
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28986,6 +29787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1215545796}
   nextWaypoint: {fileID: 147199335}
+  isCrosswalk: 0
   waypointWidth: 5
   branches: []
   branchRatio: 0.5
@@ -29448,6 +30250,57 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 0b6fafa63b69b174584365f2641586a4, type: 3}
   m_PrefabInstance: {fileID: 4084703}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1048064909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1048064911}
+  - component: {fileID: 1048064910}
+  m_Layer: 0
+  m_Name: waypoint 45
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1048064910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048064909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
+  peviousWaypoint: {fileID: 0}
+  nextWaypoint: {fileID: 472088613}
+  isCrosswalk: 1
+  waypointWidth: 3
+  branches:
+  - {fileID: 1728238040}
+  branchRatio: 0.5
+--- !u!4 &1048064911
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048064909}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 1.8629789, y: 0.35400772, z: 160.63309}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 784231241}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1048841602
 GameObject:
   m_ObjectHideFlags: 0
@@ -29479,6 +30332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 575806829}
   nextWaypoint: {fileID: 985654814}
+  isCrosswalk: 0
   waypointWidth: 2.5
   branches: []
   branchRatio: 0.5
@@ -29528,6 +30382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 807407783}
   nextWaypoint: {fileID: 23458298}
+  isCrosswalk: 0
   waypointWidth: 2
   branches: []
   branchRatio: 0.5
@@ -29796,6 +30651,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1391593387}
   nextWaypoint: {fileID: 1198154430}
+  isCrosswalk: 0
   waypointWidth: 2
   branches: []
   branchRatio: 0.5
@@ -30761,6 +31617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1443107813}
   nextWaypoint: {fileID: 560191953}
+  isCrosswalk: 0
   waypointWidth: 3
   branches: []
   branchRatio: 0.5
@@ -32545,8 +33402,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 23458298}
   nextWaypoint: {fileID: 1717154340}
+  isCrosswalk: 0
   waypointWidth: 2
-  branches: []
+  branches:
+  - {fileID: 830311287}
   branchRatio: 0.5
 --- !u!4 &1152868935
 Transform:
@@ -32557,7 +33416,7 @@ Transform:
   m_GameObject: {fileID: 1152868933}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 256.45795, y: 0.35400772, z: 177.17645}
+  m_LocalPosition: {x: 256.45795, y: 0.35400772, z: 176.4067}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -32707,6 +33566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1440930726}
   nextWaypoint: {fileID: 0}
+  isCrosswalk: 0
   waypointWidth: 2.5
   branches:
   - {fileID: 542417784}
@@ -33437,6 +34297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1064360168}
   nextWaypoint: {fileID: 1867471381}
+  isCrosswalk: 0
   waypointWidth: 2
   branches: []
   branchRatio: 0.5
@@ -33592,6 +34453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1402181059}
   nextWaypoint: {fileID: 1391593387}
+  isCrosswalk: 0
   waypointWidth: 2
   branches: []
   branchRatio: 0.5
@@ -33713,7 +34575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CarSpawner
   aiPrefabs:
   - {fileID: 5651119103318528806, guid: a5acb8c286238264ea00b2f980d1e3cb, type: 3}
-  aiToSpawn: 10
+  aiToSpawn: 25
 --- !u!4 &1205111327
 Transform:
   m_ObjectHideFlags: 0
@@ -33727,18 +34589,27 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 228897}
+  - {fileID: 1477965317}
   - {fileID: 893767928}
   - {fileID: 1020685774}
   - {fileID: 1940202369}
   - {fileID: 1581571808}
+  - {fileID: 535479847}
+  - {fileID: 132232437}
   - {fileID: 2023628930}
   - {fileID: 35235005}
   - {fileID: 1490985557}
+  - {fileID: 1249003475}
+  - {fileID: 1735657924}
   - {fileID: 915545554}
   - {fileID: 1442177299}
+  - {fileID: 1431939421}
+  - {fileID: 712832090}
   - {fileID: 710809717}
   - {fileID: 1301236400}
   - {fileID: 754469707}
+  - {fileID: 551980900}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1206493184 stripped
@@ -34072,6 +34943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1788718303}
   nextWaypoint: {fileID: 1024630086}
+  isCrosswalk: 0
   waypointWidth: 4.5
   branches:
   - {fileID: 1733597797}
@@ -34747,6 +35619,57 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 0ee37198b24b2164fbbccfbe92fe5d35, type: 3}
   m_PrefabInstance: {fileID: 1491442563}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1242732610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1242732612}
+  - component: {fileID: 1242732611}
+  m_Layer: 0
+  m_Name: waypoint 56
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1242732611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242732610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
+  peviousWaypoint: {fileID: 1992079492}
+  nextWaypoint: {fileID: 1758085126}
+  isCrosswalk: 0
+  waypointWidth: 2
+  branches:
+  - {fileID: 736763189}
+  branchRatio: 0.5
+--- !u!4 &1242732612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242732610}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 239.8491, y: 0.35400772, z: 208.16519}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 784231241}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1243065437 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: dac1a631b172e66469fb09e9987bcf57, type: 3}
@@ -34772,6 +35695,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: b8ee657c6800ab849bb30b4375d02323, type: 3}
   m_PrefabInstance: {fileID: 1298519280}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1249003473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1249003475}
+  - component: {fileID: 1249003474}
+  m_Layer: 0
+  m_Name: waypoint 14
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1249003474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249003473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
+  peviousWaypoint: {fileID: 1490985556}
+  nextWaypoint: {fileID: 915545553}
+  isCrosswalk: 0
+  waypointWidth: 7
+  branches: []
+  branchRatio: 0.5
+--- !u!4 &1249003475
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249003473}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.0000001832882}
+  m_LocalPosition: {x: 239.8051, y: 0, z: 150.54082}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1205111327}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1249145043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35341,6 +36314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1696413904}
   nextWaypoint: {fileID: 0}
+  isCrosswalk: 0
   waypointWidth: 2.5
   branches:
   - {fileID: 1859855507}
@@ -35706,6 +36680,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 2070456780}
   nextWaypoint: {fileID: 889695387}
+  isCrosswalk: 0
   waypointWidth: 2
   branches: []
   branchRatio: 0.5
@@ -36685,8 +37660,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 133419193}
   nextWaypoint: {fileID: 1728238040}
+  isCrosswalk: 0
   waypointWidth: 2
-  branches: []
+  branches:
+  - {fileID: 1321510449}
   branchRatio: 0.5
 --- !u!4 &1297096749
 Transform:
@@ -36860,13 +37837,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarNavigator
   movingSpeed: 17
-  maxMovingSped: 20
   turningSpeed: 150
   stopSpeed: 0.5
   senser: {fileID: 0}
   detectionRange: 10
+  acelerationSpeed: 4
+  turnBrakingSpeed: 60
+  minimumTurnSpeed: 0.05
   destination: {x: 0, y: 0, z: 0}
   destinationReached: 0
+  detectionHalfWidht: 1.7
+  detectionHalfHeight: 0.9
+  obstacleStopDistance: 2
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  obstacleBreakingSpeed: 80
+  obstacleCheckInterval: 0.1
 --- !u!4 &1300870566 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 47ea3e3caeb3c2845bbd9339bdc7a282, type: 3}
@@ -36976,8 +37963,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
-  peviousWaypoint: {fileID: 710809716}
+  peviousWaypoint: {fileID: 712832089}
   nextWaypoint: {fileID: 754469708}
+  isCrosswalk: 0
   waypointWidth: 6.5
   branches: []
   branchRatio: 0.5
@@ -36989,7 +37977,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1301236398}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: -0, w: 0.0000001604785}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.97235364, y: 0, z: 120.82484}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -37548,6 +38536,57 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: a98b64b77969f1e4ca8f55ec97fb531e, type: 3}
   m_PrefabInstance: {fileID: 1320182713}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1321510448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1321510450}
+  - component: {fileID: 1321510449}
+  m_Layer: 0
+  m_Name: waypoint 43
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1321510449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321510448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
+  peviousWaypoint: {fileID: 0}
+  nextWaypoint: {fileID: 1871683299}
+  isCrosswalk: 1
+  waypointWidth: 3
+  branches:
+  - {fileID: 1297096748}
+  branchRatio: 0.5
+--- !u!4 &1321510450
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321510448}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 2.2600675, y: 0.35400772, z: 176.70616}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 784231241}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1001 &1321644657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37947,6 +38986,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 954702604}
   nextWaypoint: {fileID: 838370866}
+  isCrosswalk: 0
   waypointWidth: 2.5
   branches: []
   branchRatio: 0.5
@@ -38324,13 +39364,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarNavigator
   movingSpeed: 17
-  maxMovingSped: 20
   turningSpeed: 150
   stopSpeed: 0.5
   senser: {fileID: 0}
   detectionRange: 10
+  acelerationSpeed: 4
+  turnBrakingSpeed: 60
+  minimumTurnSpeed: 0.05
   destination: {x: 0, y: 0, z: 0}
   destinationReached: 0
+  detectionHalfWidht: 1.7
+  detectionHalfHeight: 0.9
+  obstacleStopDistance: 2
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  obstacleBreakingSpeed: 80
+  obstacleCheckInterval: 0.1
 --- !u!1 &1355719482
 GameObject:
   m_ObjectHideFlags: 0
@@ -38362,6 +39412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 107290598}
   nextWaypoint: {fileID: 0}
+  isCrosswalk: 0
   waypointWidth: 3
   branches:
   - {fileID: 1755046241}
@@ -38612,6 +39663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1867471381}
   nextWaypoint: {fileID: 1939961976}
+  isCrosswalk: 0
   waypointWidth: 2
   branches: []
   branchRatio: 0.5
@@ -39731,6 +40783,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1437325433}
   nextWaypoint: {fileID: 1694502502}
+  isCrosswalk: 0
   waypointWidth: 4
   branches: []
   branchRatio: 0.5
@@ -39780,6 +40833,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1199073307}
   nextWaypoint: {fileID: 1064360168}
+  isCrosswalk: 0
   waypointWidth: 2
   branches: []
   branchRatio: 0.5
@@ -40035,6 +41089,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1780340920}
   nextWaypoint: {fileID: 1199073307}
+  isCrosswalk: 0
   waypointWidth: 3
   branches: []
   branchRatio: 0.5
@@ -40161,13 +41216,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarNavigator
   movingSpeed: 17
-  maxMovingSped: 20
   turningSpeed: 150
   stopSpeed: 0.5
   senser: {fileID: 0}
   detectionRange: 10
+  acelerationSpeed: 4
+  turnBrakingSpeed: 60
+  minimumTurnSpeed: 0.05
   destination: {x: 0, y: 0, z: 0}
   destinationReached: 0
+  detectionHalfWidht: 1.7
+  detectionHalfHeight: 0.9
+  obstacleStopDistance: 2
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  obstacleBreakingSpeed: 80
+  obstacleCheckInterval: 0.1
 --- !u!1001 &1405817759
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41173,6 +42238,56 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8ee657c6800ab849bb30b4375d02323, type: 3}
+--- !u!1 &1431939419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1431939421}
+  - component: {fileID: 1431939420}
+  m_Layer: 0
+  m_Name: waypoint 16
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1431939420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431939419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
+  peviousWaypoint: {fileID: 1442177298}
+  nextWaypoint: {fileID: 710809716}
+  isCrosswalk: 0
+  waypointWidth: 7
+  branches: []
+  branchRatio: 0.5
+--- !u!4 &1431939421
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431939419}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 9.569989, y: 0, z: 160.38623}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1205111327}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1435448613 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 05afa0663dd0cba4191c9e7d1cb60639, type: 3}
@@ -41209,6 +42324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1509705929}
   nextWaypoint: {fileID: 1388859163}
+  isCrosswalk: 0
   waypointWidth: 4
   branches: []
   branchRatio: 0.5
@@ -41317,6 +42433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1577168902}
   nextWaypoint: {fileID: 1162018461}
+  isCrosswalk: 0
   waypointWidth: 3
   branches: []
   branchRatio: 0.5
@@ -41456,8 +42573,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
-  peviousWaypoint: {fileID: 915545553}
-  nextWaypoint: {fileID: 710809716}
+  peviousWaypoint: {fileID: 1735657923}
+  nextWaypoint: {fileID: 1431939420}
+  isCrosswalk: 0
   waypointWidth: 6.5
   branches: []
   branchRatio: 0.5
@@ -41469,13 +42587,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1442177297}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071067}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: 0, w: -0.7071068}
   m_LocalPosition: {x: 119.80412, y: 0, z: 160.38625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1205111327}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -270, z: 0}
 --- !u!54 &1442980381
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -41530,13 +42648,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarNavigator
   movingSpeed: 17
-  maxMovingSped: 20
   turningSpeed: 150
   stopSpeed: 0.5
   senser: {fileID: 0}
   detectionRange: 10
+  acelerationSpeed: 4
+  turnBrakingSpeed: 60
+  minimumTurnSpeed: 0.05
   destination: {x: 0, y: 0, z: 0}
   destinationReached: 0
+  detectionHalfWidht: 1.7
+  detectionHalfHeight: 0.9
+  obstacleStopDistance: 2
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  obstacleBreakingSpeed: 80
+  obstacleCheckInterval: 0.1
 --- !u!1001 &1442996924
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41617,6 +42745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 356529403}
   nextWaypoint: {fileID: 1109134839}
+  isCrosswalk: 0
   waypointWidth: 3
   branches: []
   branchRatio: 0.5
@@ -42167,7 +43296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimpleGuncsterSpawner
   aiPrefabs:
   - {fileID: 3308407836915066444, guid: b536505c19dfa8c42beeb11c3e7f6dc7, type: 3}
-  aiToSpawn: 5
+  aiToSpawn: 15
 --- !u!4 &1460580263 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 120449a04911a924ca1239be382ff0be, type: 3}
@@ -42697,6 +43826,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 2509cc5763ca17f4598bf61fd585a93e, type: 3}
   m_PrefabInstance: {fileID: 1622704850}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1477965315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1477965317}
+  - component: {fileID: 1477965316}
+  m_Layer: 0
+  m_Name: waypoint 19
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1477965316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477965315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
+  peviousWaypoint: {fileID: 893767927}
+  nextWaypoint: {fileID: 1020685773}
+  isCrosswalk: 0
+  waypointWidth: 7
+  branches: []
+  branchRatio: 0.5
+--- !u!4 &1477965317
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477965315}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 9.545132, y: 0, z: 0.0000011378683}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1205111327}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1479382372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42935,7 +44114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 35235004}
-  nextWaypoint: {fileID: 915545553}
+  nextWaypoint: {fileID: 1249003474}
+  isCrosswalk: 0
   waypointWidth: 6.5
   branches: []
   branchRatio: 0.5
@@ -42947,13 +44127,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1490985555}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 239.8051, y: 0, z: 121.500755}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1205111327}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1001 &1491442563
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43261,6 +44441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1859855507}
   nextWaypoint: {fileID: 1437325433}
+  isCrosswalk: 0
   waypointWidth: 4
   branches: []
   branchRatio: 0.5
@@ -44004,13 +45185,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarNavigator
   movingSpeed: 17
-  maxMovingSped: 20
   turningSpeed: 150
   stopSpeed: 0.5
   senser: {fileID: 0}
   detectionRange: 10
+  acelerationSpeed: 4
+  turnBrakingSpeed: 60
+  minimumTurnSpeed: 0.05
   destination: {x: 0, y: 0, z: 0}
   destinationReached: 0
+  detectionHalfWidht: 1.7
+  detectionHalfHeight: 0.9
+  obstacleStopDistance: 2
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  obstacleBreakingSpeed: 80
+  obstacleCheckInterval: 0.1
 --- !u!4 &1538416988 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 2d5fb229ae2945742b900a405a5e7a0b, type: 3}
@@ -44973,6 +46164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 0}
   nextWaypoint: {fileID: 1440930726}
+  isCrosswalk: 0
   waypointWidth: 2.5
   branches:
   - {fileID: 1694502502}
@@ -45046,13 +46238,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarNavigator
   movingSpeed: 17
-  maxMovingSped: 20
   turningSpeed: 150
   stopSpeed: 0.5
   senser: {fileID: 0}
   detectionRange: 10
+  acelerationSpeed: 4
+  turnBrakingSpeed: 60
+  minimumTurnSpeed: 0.05
   destination: {x: 0, y: 0, z: 0}
   destinationReached: 0
+  detectionHalfWidht: 1.7
+  detectionHalfHeight: 0.9
+  obstacleStopDistance: 2
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  obstacleBreakingSpeed: 80
+  obstacleCheckInterval: 0.1
 --- !u!4 &1579570490 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: b8ee657c6800ab849bb30b4375d02323, type: 3}
@@ -45119,7 +46321,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1940202368}
-  nextWaypoint: {fileID: 2023628929}
+  nextWaypoint: {fileID: 535479846}
+  isCrosswalk: 0
   waypointWidth: 6.5
   branches: []
   branchRatio: 0.5
@@ -45131,13 +46334,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1581571806}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 179.86877, y: 0, z: -0.000021442032}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1205111327}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1001 &1581776568
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46686,6 +47889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 813329623}
   nextWaypoint: {fileID: 1733597797}
+  isCrosswalk: 0
   waypointWidth: 2.5
   branches: []
   branchRatio: 0.5
@@ -47804,8 +49008,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
-  peviousWaypoint: {fileID: 1728238040}
+  peviousWaypoint: {fileID: 836702174}
   nextWaypoint: {fileID: 749525162}
+  isCrosswalk: 0
   waypointWidth: 2
   branches: []
   branchRatio: 0.5
@@ -48054,13 +49259,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarNavigator
   movingSpeed: 17
-  maxMovingSped: 20
   turningSpeed: 150
   stopSpeed: 0.5
   senser: {fileID: 0}
   detectionRange: 10
+  acelerationSpeed: 4
+  turnBrakingSpeed: 60
+  minimumTurnSpeed: 0.05
   destination: {x: 0, y: 0, z: 0}
   destinationReached: 0
+  detectionHalfWidht: 1.7
+  detectionHalfHeight: 0.9
+  obstacleStopDistance: 2
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  obstacleBreakingSpeed: 80
+  obstacleCheckInterval: 0.1
 --- !u!1001 &1692927188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48141,6 +49356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1388859163}
   nextWaypoint: {fileID: 0}
+  isCrosswalk: 0
   waypointWidth: 3
   branches:
   - {fileID: 1577168902}
@@ -48401,6 +49617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1755046241}
   nextWaypoint: {fileID: 1261017535}
+  isCrosswalk: 0
   waypointWidth: 3
   branches: []
   branchRatio: 0.5
@@ -49091,6 +50308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1152868934}
   nextWaypoint: {fileID: 392898237}
+  isCrosswalk: 0
   waypointWidth: 2.5
   branches: []
   branchRatio: 0.5
@@ -49447,8 +50665,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 712428115}
   nextWaypoint: {fileID: 395712657}
+  isCrosswalk: 0
   waypointWidth: 2
-  branches: []
+  branches:
+  - {fileID: 551980901}
   branchRatio: 0.5
 --- !u!4 &1726738398
 Transform:
@@ -49495,9 +50715,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1297096748}
-  nextWaypoint: {fileID: 1675523452}
+  nextWaypoint: {fileID: 836702174}
+  isCrosswalk: 0
   waypointWidth: 2
-  branches: []
+  branches:
+  - {fileID: 1048064910}
   branchRatio: 0.5
 --- !u!4 &1728238041
 Transform:
@@ -49508,7 +50730,7 @@ Transform:
   m_GameObject: {fileID: 1728238039}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.00000013294473}
-  m_LocalPosition: {x: -0.47411537, y: 0.35400772, z: 159.90811}
+  m_LocalPosition: {x: -0.47411537, y: 0.35400772, z: 160.82411}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -49739,6 +50961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1654575708}
   nextWaypoint: {fileID: 0}
+  isCrosswalk: 0
   waypointWidth: 2
   branches:
   - {fileID: 1215545796}
@@ -49790,8 +51013,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 985654814}
   nextWaypoint: {fileID: 316790132}
+  isCrosswalk: 0
   waypointWidth: 2
-  branches: []
+  branches:
+  - {fileID: 552920526}
   branchRatio: 0.5
 --- !u!4 &1734148114
 Transform:
@@ -49813,6 +51038,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 0ee37198b24b2164fbbccfbe92fe5d35, type: 3}
   m_PrefabInstance: {fileID: 65094257}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1735657922
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1735657924}
+  - component: {fileID: 1735657923}
+  m_Layer: 0
+  m_Name: waypoint 15
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1735657923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735657922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
+  peviousWaypoint: {fileID: 915545553}
+  nextWaypoint: {fileID: 1442177298}
+  isCrosswalk: 0
+  waypointWidth: 7
+  branches: []
+  branchRatio: 0.5
+--- !u!4 &1735657924
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735657922}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071069, z: 0, w: 0.7071067}
+  m_LocalPosition: {x: 230.50053, y: 0, z: 160.38626}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1205111327}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1737280330 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: b82e76f4092b7d24aaeecddf36fe8d3b, type: 3}
@@ -50199,6 +51474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 0}
   nextWaypoint: {fileID: 1696413904}
+  isCrosswalk: 0
   waypointWidth: 2.5
   branches:
   - {fileID: 1355719483}
@@ -50272,13 +51548,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarNavigator
   movingSpeed: 17
-  maxMovingSped: 20
   turningSpeed: 150
   stopSpeed: 0.5
   senser: {fileID: 0}
   detectionRange: 10
+  acelerationSpeed: 4
+  turnBrakingSpeed: 60
+  minimumTurnSpeed: 0.05
   destination: {x: 0, y: 0, z: 0}
   destinationReached: 0
+  detectionHalfWidht: 1.7
+  detectionHalfHeight: 0.9
+  obstacleStopDistance: 2
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  obstacleBreakingSpeed: 80
+  obstacleCheckInterval: 0.1
 --- !u!4 &1756886784 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: b8ee657c6800ab849bb30b4375d02323, type: 3}
@@ -50318,10 +51604,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
-  peviousWaypoint: {fileID: 1992079492}
+  peviousWaypoint: {fileID: 1242732611}
   nextWaypoint: {fileID: 755025079}
+  isCrosswalk: 0
   waypointWidth: 2.5
-  branches: []
+  branches:
+  - {fileID: 57955282}
   branchRatio: 0.5
 --- !u!4 &1758085127
 Transform:
@@ -50459,13 +51747,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarNavigator
   movingSpeed: 17
-  maxMovingSped: 20
   turningSpeed: 150
   stopSpeed: 0.5
   senser: {fileID: 0}
   detectionRange: 10
+  acelerationSpeed: 4
+  turnBrakingSpeed: 60
+  minimumTurnSpeed: 0.05
   destination: {x: 0, y: 0, z: 0}
   destinationReached: 0
+  detectionHalfWidht: 1.7
+  detectionHalfHeight: 0.9
+  obstacleStopDistance: 2
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  obstacleBreakingSpeed: 80
+  obstacleCheckInterval: 0.1
 --- !u!1001 &1769910411
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50703,6 +52001,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 672161034}
   nextWaypoint: {fileID: 1402181059}
+  isCrosswalk: 0
   waypointWidth: 2
   branches: []
   branchRatio: 0.5
@@ -51125,6 +52424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 0}
   nextWaypoint: {fileID: 1215545796}
+  isCrosswalk: 0
   waypointWidth: 3.5
   branches:
   - {fileID: 2121179150}
@@ -51441,13 +52741,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarNavigator
   movingSpeed: 17
-  maxMovingSped: 20
   turningSpeed: 150
   stopSpeed: 0.5
   senser: {fileID: 0}
   detectionRange: 10
+  acelerationSpeed: 4
+  turnBrakingSpeed: 60
+  minimumTurnSpeed: 0.05
   destination: {x: 0, y: 0, z: 0}
   destinationReached: 0
+  detectionHalfWidht: 1.7
+  detectionHalfHeight: 0.9
+  obstacleStopDistance: 2
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  obstacleBreakingSpeed: 80
+  obstacleCheckInterval: 0.1
 --- !u!4 &1800881070 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 66131d8838f42f545a30ce8606ce5365, type: 3}
@@ -52778,6 +54088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 0}
   nextWaypoint: {fileID: 1509705929}
+  isCrosswalk: 0
   waypointWidth: 3
   branches:
   - {fileID: 1261017535}
@@ -52887,6 +54198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1198154430}
   nextWaypoint: {fileID: 1364690693}
+  isCrosswalk: 0
   waypointWidth: 2
   branches: []
   branchRatio: 0.5
@@ -52984,6 +54296,57 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8ee657c6800ab849bb30b4375d02323, type: 3}
+--- !u!1 &1871683298
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1871683300}
+  - component: {fileID: 1871683299}
+  m_Layer: 0
+  m_Name: waypoint 44
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1871683299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871683298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
+  peviousWaypoint: {fileID: 1321510449}
+  nextWaypoint: {fileID: 0}
+  isCrosswalk: 1
+  waypointWidth: 3
+  branches:
+  - {fileID: 712428115}
+  branchRatio: 0.5
+--- !u!4 &1871683300
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871683298}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 13.784589, y: 0.35400772, z: 176.8725}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 784231241}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1872624065 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4720835030631596170, guid: 4ed9d36d564374a43a9743d1b5d77d9d, type: 3}
@@ -54789,6 +56152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 542417784}
   nextWaypoint: {fileID: 0}
+  isCrosswalk: 0
   waypointWidth: 3
   branches:
   - {fileID: 813329623}
@@ -55075,6 +56439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1364690693}
   nextWaypoint: {fileID: 2068478201}
+  isCrosswalk: 0
   waypointWidth: 2
   branches: []
   branchRatio: 0.5
@@ -55124,6 +56489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1020685773}
   nextWaypoint: {fileID: 1581571807}
+  isCrosswalk: 0
   waypointWidth: 6.5
   branches: []
   branchRatio: 0.5
@@ -55135,13 +56501,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1940202367}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 119.7453, y: 0, z: -0.000014274754}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1205111327}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &1940451870 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 62125825e49febf4a89f76daf85d9ca7, type: 3}
@@ -56279,7 +57645,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1717154340}
-  nextWaypoint: {fileID: 1758085126}
+  nextWaypoint: {fileID: 1242732611}
+  isCrosswalk: 0
   waypointWidth: 2.5
   branches: []
   branchRatio: 0.5
@@ -57172,8 +58539,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
-  peviousWaypoint: {fileID: 1581571807}
-  nextWaypoint: {fileID: 35235004}
+  peviousWaypoint: {fileID: 535479846}
+  nextWaypoint: {fileID: 132232436}
+  isCrosswalk: 0
   waypointWidth: 10
   branches: []
   branchRatio: 0.5
@@ -57185,13 +58553,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2023628928}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.38268346, z: 0, w: 0.9238795}
+  m_LocalRotation: {x: 0, y: -0.92387956, z: 0, w: 0.38268343}
   m_LocalPosition: {x: 239.8051, y: 0, z: -0.000028587001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1205111327}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -135, z: 0}
 --- !u!1001 &2024574469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58154,13 +59522,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarNavigator
   movingSpeed: 17
-  maxMovingSped: 20
   turningSpeed: 150
   stopSpeed: 0.5
   senser: {fileID: 0}
   detectionRange: 10
+  acelerationSpeed: 4
+  turnBrakingSpeed: 60
+  minimumTurnSpeed: 0.05
   destination: {x: 0, y: 0, z: 0}
   destinationReached: 0
+  detectionHalfWidht: 1.7
+  detectionHalfHeight: 0.9
+  obstacleStopDistance: 2
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  obstacleBreakingSpeed: 80
+  obstacleCheckInterval: 0.1
 --- !u!1001 &2049981098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58840,6 +60218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 1939961976}
   nextWaypoint: {fileID: 2070456780}
+  isCrosswalk: 0
   waypointWidth: 2
   branches: []
   branchRatio: 0.5
@@ -58889,6 +60268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 2068478201}
   nextWaypoint: {fileID: 1266496803}
+  isCrosswalk: 0
   waypointWidth: 2.5
   branches: []
   branchRatio: 0.5
@@ -59556,13 +60936,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarNavigator
   movingSpeed: 17
-  maxMovingSped: 20
   turningSpeed: 150
   stopSpeed: 0.5
   senser: {fileID: 0}
   detectionRange: 10
+  acelerationSpeed: 4
+  turnBrakingSpeed: 60
+  minimumTurnSpeed: 0.05
   destination: {x: 0, y: 0, z: 0}
   destinationReached: 0
+  detectionHalfWidht: 1.7
+  detectionHalfHeight: 0.9
+  obstacleStopDistance: 2
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  obstacleBreakingSpeed: 80
+  obstacleCheckInterval: 0.1
 --- !u!4 &2097118547 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: b8ee657c6800ab849bb30b4375d02323, type: 3}
@@ -60020,6 +61410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WayPoint
   peviousWaypoint: {fileID: 0}
   nextWaypoint: {fileID: 134420955}
+  isCrosswalk: 0
   waypointWidth: 2
   branches:
   - {fileID: 1788718303}
@@ -60222,6 +61613,57 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: b8ee657c6800ab849bb30b4375d02323, type: 3}
   m_PrefabInstance: {fileID: 2004650300}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2130356505
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2130356507}
+  - component: {fileID: 2130356506}
+  m_Layer: 0
+  m_Name: waypoint 52
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2130356506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130356505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647c10014f80e4c44a0783a4196a1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
+  peviousWaypoint: {fileID: 0}
+  nextWaypoint: {fileID: 552920526}
+  isCrosswalk: 1
+  waypointWidth: 3.5
+  branches:
+  - {fileID: 551980901}
+  branchRatio: 0.5
+--- !u!4 &2130356507
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130356505}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.70710695, z: 0, w: 0.70710665}
+  m_LocalPosition: {x: 18.581074, y: 0.35400772, z: 208.56389}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 784231241}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2130845196
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -135732,8 +137174,8 @@ MonoBehaviour:
   breakingForce: 100000
   reverseBreakingForce: 1000000
   driftBreakForce: 15000
-  driftSidewaysStiffness: 0.62
-  driftTurnForce: 1.53
+  driftSidewaysStiffness: 0.54
+  driftTurnForce: 2.75
   reverseDeceleration: 2.5
   player: {fileID: 724415000}
   inOpened: 0

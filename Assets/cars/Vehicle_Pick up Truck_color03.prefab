@@ -140,13 +140,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarNavigator
   movingSpeed: 25
-  maxMovingSped: 30
-  turningSpeed: 11474
+  turningSpeed: 300
   stopSpeed: 1.75
   senser: {fileID: 1081246036970002589}
   detectionRange: 10
+  acelerationSpeed: 4
+  turnBrakingSpeed: 60
+  minimumTurnSpeed: 0.05
   destination: {x: 0, y: 0, z: 0}
   destinationReached: 0
+  detectionHalfWidht: 1.7
+  detectionHalfHeight: 0.9
+  obstacleStopDistance: 2
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  obstacleBreakingSpeed: 80
+  obstacleCheckInterval: 0.1
 --- !u!114 &1864174120132855074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +195,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 1
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 2
 --- !u!65 &1535890007191618731
@@ -203,7 +213,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -224,9 +234,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 3.1007776, y: 1.1243198, z: 1.4337381}
   m_Center: {x: -0.00091155374, y: 0.9596615, z: -2.0770316}
@@ -245,9 +255,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 3.1007776, y: 1.0149871, z: 1.6420655}
   m_Center: {x: -0.00091155374, y: 0.92632854, z: 2.2958114}
