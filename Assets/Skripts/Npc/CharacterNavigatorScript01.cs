@@ -55,7 +55,7 @@ public class CharacterNavigatorScript01 : MonoBehaviour
         Object.Destroy(gameObject, 1f);
     }
 
-    public void LoceteDesination(Vector3 destination)
+    public void LoceteDestination(Vector3 destination)
     {
         this.destination = destination;
         destinationReached = false;
