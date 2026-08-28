@@ -49,7 +49,7 @@ public class CarNavigator : MonoBehaviour
         Drive();
     }
 
-    public void LoceteDesination(Vector3 destination)
+    public void LoceteDestination(Vector3 destination)
     {
         destination.y = transform.position.y;
         this.destination = destination;

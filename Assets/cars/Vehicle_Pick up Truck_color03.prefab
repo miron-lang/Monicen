@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarNavigator
   movingSpeed: 25
-  turningSpeed: 300
+  turningSpeed: 150
   stopSpeed: 1.75
   senser: {fileID: 1081246036970002589}
   detectionRange: 10

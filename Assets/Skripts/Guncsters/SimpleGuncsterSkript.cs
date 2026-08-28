@@ -72,7 +72,7 @@ public class SimpleGuncsterSkript : MonoBehaviour
         }
 
     }
-    public void LoceteDesination(Vector3 destination)
+    public void LoceteDestination(Vector3 destination)
     {
         this.destination = destination;
         destinationReached = false;
