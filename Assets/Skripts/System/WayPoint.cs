@@ -7,6 +7,7 @@ public class WayPoint : MonoBehaviour
     public WayPoint peviousWaypoint;
     public WayPoint nextWaypoint;
     public bool isCrosswalk = false;
+    public bool isCarIntersection = false;
 
     [Range(0f, 10f)]
     public float waypointWidth = 1f;

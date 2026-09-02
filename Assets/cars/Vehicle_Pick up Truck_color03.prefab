@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 218307483781200853}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Senser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 1535890007191618731}
   - component: {fileID: 3361207292546618597}
   - component: {fileID: 8173563979613935736}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Vehicle_Pick up Truck_color03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,8 +169,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc10ae90495db44d8c6dcd654837afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarWaypointNafigator
-  car: {fileID: 6387936909089054869}
   currentWaypoint: {fileID: 0}
+  car: {fileID: 6387936909089054869}
+  exitCheckRadius: 1.5
+  carMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!54 &2964160108175727312
 Rigidbody:
   m_ObjectHideFlags: 0

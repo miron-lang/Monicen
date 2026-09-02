@@ -26,6 +26,7 @@ public class CarNavigator : MonoBehaviour
     float nextObstacleChachTime;
     bool cachedObstacleDetected;
     float cachedObstacleSpeed;
+    bool ignoreObstaclesInsideIntersection; // true временно отключает BoxCast только у допущенной внутрь бибики
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,7 +41,7 @@ public class CarNavigator : MonoBehaviour
     void Update()
     {
         // раз в определёное время
-        if (Time.time >= nextObstacleChachTime)
+        if (!ignoreObstaclesInsideIntersection && Time.time >= nextObstacleChachTime)
         {
             nextObstacleChachTime = Time.time + obstacleCheckInterval;
             cachedObstacleDetected = TryGetObstacleSpeed(out cachedObstacleSpeed);
@@ -75,13 +76,13 @@ public class CarNavigator : MonoBehaviour
             float targetSpeed =  maxMovingSped * speedMultiplier;
 
             // Замедление для препетсвтвий
-            if (cachedObstacleDetected)
+            if (cachedObstacleDetected && !ignoreObstaclesInsideIntersection)
             {
                 targetSpeed = Mathf.Min(targetSpeed, cachedObstacleSpeed);
             }
 
             // если желаемоя скрость ниже текущяй смшиа входит в павороти торозит иначе выходит и разгоняеца
-            float speedChange = targetSpeed < movingSpeed ? (cachedObstacleDetected ? obstacleBreakingSpeed : turnBrakingSpeed) : acelerationSpeed;
+            float speedChange = targetSpeed < movingSpeed ? (cachedObstacleDetected && !ignoreObstaclesInsideIntersection ? obstacleBreakingSpeed : turnBrakingSpeed) : acelerationSpeed;
 
             movingSpeed = Mathf.MoveTowards(movingSpeed, targetSpeed, speedChange * Time.deltaTime);
 
@@ -93,6 +94,24 @@ public class CarNavigator : MonoBehaviour
         else
         {
             destinationReached = true;
+        }
+    }
+
+    // CarWaypointNafigator включяет этот режим только после разрешения контроллера
+    public void SetIntersectionDriving(bool isDrivingInside)
+    {
+        ignoreObstaclesInsideIntersection = isDrivingInside; // Запоменаем, находица ли бибика внутри перекрёстка
+
+        if (isDrivingInside)
+        {
+            // Старый сохранённый BoxCast не должен остановить бибику после въезда
+            cachedObstacleDetected = false; // Удаляем сохранённое препятсие, замеченное до въезда
+            cachedObstacleSpeed = maxMovingSped; // Возращяем разрешённую скорость к максималной
+        }
+        else
+        {
+            // После выезда сразу ворощяем проверку препятствий
+            nextObstacleChachTime = Time.time; // Просим Update выполнить BoxCast на ближаещем кадре
         }
     }
 
