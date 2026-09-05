@@ -1,4 +1,7 @@
+using Meta.WitAi;
 using Meta.XR.MRUtilityKit.BuildingBlocks;
+using Unity.Collections.LowLevel.Unsafe;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
@@ -32,31 +35,18 @@ public class CarWaypointNafigator : WaypointNavigatorBase
         car.LoceteDestination(destination);
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    //void Start()
-    //{
-    //    diraction = Random.Range(0, 2);
+    protected override void Start()
+    {
+        diraction = Random.Range(0, 2);
 
-    //    if (car == null || currentWaypoint == null)
-    //    {
-    //        return;
-    //    }
+        if (hasCharacter && currentWaypoint != null)
+        {
+            LoceteDestination(GetCarLanePosition(currentWaypoint, diraction));
+        }
 
-    //    Vector3 startPosition = currentWaypoint.GetPosition(diraction);
+    }
 
-    //    startPosition.y = transform.position.y;
-
-    //    transform.position = startPosition;
-
-    //    SelectNextWaypoint();
-
-    //    if (currentWaypoint != null)
-    //    {
-    //        car.LoceteDestination(currentWaypoint.GetPosition(diraction));
-    //    }
-    //}
-
-    protected override void Update()
+    protected override void Update()
     {
         if (!hasCharacter || currentWaypoint == null || !hasDestinationReached)// Проврям бибику, точку и дочтежения цули
         {
@@ -77,8 +67,12 @@ public class CarWaypointNafigator : WaypointNavigatorBase
             return;
         }
 
-        // Обычный Next, Previus и Branches остоютса один в один как у NPC
-        base.Update(); // Запускаем неизменённый обзщий алгоритм NPC
+        SelectNextWaypoint();
+
+        if (currentWaypoint != null)
+        {
+            LoceteDestination(GetCarLanePosition(currentWaypoint, diraction));
+        }
     }
 
     void TryStartCarIntersection()
@@ -102,7 +96,7 @@ public class CarWaypointNafigator : WaypointNavigatorBase
 
             plannedExitWaypoint = currentWaypoint.branches[Random.Range(0, currentWaypoint.branches.Count)];// Определяем правилую выходную полосу
 
-            plannedExitDeraction = GetExitDiraction(plannedExitWaypoint);// Сохроняем одну случяйную ветку
+            plannedExitDeraction = GetExitDiraction(currentWaypoint ,plannedExitWaypoint);// Сохроняем одну случяйную ветку
         }
 
         // Пока внутрои другая мошина или занята выходная полома, остаёмся на месте
@@ -119,24 +113,100 @@ public class CarWaypointNafigator : WaypointNavigatorBase
 
         // Единственоя допкщеноя бибика должна гарантировно покинуть центр
         car.SetIntersectionDriving(true);// Не позволяем боковым очередям оставить бибику в центре
-        LoceteDestination(currentWaypoint.GetPosition(diraction));// Отпровляем бибику на выброную полосу выхода
+        LoceteDestination(GetIntersectionExitLanePosition(currentWaypoint, diraction));
     }
 
     // По внешней связи выходной точки определяет нужную половину waypointWidth
-    int GetExitDiraction(WayPoint exitWaypoint)
+    int GetExitDiraction(WayPoint entryWaypoint ,WayPoint exitWaypoint)
     {
-        if (exitWaypoint.nextWaypoint != null && !exitWaypoint.nextWaypoint.isCarIntersection)
+        Vector3 interectionDirection = exitWaypoint.transform.position - entryWaypoint.transform.position;
+        interectionDirection.y = 0;
+
+        if (interectionDirection.sqrMagnitude < 0.001f)
         {
-            return 1; // GetPositon(1) выбирает сторону, оответсвующую движению через Next
+            return diraction;
         }
 
-        if (exitWaypoint.peviousWaypoint != null && !exitWaypoint.peviousWaypoint.isCarIntersection)
+        interectionDirection.Normalize();
+
+        float nextScore = GetExitDiractionScore(exitWaypoint, exitWaypoint.nextWaypoint, interectionDirection);
+        float previusScore = GetExitDiractionScore(exitWaypoint, exitWaypoint.peviousWaypoint, interectionDirection);
+
+        if (nextScore > float.NegativeInfinity || previusScore > float.NegativeInfinity)
         {
-            return 0; // GetPosition(0) выбирает сторону, оответсвующую движению через Previous
+            return nextScore >= previusScore ? 1 : 0;
         }
 
         // Запосное значения, если связи точки настроены непрвилно
         return diraction;
+    }
+
+    float GetExitDiractionScore(WayPoint exitWaypoint, WayPoint roadWaypoint, Vector3 interectionDirection)
+    {
+        if (roadWaypoint == null)
+        {
+            return float.NegativeInfinity;
+        }
+
+        Vector3 roadDiration = roadWaypoint.transform.position - exitWaypoint.transform.position;
+        roadDiration.y = 0;
+
+        if (roadDiration.sqrMagnitude < 0.001)
+        {
+            return float.NegativeInfinity;
+        }
+
+        return Vector3.Dot(interectionDirection, roadDiration.normalized);
+    }
+
+    Vector3 GetIntersectionExitLanePosition(WayPoint waypoint, int diraction)
+    {
+        WayPoint roadWaypoint = diraction == 1 ? waypoint.nextWaypoint : waypoint.peviousWaypoint;
+
+        if (roadWaypoint == null)
+        {
+            return waypoint.GetPosition(diraction);
+        }
+
+        Vector3 roadDiraction = roadWaypoint.transform.position - waypoint.transform.position;
+        roadDiraction.y = 0;
+
+        if (roadDiraction.sqrMagnitude < 0.001f)
+        {
+            return waypoint.GetPosition(diraction);
+        }
+
+        // Вычесяляем правую сторону новой дороги, на каторую бибика должна вехат ьпосле поворота
+        Vector3 rightSide = Vector3.Cross(Vector3.up, roadDiraction.normalized);
+        return waypoint.transform.position + rightSide * (waypoint.waypointWidth * 0.5f);
+    }
+
+
+    // ИСПРАВЛИНО: возрощяет правую полосу входящего учястка дороги
+    // Берём направленитй от предедущей точки к с текущй, поэтому цель не сразает угол по деагонали
+    Vector3 GetCarLanePosition(WayPoint waypoint, int diraction)
+    {
+        WayPoint sourceWaypoint = diraction == 1 ? waypoint.peviousWaypoint : waypoint.nextWaypoint;
+
+        if (sourceWaypoint == null)
+        {
+            // Используем старый способ: одну из двух сторон самого waypoint-а
+            return waypoint.GetPosition(diraction);
+        }
+
+        // Вычесляем наровления входящего дорожного участка
+        Vector3 roadDiraction = waypoint.transform.position - sourceWaypoint.transform.position;
+        roadDiraction.y = 0;
+
+        // Защита от совподающий waypoint-ов
+        if (roadDiraction.sqrMagnitude < 0.001)
+        {
+            return waypoint.GetPosition(diraction);
+        }
+
+        // Cross с Vector3.up даёт вектор строго вправо относително напровления движения
+        Vector3 rightSide = Vector3.Cross(Vector3.up, roadDiraction.normalized);
+        return waypoint.transform.position + rightSide * (waypoint.waypointWidth * 0.5f);
     }
 
     void FinishCarIntersection()
@@ -145,21 +215,20 @@ public class CarWaypointNafigator : WaypointNavigatorBase
         car.SetIntersectionDriving(false); // Возврощяем обычный датчик препятствий
         isCrossingCarInteresetion = false; // Завершаем спецалное состояние перекрёстка
         reservedIntersectionWaypoint = null; // Очщаем ссылку на уде освобождённый въезд
+        WayPoint rodWaypoint = diraction == 1 ? currentWaypoint.nextWaypoint : currentWaypoint.peviousWaypoint;
 
-        // Выбираем единстенную внешню связь и продолжаем по новой дароге
-        if (currentWaypoint.nextWaypoint != null && !currentWaypoint.nextWaypoint.isCarIntersection)
+        if (rodWaypoint == null)
         {
-            currentWaypoint = currentWaypoint.nextWaypoint;
-            diraction = 1;
+            rodWaypoint = diraction == 1 ? currentWaypoint.peviousWaypoint : currentWaypoint.nextWaypoint;
+
+            diraction = diraction == 1 ? 0 : 1;
         }
-        else if (currentWaypoint.peviousWaypoint != null && !currentWaypoint.peviousWaypoint.isCarIntersection)
+        if (rodWaypoint != null)
         {
-            currentWaypoint = currentWaypoint.peviousWaypoint;
-            diraction = 0;
+            currentWaypoint = rodWaypoint;
         }
         else
         {
-            // СТАРОЕ ОБЩЕЕ ПОВЕДЕНИЯ оставлино запосным вырянтом
             SelectNextWaypoint();
         }
 

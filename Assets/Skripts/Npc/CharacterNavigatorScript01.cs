@@ -34,7 +34,7 @@ public class CharacterNavigatorScript01 : MonoBehaviour
         Walk();
     }
 
-    public void NpcGetDamage(float takeDamage)
+    public void NpcGetDamage(float takeDamage)// Transform attacker
     {
         healthNpc -= takeDamage;
 
@@ -42,6 +42,11 @@ public class CharacterNavigatorScript01 : MonoBehaviour
         {
             Death();
         }
+    }
+
+    public void RunAway(Vector3 dangerPosition)
+    {
+
     }
 
     void Death()

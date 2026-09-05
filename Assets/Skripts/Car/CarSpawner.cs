@@ -25,6 +25,12 @@ public class CarSpawner : MonoBehaviour
         {
             int randomIndex = Random.Range(0, aiPrefabs.Length);
             Transform child = transform.GetChild(Random.Range(0, transform.childCount));
+            if (child != null && child.GetComponent<WayPoint>() != null && child.GetComponent<WayPoint>().isCarIntersection)
+            {
+                yield return null;
+                continue;
+            }
+
             GameObject obj = Instantiate(aiPrefabs[randomIndex], child.position, child.rotation);
             obj.GetComponent<CarWaypointNafigator>().currentWaypoint = child.GetComponent<WayPoint>();
             yield return new WaitForSeconds(0.1f);
