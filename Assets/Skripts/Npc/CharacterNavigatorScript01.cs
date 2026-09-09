@@ -20,10 +20,19 @@ public class CharacterNavigatorScript01 : MonoBehaviour
     public int maxHealthNpc = 100;
 
     private Player player;
+    private WaypointNavigator waypointNavigator;
+
+    [SerializeField] float escapeDistance = 12f;
+    [SerializeField] float escapeTime = 5f;
+    [SerializeField] float escapeSpeed = 5f;
+    Vector3 escapeDesetination;
+    bool isEscaping;
+    float escapeEndTime;
 
     // Вызывается один раз при запуске NPC.
     void Start()
     {
+        waypointNavigator = GetComponent<WaypointNavigator>();
         player = FindAnyObjectByType<Player>();
         healthNpc = maxHealthNpc;
     }
@@ -31,10 +40,12 @@ public class CharacterNavigatorScript01 : MonoBehaviour
     // Вызывается каждый кадр и запускает движение NPC.
     void Update()
     {
+        IsEscaping();
+
         Walk();
     }
 
-    public void NpcGetDamage(float takeDamage)// Transform attacker
+    public void NpcGetDamage(float takeDamage, Transform attacker)
     {
         healthNpc -= takeDamage;
 
@@ -42,11 +53,35 @@ public class CharacterNavigatorScript01 : MonoBehaviour
         {
             Death();
         }
+
+        RunAway(attacker.position);
     }
 
     public void RunAway(Vector3 dangerPosition)
     {
+        Vector3 escapeDiraction = transform.position - dangerPosition;
+        escapeDiraction.y = 0f;
 
+        if (escapeDiraction.sqrMagnitude < 0.1f)
+        {
+            escapeDiraction = Random.insideUnitSphere;
+            escapeDiraction.y = 0;
+        }
+        escapeDiraction.Normalize();
+        isEscaping = true;
+        escapeEndTime = Time.time + escapeTime;
+        
+        // Запускае старт Escape();
+    }
+
+    public bool IsEscaping()
+    {
+        if (isEscaping && Time.time >= escapeEndTime)
+        {
+            isEscaping = false;
+        }
+
+        return isEscaping;
     }
 
     void Death()
@@ -88,9 +123,9 @@ public class CharacterNavigatorScript01 : MonoBehaviour
                     turningSpeed * Time.deltaTime
                 );
 
-                transform.Translate(
-                    Vector3.forward * moveingSpeed * Time.deltaTime
-                );
+                float currentSpeed = isEscaping ? escapeSpeed : moveingSpeed;
+
+                transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
             }
             else
             {

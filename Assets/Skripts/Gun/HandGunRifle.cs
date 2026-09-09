@@ -214,7 +214,7 @@ public class HandGunRifle : MonoBehaviour
         if (Physics.Raycast(ray, out hitInfo, shootLengthRange))
         {
             PoliceOfficer police = hitInfo.transform.GetComponent<PoliceOfficer>();
-            CharacterNavigatorScript npc = hitInfo.transform.GetComponent<CharacterNavigatorScript>();
+            CharacterNavigatorScript01 npc = hitInfo.transform.GetComponent<CharacterNavigatorScript01>();
             SimpleGuncsterSkript guncter = hitInfo.transform.GetComponent<SimpleGuncsterSkript>();
             Boss boss = hitInfo.transform.GetComponent<Boss>();
             print("SOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOT");
@@ -230,7 +230,7 @@ public class HandGunRifle : MonoBehaviour
                 else if (npc != null)
                 {
                     GameObject createBloodEffect = Instantiate(blood, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-                    npc.NpcGetDamage(rifleDamage);
+                    npc.NpcGetDamage(rifleDamage, player.transform);
                 }
 
                 else if (guncter != null)
