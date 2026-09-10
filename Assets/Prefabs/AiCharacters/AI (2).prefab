@@ -1781,8 +1781,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5779232022978490921}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: c2d7296445913c14a9f3ae84f43fa40e, type: 3}
-  m_Controller: {fileID: 9100000, guid: 5634a2b7691d539459e53757ed1baf30, type: 2}
+  m_Avatar: {fileID: 9000000, guid: 70e5debd7280a63489ab4dca1c724050, type: 3}
+  m_Controller: {fileID: 9100000, guid: 3b23585488c52914cad3be3b71f8ae36, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1806,8 +1806,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a3c4757d550a364080279d484ee21c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  charcater: {fileID: 0}
   currentWaypoint: {fileID: 0}
+  charcater: {fileID: 0}
 --- !u!54 &9112565596741515634
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1876,6 +1876,9 @@ MonoBehaviour:
   destinationReached: 0
   healthNpc: 100
   maxHealthNpc: 100
+  escapeDistance: 12
+  escapeTime: 5
+  escapeSpeed: 5
 --- !u!1 &5887225709387502083
 GameObject:
   m_ObjectHideFlags: 0

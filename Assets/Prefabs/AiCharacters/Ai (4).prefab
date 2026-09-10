@@ -2389,8 +2389,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a3c4757d550a364080279d484ee21c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaypointNavigator
-  charcater: {fileID: 0}
   currentWaypoint: {fileID: 0}
+  charcater: {fileID: 0}
 --- !u!95 &4826130332653789451
 Animator:
   serializedVersion: 7
@@ -2400,8 +2400,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7166426636148350043}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: c2d7296445913c14a9f3ae84f43fa40e, type: 3}
-  m_Controller: {fileID: 9100000, guid: 9507f3f5c152c9242a1e7fb335b21625, type: 2}
+  m_Avatar: {fileID: 9000000, guid: 0a79fc07515c1984a93e69ee7c87748e, type: 3}
+  m_Controller: {fileID: 9100000, guid: 3b23585488c52914cad3be3b71f8ae36, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2454,6 +2454,9 @@ MonoBehaviour:
   destinationReached: 0
   healthNpc: 100
   maxHealthNpc: 100
+  escapeDistance: 12
+  escapeTime: 5
+  escapeSpeed: 5
 --- !u!1 &7210395434713973526
 GameObject:
   m_ObjectHideFlags: 0
