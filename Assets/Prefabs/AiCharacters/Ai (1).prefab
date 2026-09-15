@@ -2684,8 +2684,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a3c4757d550a364080279d484ee21c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  charcater: {fileID: 0}
   currentWaypoint: {fileID: 0}
+  charcater: {fileID: 0}
 --- !u!195 &1544272333783619784
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2727,6 +2727,10 @@ MonoBehaviour:
   destinationReached: 0
   healthNpc: 100
   maxHealthNpc: 100
+  escapeDistance: 15
+  escapeTime: 12
+  escapeSpeed: 8.95
+  anim: {fileID: 7690076004355179658}
 --- !u!1 &8007884409269263227
 GameObject:
   m_ObjectHideFlags: 0

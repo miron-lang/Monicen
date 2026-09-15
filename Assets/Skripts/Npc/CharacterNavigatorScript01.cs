@@ -29,6 +29,8 @@ public class CharacterNavigatorScript01 : MonoBehaviour
     bool isEscaping;
     float escapeEndTime;
 
+    [SerializeField] Animator anim;
+
     // Вызывается один раз при запуске NPC.
     void Start()
     {
@@ -52,13 +54,28 @@ public class CharacterNavigatorScript01 : MonoBehaviour
         if (healthNpc <= 0f && !dedth)
         {
             Death();
+            return;
         }
 
-        RunAway(attacker.position);
+        if (attacker != null)
+        {
+            RunAway(attacker.position);
+        }
     }
 
     public void RunAway(Vector3 dangerPosition)
     {
+        isEscaping = true;
+
+        anim.SetBool("Run", true);
+
+        escapeEndTime = Time.time + escapeTime;
+
+        if (waypointNavigator != null && waypointNavigator.StartEscape(dangerPosition))
+        {
+            return;
+        }
+
         Vector3 escapeDiraction = transform.position - dangerPosition;
         escapeDiraction.y = 0f;
 
@@ -68,17 +85,16 @@ public class CharacterNavigatorScript01 : MonoBehaviour
             escapeDiraction.y = 0;
         }
         escapeDiraction.Normalize();
-        isEscaping = true;
-        escapeEndTime = Time.time + escapeTime;
-        
-        // Запускае старт Escape();
+        escapeDesetination = transform.position + escapeDiraction * escapeDistance;
+        LoceteDestination(escapeDesetination);
     }
 
     public bool IsEscaping()
-    {
+    {   
         if (isEscaping && Time.time >= escapeEndTime)
         {
             isEscaping = false;
+            anim.SetBool("Run", false);
         }
 
         return isEscaping;

@@ -1,6 +1,4 @@
-using Meta.XR.MRUtilityKit.SceneDecorator;
 using UnityEngine;
-using UnityEngine.Splines;
 
 public class WaypointNavigator : WaypointNavigatorBase
 {
@@ -156,22 +154,22 @@ public class WaypointNavigator : WaypointNavigatorBase
         //return true;
     }
 
-    float GetEscapeScore(WayPoint candidate, Vector3 escapeDiraction)
-    {
-        if (candidate == null)
-        {
-            return float.NegativeInfinity;
-        }
+//    float GetEscapeScore(WayPoint candidate, Vector3 escapeDiraction)
+//    {
+//        if (candidate == null)
+//        {
+//            return float.NegativeInfinity;
+//        }
 
-        Vector3 canditateDirection = candidate.transform.position - transform.position; 
-        canditateDirection.y = 0;
+//        Vector3 canditateDirection = candidate.transform.position - transform.position; 
+//        canditateDirection.y = 0;
 
-        if (canditateDirection.sqrMagnitude < 0.01f)
-        {
-            return float.NegativeInfinity;
-        }
+//        if (canditateDirection.sqrMagnitude < 0.01f)
+//        {
+//            return float.NegativeInfinity;
+//        }
 
-        return Vector3.Dot(canditateDirection.normalized, escapeDiraction);
-;
-    }
+//        return Vector3.Dot(canditateDirection.normalized, escapeDiraction);
+//;
+//    }
 }
