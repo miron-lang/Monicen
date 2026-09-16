@@ -68,7 +68,7 @@ public class Vechicle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(rb.linearVelocity.magnitude * 3.6f + " κμ/χÿρ");
+        //Debug.Log(rb.linearVelocity.magnitude * 3.6f + " κμ/χÿρ");
         if (Vector3.Distance(player.position, transform.position) <= radius)
         {
             if (Input.GetKeyDown(KeyCode.F) && !inOpened)

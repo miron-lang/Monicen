@@ -30,6 +30,7 @@ public class CharacterNavigatorScript01 : MonoBehaviour
     float escapeEndTime;
 
     [SerializeField] Animator anim;
+    [SerializeField] GameObject regdolGameObject;
 
     // Вызывается один раз при запуске NPC.
     void Start()
@@ -57,8 +58,9 @@ public class CharacterNavigatorScript01 : MonoBehaviour
             return;
         }
 
-        if (attacker != null)
+        if (!dedth && attacker != null)
         {
+            print("БЕГ НЕ СРАБОТАЛ");
             RunAway(attacker.position);
         }
     }
@@ -106,9 +108,16 @@ public class CharacterNavigatorScript01 : MonoBehaviour
         print("NPC погиб");
 
         if (player != null)
+        {
             player.kills++;
+        }
 
-        Object.Destroy(gameObject, 1f);
+        if (regdolGameObject != null)
+        {
+            Instantiate(regdolGameObject, transform.position, transform.rotation);
+        }
+
+        Object.Destroy(gameObject);
     }
 
     public void LoceteDestination(Vector3 destination)

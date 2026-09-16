@@ -1878,8 +1878,9 @@ MonoBehaviour:
   maxHealthNpc: 100
   escapeDistance: 15
   escapeTime: 12
-  escapeSpeed: 8.95
+  escapeSpeed: 7.12
   anim: {fileID: 5004241415997545462}
+  regdolGameObject: {fileID: 2411227673156853621, guid: b2f9276f168f77043a8e464bafa47677, type: 3}
 --- !u!1 &5887225709387502083
 GameObject:
   m_ObjectHideFlags: 0
