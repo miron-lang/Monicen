@@ -2348,6 +2348,7 @@ Transform:
   m_Children:
   - {fileID: 2908822192744760660}
   - {fileID: 9015843115423125006}
+  - {fileID: 2727248115459258215}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &18462837680193521
@@ -2394,8 +2395,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
@@ -2435,7 +2436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PoliceOfficer
   walkingSpeed: 1.7
-  runingSpeed: 3
+  runingSpeed: 4.23
   turningSpeed: 250
   stopSpeed: 1
   destination: {x: 0, y: 0, z: 0}
@@ -2444,7 +2445,7 @@ MonoBehaviour:
   maxHealthPolice: 100
   armorPolice: 25
   isVoidStarted: 0
-  startStars: 1
+  startStars: 0
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -2453,7 +2454,7 @@ MonoBehaviour:
   playerInVisionRadius: 0
   playerInShootingRedius: 0
   wantedPlayer: {fileID: 0}
-  shootingRaycastArea: {fileID: 0}
+  shootingRaycastArea: {fileID: 9112451847876839305}
   player: {fileID: 0}
   timeBtwShoot: 1
   giveDamage: 25
@@ -2471,8 +2472,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 364cb4920baf14e40a32e606f3e61bf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PiliceNavigator
-  charcater: {fileID: 1439031192426991320}
   currentWaypoint: {fileID: 0}
+  charcater: {fileID: 1439031192426991320}
 --- !u!195 &-4473597446426663124
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3511,6 +3512,37 @@ Transform:
   m_Children:
   - {fileID: 6134847379415308837}
   m_Father: {fileID: 2091834015738840573}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9112451847876839305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2727248115459258215}
+  m_Layer: 0
+  m_Name: Origen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2727248115459258215
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9112451847876839305}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.065, y: 1.281, z: 1.282}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8293070692061078239}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9215267156836196407
 GameObject:

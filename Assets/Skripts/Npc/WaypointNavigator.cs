@@ -24,7 +24,7 @@ public class WaypointNavigator : WaypointNavigatorBase
     {
         if (charcater != null && charcater.IsEscaping())
         {
-            if (charcater.destinationReached)
+            if (currentWaypoint != null && charcater.destinationReached)
             {
                 SelectEscapeWaypoint();
             }

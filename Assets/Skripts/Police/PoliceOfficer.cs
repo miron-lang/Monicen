@@ -44,6 +44,8 @@ public class PoliceOfficer : MonoBehaviour
 
     private float currentMovingSpeed;
 
+    private bool dethPolice = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -60,19 +62,24 @@ public class PoliceOfficer : MonoBehaviour
         playerInVisionRadius = Physics.CheckSphere(transform.position, visionRadius, playerLayer);
         playerInShootingRedius = Physics.CheckSphere(transform.position, shootingRadius, playerLayer);
 
-        if (!playerInVisionRadius && !wantedPlayer.wantedLevel[startStars] && !playerInShootingRedius)
+        if (!wantedPlayer.wantedLevel[startStars])
         {
             Walk();
         }
 
-        else if (playerInVisionRadius && wantedPlayer.wantedLevel[startStars] && !playerInShootingRedius)
+        else if (playerInVisionRadius && !playerInShootingRedius)
         {
             ChasePlayer();
         }
 
-        if (playerInShootingRedius && wantedPlayer.wantedLevel[startStars])
+        else if (playerInShootingRedius)
         {
             ShootAtThePlayer();
+        }
+
+        else
+        {
+            Walk();
         }
 
     }
@@ -85,7 +92,10 @@ public class PoliceOfficer : MonoBehaviour
     void ChasePlayer()
     {
         //двигаем полицейского в перёд и что бы он сматрел на игрока
-        transform.LookAt(playerBody.transform);
+        Vector3 lookPlayer = player.transform.position;
+        lookPlayer.y = transform.position.y;
+        transform.LookAt(lookPlayer);
+
         transform.Translate(Vector3.forward * currentMovingSpeed * Time.deltaTime);
         anim.SetBool("Walk", false);
         anim.SetBool("Shoot", false);
@@ -96,7 +106,12 @@ public class PoliceOfficer : MonoBehaviour
     void ShootAtThePlayer()
     {
         currentMovingSpeed = 0f;
-            transform.LookAt(playerBody.transform);
+
+        Vector3 lookPlayer = player.transform.position;
+        lookPlayer.y = transform.position.y;
+        transform.LookAt(lookPlayer);
+        transform.Rotate(0, -15, 0);
+
         if (!previuseShoot)
         {
             anim.SetBool("Walk", false);
@@ -173,7 +188,7 @@ public class PoliceOfficer : MonoBehaviour
             healthPolice -= takeDamage % 4;
         }
 
-        if (healthPolice <= 0f)
+        if (!dethPolice && healthPolice <= 0f)
         {
             Death();
         }
@@ -181,6 +196,7 @@ public class PoliceOfficer : MonoBehaviour
 
     void Death()
     {
+        dethPolice = true;
         currentMovingSpeed = 0f;
         shootingRadius = 0f;
         player.kills++;

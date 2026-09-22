@@ -133,7 +133,7 @@ AnimatorStateMachine:
     m_Position: {x: 500, y: 320, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2340489966513781682}
-    m_Position: {x: 500, y: 410, z: 0}
+    m_Position: {x: 490, y: 410, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1694116213647614005}
     m_Position: {x: 410, y: 670, z: 0}
@@ -630,7 +630,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ShootPrimary2GunsAim
+  m_Name: ShootPrimaryAim
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

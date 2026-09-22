@@ -40,6 +40,8 @@ public class SimpleGuncsterSkript : MonoBehaviour
 
     private float currentMovingSpeed;
 
+    private bool deth = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -81,7 +83,10 @@ public class SimpleGuncsterSkript : MonoBehaviour
     void ChasePlayer()
     {
         //двигаем полицейского в перёд и что бы он сматрел на игрока
-        transform.LookAt(playerBody.transform);
+        Vector3 lookPlayer = player.transform.position;
+        lookPlayer.y = transform.position.y;
+        transform.LookAt(lookPlayer);
+
         transform.Translate(Vector3.forward * currentMovingSpeed * Time.deltaTime);
         anim.SetBool("Walk", false);
         anim.SetBool("Shoot", false);
@@ -92,7 +97,11 @@ public class SimpleGuncsterSkript : MonoBehaviour
     void ShootAtThePlayer()
     {
         currentMovingSpeed = 0f;
-        transform.LookAt(playerBody.transform);
+
+        Vector3 lookPlayer = player.transform.position;
+        lookPlayer.y = transform.position.y;
+        transform.LookAt(lookPlayer);
+
         if (!previuseShoot)
         {
             anim.SetBool("Walk", false);
@@ -167,7 +176,7 @@ public class SimpleGuncsterSkript : MonoBehaviour
             healthGuncster -= takeDamage % 4;
         }
 
-        if (healthGuncster <= 0f)
+        if (!deth && healthGuncster <= 0f)
         {
             Death();
         }
@@ -175,6 +184,7 @@ public class SimpleGuncsterSkript : MonoBehaviour
 
     void Death()
     {
+        deth = true;
         currentMovingSpeed = 0f;
         shootingRadius = 0f;
         player.kills++;

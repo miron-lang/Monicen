@@ -1180,8 +1180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab7758954ef55647be2ed55d8a2bda5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimpleGuncsterNavigator
-  charcater: {fileID: 4761087089528454423}
   currentWaypoint: {fileID: 0}
+  charcater: {fileID: 4761087089528454423}
 --- !u!114 &4761087089528454423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1248,7 +1248,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3308407836915066444}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.3
   m_Speed: 2

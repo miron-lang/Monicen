@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 // Старая версия навигации NPC до добавления NavMesh.
 // ВАЖНО: не кладите этот файл в Assets одновременно с текущим
@@ -32,7 +33,11 @@ public class CharacterNavigatorScript01 : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] GameObject regdolGameObject;
 
-    // Вызывается один раз при запуске NPC.
+    [SerializeField] float obstacleCheckRadiuse = 0.25f;
+    [SerializeField] float obstacleCheckDistance = 0.55f;
+    [SerializeField] LayerMask obstacelMask = ~0;
+    readonly RaycastHit[] obstacleHits = new RaycastHit[8];
+
     void Start()
     {
         waypointNavigator = GetComponent<WaypointNavigator>();
@@ -48,13 +53,13 @@ public class CharacterNavigatorScript01 : MonoBehaviour
         Walk();
     }
 
-    public void NpcGetDamage(float takeDamage, Transform attacker)
+    public void NpcGetDamage(float takeDamage, Transform attacker, Vector3 bulletPositon)
     {
         healthNpc -= takeDamage;
 
         if (healthNpc <= 0f && !dedth)
         {
-            Death();
+            Death(attacker.position, bulletPositon);
             return;
         }
 
@@ -73,22 +78,42 @@ public class CharacterNavigatorScript01 : MonoBehaviour
 
         escapeEndTime = Time.time + escapeTime;
 
-        if (waypointNavigator != null && waypointNavigator.StartEscape(dangerPosition))
+        if (waypointNavigator == null || waypointNavigator.StartEscape(dangerPosition))
         {
-            return;
+            isEscaping = false;
+            anim.SetBool("Run", false);
         }
 
-        Vector3 escapeDiraction = transform.position - dangerPosition;
-        escapeDiraction.y = 0f;
+        //Vector3 escapeDiraction = transform.position - dangerPosition;
+        //escapeDiraction.y = 0f;
 
-        if (escapeDiraction.sqrMagnitude < 0.1f)
+        //if (escapeDiraction.sqrMagnitude < 0.1f)
+        //{
+        //    escapeDiraction = Random.insideUnitSphere;
+        //    escapeDiraction.y = 0;
+        //}
+        //escapeDiraction.Normalize();
+        //escapeDesetination = transform.position + escapeDiraction * escapeDistance;
+        //LoceteDestination(escapeDesetination);
+    }
+
+    bool IsPathBloked(Vector3 moveDiraction)
+    {
+        Vector3 castOrigin = transform.position + Vector3.up * Mathf.Max(obstacleCheckRadiuse, 0.25f);
+        int hitCount = Physics.SphereCastNonAlloc(castOrigin, obstacleCheckRadiuse, moveDiraction, obstacleHits, obstacleCheckDistance, obstacelMask, QueryTriggerInteraction.Ignore);
+
+        for (int i = 0; i < hitCount; i++)
         {
-            escapeDiraction = Random.insideUnitSphere;
-            escapeDiraction.y = 0;
+            Transform hitTransform = obstacleHits[i].transform;
+
+            if (hitTransform != transform && !hitTransform.IsChildOf(transform))
+            {
+                return true;
+            }
         }
-        escapeDiraction.Normalize();
-        escapeDesetination = transform.position + escapeDiraction * escapeDistance;
-        LoceteDestination(escapeDesetination);
+
+        return false;
+
     }
 
     public bool IsEscaping()
@@ -102,7 +127,7 @@ public class CharacterNavigatorScript01 : MonoBehaviour
         return isEscaping;
     }
 
-    void Death()
+    void Death(Vector3 dangerPositon, Vector3 bulletPosition)
     {
         dedth = true;
         print("NPC погиб");
@@ -112,12 +137,25 @@ public class CharacterNavigatorScript01 : MonoBehaviour
             player.kills++;
         }
 
+        Object.Destroy(gameObject);
+
         if (regdolGameObject != null)
         {
-            Instantiate(regdolGameObject, transform.position, transform.rotation);
-        }
+            GameObject obj = Instantiate(regdolGameObject, transform.position, transform.rotation);
 
-        Object.Destroy(gameObject);
+            Rigidbody hips = obj.GetComponentInChildren<Rigidbody>();
+
+            if (hips != null && dangerPositon != null)
+            {
+                Vector3 forceDiraction = transform.position - dangerPositon;
+                forceDiraction.y = 0f;
+                forceDiraction.Normalize();
+                hips.AddForceAtPosition(forceDiraction * 60f + Vector3.up * 7.5f, bulletPosition, ForceMode.Impulse);
+                hips.AddTorque(Random.insideUnitSphere * 25f, ForceMode.Impulse);
+            }
+
+            Object.Destroy(obj, 10f);
+        }
     }
 
     public void LoceteDestination(Vector3 destination)
@@ -139,6 +177,11 @@ public class CharacterNavigatorScript01 : MonoBehaviour
             if (destinationDistance >= stopSpeed)
             {
                 destinationReached = false;
+
+                if (IsPathBloked(destinationDirection.normalized))
+                {
+                    return;
+                }
 
                 Quaternion targetRatation = Quaternion.LookRotation(destinationDirection);
 

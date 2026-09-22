@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     {
         //playerBar.SetArmor(armor);
         //playerBar.SetHealth(health);
-        if (MainMeny.inctance.peremenay == true)
+        if (MainMeny.inctance != null && MainMeny.inctance.peremenay)
         {
             LoadPlayer();
         }

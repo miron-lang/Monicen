@@ -618,8 +618,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
@@ -713,6 +713,12 @@ MonoBehaviour:
   escapeTime: 12
   escapeSpeed: 7.12
   anim: {fileID: 7902390987600766495}
+  regdolGameObject: {fileID: 4253054889204364909, guid: 463e3d131cfb828408b5188995712a27, type: 3}
+  obstacleCheckRadiuse: 0.25
+  obstacleCheckDistance: 0.55
+  obstacelMask:
+    serializedVersion: 2
+    m_Bits: 136
 --- !u!1 &2888321757997691651
 GameObject:
   m_ObjectHideFlags: 0
