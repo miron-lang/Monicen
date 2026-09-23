@@ -76749,34 +76749,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449cfc4ea7d37ff46bd58bb95790cbd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainRifleSkript
-  anim: {fileID: 0}
+  anim: {fileID: 724414999}
   nextTimeToShoot: 1.5
   fireCharge: 10
   shootLengthRange: 40
-  metalEffect: {fileID: 0}
-  blood: {fileID: 0}
+  metalEffect: {fileID: 5343840240745376625, guid: 4c93fd30048d04ff18d55ab28da942ce, type: 3}
+  blood: {fileID: 5343840240745376625, guid: 4c93fd30048d04ff18d55ab28da942ce, type: 3}
   rifleDamage: 25
-  localOrigin: {fileID: 0}
-  player: {fileID: 0}
+  localOrigin: {fileID: 1535207129}
+  player: {fileID: 724414981}
   animationController: {fileID: 0}
   isItemInInfertoryHandGunEdition: 0
   shootEfect: {fileID: 0}
-  lazerOrigin: {fileID: 0}
-  bullet: {fileID: 0}
-  lazer: {fileID: 0}
+  lazerOrigin: {fileID: 962521183}
+  bullet: {fileID: 7063958728126943334, guid: 77a9b76645408dc4cae2607fee48375b, type: 3}
+  lazer: {fileID: 1082494310}
   maxAmmunition: 25
   mag: 10
   presentAmmunition: 0
   reloadingTime: 10.5
   setReloading: 0
   isAutomaticFire: 0
-  shootSound: {fileID: 0}
-  ammoOutUi: {fileID: 0}
-  ammoLeft: {fileID: 0}
-  magLeft: {fileID: 0}
-  ammoMagLeft: {fileID: 0}
-  aimCam: {fileID: 0}
-  thirdPersonCam: {fileID: 0}
+  shootSound: {fileID: 925651600}
+  ammoOutUi: {fileID: 54086736}
+  ammoLeft: {fileID: 1628675038}
+  magLeft: {fileID: 1463574365}
+  ammoMagLeft: {fileID: 42185291}
+  aimCam: {fileID: 1988386208}
+  thirdPersonCam: {fileID: 366594920}
 --- !u!33 &919861472424863131
 MeshFilter:
   m_ObjectHideFlags: 0
