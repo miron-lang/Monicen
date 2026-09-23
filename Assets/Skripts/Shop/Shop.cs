@@ -51,62 +51,79 @@ public class Shop : MonoBehaviour
             {
                 if (currentGunShop.tag == "HandGunPickup" && player.currentMoney >= currentGunShop.GetComponent<Gun>().itemPrice)
                 {
-                    player.currentMoney -= currentGunShop.GetComponent<Gun>().itemPrice;
-
                     if (misionsEmpty.cuurentMission == 3)
                     {
                         misionsEmpty.NextMision();
                     }
-                    inventory.isWeaponPicked[0] = true;
+
+                    if (inventory.isWeaponPicked[0])
+                    {
+                        inventory.isWeaponPicked[0] = true;
+                        player.currentMoney -= currentGunShop.GetComponent<Gun>().itemPrice;
+                    }
                 }
                 else if (currentGunShop.tag == "HandGunWhithAMuferPickup" && player.currentMoney >= currentGunShop.GetComponent<Gun>().itemPrice)
                 {
-                    player.currentMoney -= currentGunShop.GetComponent<Gun>().itemPrice;
-
                     if (misionsEmpty.cuurentMission == 3)
                     {
                         misionsEmpty.NextMision();
                     }
-                    inventory.isWeaponPicked[1] = true;
+                    if (inventory.isWeaponPicked[1])
+                    {
+                        inventory.isWeaponPicked[1] = true;
+                        player.currentMoney -= currentGunShop.GetComponent<Gun>().itemPrice;
+                    }
                 }
                 else if (currentGunShop.tag == "UziPickup" && player.currentMoney >= currentGunShop.GetComponent<Gun>().itemPrice)
                 {
-                    player.currentMoney -= currentGunShop.GetComponent<Gun>().itemPrice;
-                    inventory.isWeaponPicked[2] = true;
-
                     if (misionsEmpty.cuurentMission == 3)
                     {
                         misionsEmpty.NextMision();
+                    }
+
+                    if (inventory.isWeaponPicked[2])
+                    {
+                        inventory.isWeaponPicked[2] = true;
+                        player.currentMoney -= currentGunShop.GetComponent<Gun>().itemPrice;
                     }
                 }
                 else if (currentGunShop.tag == "ShootGunPickup" && player.currentMoney >= currentGunShop.GetComponent<Gun>().itemPrice)
                 {
-                    player.currentMoney -= currentGunShop.GetComponent<Gun>().itemPrice;
-                    inventory.isWeaponPicked[3] = true;
-
                     if (misionsEmpty.cuurentMission == 3)
                     {
                         misionsEmpty.NextMision();
+                    }
+
+                    if (inventory.isWeaponPicked[3])
+                    {
+                        inventory.isWeaponPicked[3] = true;
+                        player.currentMoney -= currentGunShop.GetComponent<Gun>().itemPrice;
                     }
                 }
                 else if (currentGunShop.tag == "BazukaPickup" && player.currentMoney >= currentGunShop.GetComponent<Gun>().itemPrice)
                 {
-                    player.currentMoney -= currentGunShop.GetComponent<Gun>().itemPrice;
-                    inventory.isWeaponPicked[4] = true;
-
                     if (misionsEmpty.cuurentMission == 3)
                     {
                         misionsEmpty.NextMision();
                     }
+
+                    if (inventory.isWeaponPicked[4])
+                    {
+                        inventory.isWeaponPicked[4] = true;
+                        player.currentMoney -= currentGunShop.GetComponent<Gun>().itemPrice;
+                    }
                 }
                 else if (currentGunShop.tag == "BayoutPickup" && player.currentMoney >= currentGunShop.GetComponent<Gun>().itemPrice)
                 {
-                    player.currentMoney -= currentGunShop.GetComponent<Gun>().itemPrice;
-                    inventory.isWeaponPicked[5] = true;
-
                     if (misionsEmpty.cuurentMission == 3)
                     {
                         misionsEmpty.NextMision();
+                    }
+
+                    if (inventory.isWeaponPicked[5])
+                    {
+                        inventory.isWeaponPicked[5] = true;
+                        player.currentMoney -= currentGunShop.GetComponent<Gun>().itemPrice;
                     }
                 }
             }

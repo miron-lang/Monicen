@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "com.meta.xr.sdk.all": "83.0.0",
-    "com.meta.xr.sdk.movement": "file:C:/Users/Miron/Downloads/Unity-Movement-83.0.0/Unity-Movement-83.0.0",
     "com.unity.ai.navigation": "2.0.8",
     "com.unity.cinemachine": "3.1.7",
     "com.unity.collab-proxy": "2.10.2",

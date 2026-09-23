@@ -15,14 +15,19 @@ public class Player : MonoBehaviour
     public Inventory inventory;
     public Misions misions;
 
+    [SerializeField] Vechicle car;
+
     public PlayerBar playerBar;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     private void Awake()
     {
+        car = FindFirstObjectByType<Vechicle>();
+
         //playerBar.SetArmor(armor);
         //playerBar.SetHealth(health);
+
         if (MainMeny.inctance != null && MainMeny.inctance.peremenay)
         {
             LoadPlayer();
@@ -74,6 +79,8 @@ public class Player : MonoBehaviour
         {
             inventory.isWeaponPicked[i] = data.isWeaponPicked[i];
         }
+
+        car.gameObject.SetActive(true);
     }
 
     public void PlayerGetDamage(float takeDamage)

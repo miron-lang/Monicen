@@ -30,10 +30,6 @@ public class SaveGlow : MonoBehaviour
                 player.currentMoney += 643;
                 car.SetActive(true);
             }
-            else if (misionsEmpty.cuurentMission >= 0)
-            {
-                car.SetActive(true);
-            }
             else if (misionsEmpty.cuurentMission == 2)
             {
                 misionsEmpty.NextMision();
@@ -45,5 +41,5 @@ public class SaveGlow : MonoBehaviour
                 shop.SetActive(true);
             }
         }
-        }
+    }
 }

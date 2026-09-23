@@ -12,14 +12,8 @@ public class Misions : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentMission.text = "Curent mision: " + cuurentMission;
+        currentMission.text = "Curent mision: " + (cuurentMission + 1);
         currentMissionText.text = misionsText[cuurentMission];
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void NextMision()
@@ -32,7 +26,7 @@ public class Misions : MonoBehaviour
                 print(misionsText[i]);
             }
         }
-        currentMission.text = "Curent mision: " + cuurentMission;
-        currentMissionText.text = misionsText[cuurentMission];
+        currentMission.text = "Curent mision: " + (cuurentMission + 1);
+        currentMissionText.text = misionsText[cuurentMission];      
     }
 }

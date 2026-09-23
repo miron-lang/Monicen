@@ -66,11 +66,11 @@ public class MainRifleSkript : MonoBehaviour
 
     void Awake()
     {
+        presentAmmunition = maxAmmunition;
+
         cam = Camera.main;
         ammoLeft.text = "Ammo Left:" + presentAmmunition;
         magLeft.text = "Mag Left:" + mag;
-
-        presentAmmunition = maxAmmunition;
     }
 
     void Update()
