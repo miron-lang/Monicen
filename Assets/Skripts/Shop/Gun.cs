@@ -18,6 +18,8 @@ public class Gun : MonoBehaviour
 
     public GameObject gunUi;
 
+    public int weaponIndex;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
