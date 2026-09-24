@@ -16,6 +16,8 @@ public class Gun : MonoBehaviour
 
     public float spinningSpeed = 0.325f;
 
+    public GameObject gunUi;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

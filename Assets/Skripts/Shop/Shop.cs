@@ -131,25 +131,33 @@ public class Shop : MonoBehaviour
 
         if (Input.GetKey(KeyCode.S) && currentGunShop.GetComponent<Gun>().downGun != null)
         {
+            currentGunShop.GetComponent<Gun>().gunUi.SetActive(false);
             currentGunShop = currentGunShop.GetComponent<Gun>().downGun;
+            currentGunShop.GetComponent<Gun>().gunUi.SetActive(true);
             playerFollowCamera.GetComponent<CinemachineVirtualCamera>().Follow = currentGunShop.GetComponent<Gun>().cameraPosition.transform;
         }
 
         if (Input.GetKey(KeyCode.W) && currentGunShop.GetComponent<Gun>().upGun != null)
         {
+            currentGunShop.GetComponent<Gun>().gunUi.SetActive(false);
             currentGunShop = currentGunShop.GetComponent<Gun>().upGun;
+            currentGunShop.GetComponent<Gun>().gunUi.SetActive(true);
             playerFollowCamera.GetComponent<CinemachineVirtualCamera>().Follow = currentGunShop.GetComponent<Gun>().cameraPosition.transform;
         }
 
         if (Input.GetKey(KeyCode.D) && currentGunShop.GetComponent<Gun>().rightGun != null)
         {
+            currentGunShop.GetComponent<Gun>().gunUi.SetActive(false);
             currentGunShop = currentGunShop.GetComponent<Gun>().rightGun;
+            currentGunShop.GetComponent<Gun>().gunUi.SetActive(true);
             playerFollowCamera.GetComponent<CinemachineVirtualCamera>().Follow = currentGunShop.GetComponent<Gun>().cameraPosition.transform;
         }
 
         if (Input.GetKey(KeyCode.A) && currentGunShop.GetComponent<Gun>().leftGun != null)
         {
+            currentGunShop.GetComponent<Gun>().gunUi.SetActive(false);
             currentGunShop = currentGunShop.GetComponent<Gun>().leftGun;
+            currentGunShop.GetComponent<Gun>().gunUi.SetActive(true);
             playerFollowCamera.GetComponent<CinemachineVirtualCamera>().Follow = currentGunShop.GetComponent<Gun>().cameraPosition.transform;
         }
     }

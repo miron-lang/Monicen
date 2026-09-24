@@ -1,3 +1,4 @@
+using UnityEditor.Overlays;
 using UnityEngine;
 
 public class SmoothCarCamera : MonoBehaviour
@@ -10,10 +11,9 @@ public class SmoothCarCamera : MonoBehaviour
 
     private Vector3 velosity;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void OnEnable()
     {
-        
+        transform.position = target.position + offset;
     }
 
     // Update is called once per frame
