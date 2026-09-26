@@ -1,5 +1,3 @@
-using Oculus.Interaction.Editor;
-using System.Xml.Serialization;
 using UnityEngine;
 
 public class Vechicle : MonoBehaviour
@@ -43,6 +41,7 @@ public class Vechicle : MonoBehaviour
     private float presentAcceleration = 0f;
     private Rigidbody rb;
     private float[] normalSidewaysStiffness;
+    private bool isStoping;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -68,6 +67,15 @@ public class Vechicle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isStoping)
+        {
+            StopVechicle();
+        }
+
+        //if (transform.rotation.z >= 80f || transform.rotation.z <= -25f ||transform.rotation.x >= 15f || transform.rotation.x <= -15f)
+        //{
+        //    transform.Rotate(0, transform.rotation.y, 0);
+        //}
         //Debug.Log(rb.linearVelocity.magnitude * 3.6f + " κμ/χÿρ");
         if (Vector3.Distance(player.position, transform.position) <= radius)
         {
@@ -85,19 +93,22 @@ public class Vechicle : MonoBehaviour
                     misionsEmpty.NextMision();
                     player.gameObject.GetComponent<Player>().currentMoney += 750;
                 }
+
+                isStoping = false;
             }
             else if (Input.GetKeyDown(KeyCode.F) && inOpened)
             {
-
                 player.gameObject.SetActive(true);
 
                 inOpened = false;
-                player.transform.position = transform.position;
+                player.transform.position = doorPositon.position;
 
                 radius = 5f;
 
                 carCamera.gameObject.SetActive(false);
                 mainCamera.gameObject.SetActive(true);
+
+                isStoping = true;
             }
         }
         if (inOpened)
@@ -236,16 +247,17 @@ public class Vechicle : MonoBehaviour
         wT.rotation = rotation;
     }
 
-    void ApplyBreaks()
+    void StopVechicle()
     {
-        if (Input.GetKey(KeyCode.Space))
+        for (int i = 0; i < wheelsColliders.Length; i++)
         {
-            pressentBreakForce = breakingForce;   
-        }
-        else
-        {
-            pressentBreakForce = 0f;
+            wheelsColliders[i].motorTorque = 0f;
+            wheelsColliders[i].brakeTorque = breakingForce;
         }
 
+        //presentAcceleration = 0f;
+
+        rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity, Vector3.zero, 8f * Time.deltaTime);
+        rb.angularVelocity = Vector3.MoveTowards(rb.angularVelocity, Vector3.zero, 8f * Time.deltaTime);
     }
 }

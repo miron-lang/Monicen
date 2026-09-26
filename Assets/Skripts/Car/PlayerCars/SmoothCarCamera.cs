@@ -13,7 +13,15 @@ public class SmoothCarCamera : MonoBehaviour
 
     private void OnEnable()
     {
-        transform.position = target.position + offset;
+        if (target == null)
+        {
+            return;
+        }
+
+        Vector3 desiredPosition = target.TransformPoint(offset);
+        transform.position = desiredPosition;
+        Vector3 lookPosition = target.position + Vector3.up * 1.2f;
+        transform.rotation = Quaternion.LookRotation(lookPosition - desiredPosition);
     }
 
     // Update is called once per frame

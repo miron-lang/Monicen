@@ -17,7 +17,7 @@ public class CarNavigator : MonoBehaviour
     public Vector3 destination;
     public bool destinationReached;
 
-    [SerializeField] float detectionHalfWidht = 1.7f;
+    [SerializeField] float detectionHalfWidht = 0.7f;
     [SerializeField] float detectionHalfHeight = 0.9f;
     [SerializeField] float obstacleStopDistance = 2f;
     [SerializeField] LayerMask obstacleMask = ~0;

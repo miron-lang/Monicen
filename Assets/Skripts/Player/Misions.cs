@@ -1,3 +1,4 @@
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -19,14 +20,19 @@ public class Misions : MonoBehaviour
     public void NextMision()
     {
         cuurentMission++;
-        for (int i = 0; i < misionsText.Length; i++)
+
+        if (cuurentMission < misionsText.Length)
         {
-            if (cuurentMission == i)
+            for (int i = 0; i < misionsText.Length; i++)
             {
-                print(misionsText[i]);
+                if (cuurentMission == i)
+                {
+                    print(misionsText[i]);
+                }
             }
+
+            currentMission.text = "Curent mision: " + (cuurentMission + 1);
+            currentMissionText.text = misionsText[cuurentMission];
         }
-        currentMission.text = "Curent mision: " + (cuurentMission + 1);
-        currentMissionText.text = misionsText[cuurentMission];      
     }
 }
