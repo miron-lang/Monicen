@@ -145,7 +145,6 @@ public class WayPointMenedgerWindow : EditorWindow
 
                 if (Selection.activeObject.GetComponent<WayPoint>().peviousWaypoint != null)
                 {
-
                     waypoint.transform.forward = Selection.activeObject.GetComponent<WayPoint>().peviousWaypoint.transform.forward;
                 }
                 if (Selection.activeObject.GetComponent<WayPoint>().nextWaypoint != null)

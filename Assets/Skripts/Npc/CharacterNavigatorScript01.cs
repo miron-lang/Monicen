@@ -38,6 +38,9 @@ public class CharacterNavigatorScript01 : MonoBehaviour
     [SerializeField] LayerMask obstacelMask = ~0;
     readonly RaycastHit[] obstacleHits = new RaycastHit[8];
 
+    [SerializeField] bool isVoidStarted = false;
+    private int timer = 0;
+
     void Start()
     {
         waypointNavigator = GetComponent<WaypointNavigator>();
@@ -68,6 +71,26 @@ public class CharacterNavigatorScript01 : MonoBehaviour
             print("БЕГ НЕ СРАБОТАЛ");
             RunAway(attacker.position);
         }
+
+        if (!isVoidStarted)
+        {
+            isVoidStarted = true;
+            EvryTimeHeted(attacker, bulletPositon);
+        }
+    }
+    void EvryTimeHeted(Transform attacker, Vector3 bulletPositon)
+    {
+        timer++;
+
+        if (timer >= 10)
+        {
+            timer = 0;
+            isVoidStarted = false;
+            return;
+        }
+
+        NpcGetDamage(1f, attacker, bulletPositon);
+        Invoke("EvryTimeHeted", 1f);
     }
 
     public void RunAway(Vector3 dangerPosition)

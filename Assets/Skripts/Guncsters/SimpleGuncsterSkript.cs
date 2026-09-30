@@ -41,6 +41,7 @@ public class SimpleGuncsterSkript : MonoBehaviour
     private float currentMovingSpeed;
 
     private bool deth = false;
+    private int timer = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -197,6 +198,15 @@ public class SimpleGuncsterSkript : MonoBehaviour
 
     void EvryTimeHeted()
     {
+        timer++;
+
+        if (timer >= 10)
+        {
+            timer = 0;
+            isVoidStarted = false;
+            return;
+        }
+
         GuncsterGetDamage(1f);
         Invoke("EvryTimeHeted", 1f);
     }

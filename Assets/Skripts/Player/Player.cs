@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     [SerializeField] Vechicle car;
 
     public PlayerBar playerBar;
+    private int timer = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -119,6 +120,15 @@ public class Player : MonoBehaviour
 
     void EvryTimeHeted()
     {
+        timer++;
+
+        if (timer >= 5)
+        {
+            timer = 0;
+            isVoidStarted = false;
+            return;
+        }
+
         PlayerGetDamage(1f);
         Invoke("EvryTimeHeted", 1f);
     }

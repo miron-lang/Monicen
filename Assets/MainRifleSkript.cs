@@ -32,6 +32,8 @@ public class MainRifleSkript : MonoBehaviour
     [SerializeField] GameObject bullet;
     public GameObject lazer;
 
+    bool isShootWaiting;
+
     [Header("Rife Ammuniton and reloading")]
     public int maxAmmunition = 25;
     public int mag = 10;
@@ -115,15 +117,19 @@ public class MainRifleSkript : MonoBehaviour
             {
                 anim.SetBool("Shoot", true);
                 nextTimeToShoot = Time.time + 1f / fireCharge;
-                //Invoke("Shoot", 0.3f);
-                Shoot();
+                if (!isShootWaiting)
+                {
+                    isShootWaiting = true;
+                    Invoke("Shoot", 0.15f);
+                }
+                //Shoot();
             }
         }
         else
         {
             anim.SetBool("Shoot", false);
         }
-    } 
+    }
 
     IEnumerator ShowAmmoOut()
     {
@@ -171,6 +177,7 @@ public class MainRifleSkript : MonoBehaviour
 
     void Shoot()
     {
+        isShootWaiting = false;
         AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
         if (mag <= 0 && presentAmmunition <= 0)
         {
@@ -203,46 +210,47 @@ public class MainRifleSkript : MonoBehaviour
         if (shootSound != null)
             shootSound.Play();
 
+        GameObject newBullet = Instantiate(bullet, localOrigin.position, localOrigin.rotation);
+        newBullet.transform.forward = ray.direction;
+
         if (Physics.Raycast(ray, out hitInfo, shootLengthRange))
         {
             PoliceOfficer police = hitInfo.transform.GetComponent<PoliceOfficer>();
             CharacterNavigatorScript01 npc = hitInfo.transform.GetComponent<CharacterNavigatorScript01>();
             SimpleGuncsterSkript guncter = hitInfo.transform.GetComponent<SimpleGuncsterSkript>();
             Boss boss = hitInfo.transform.GetComponent<Boss>();
-            if (state.IsName("ShootPrimaryAim"))
+            //if (state.IsName("ShootPrimaryAim"))
+            //{
+            if (police != null)
             {
-                GameObject newBullet = Instantiate(bullet, localOrigin.position, localOrigin.rotation);
-                newBullet.transform.forward = ray.direction;
-                if (police != null)
-                {
-                    GameObject createBloodEffect = Instantiate(blood, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-                    police.PoliceGetDamage(rifleDamage);
-                }
-
-                else if (npc != null)
-                {
-                    GameObject createBloodEffect = Instantiate(blood, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-                    npc.NpcGetDamage(rifleDamage, player.transform, hitInfo.point);
-                }
-
-                else if (guncter != null)
-                {
-                    GameObject createBloodEffect = Instantiate(blood, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-                    guncter.GuncsterGetDamage(rifleDamage);
-                }
-
-                else if (boss != null)
-                {
-                    GameObject createBloodEffect = Instantiate(blood, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-                    boss.BossGetDamage(rifleDamage);
-                }
-
-                else
-                {
-                    GameObject createMetalEffect = Instantiate(metalEffect, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-                }
-
+                GameObject createBloodEffect = Instantiate(blood, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+                police.PoliceGetDamage(rifleDamage);
             }
+
+            else if (npc != null)
+            {
+                GameObject createBloodEffect = Instantiate(blood, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+                npc.NpcGetDamage(rifleDamage, player.transform, hitInfo.point);
+            }
+
+            else if (guncter != null)
+            {
+                GameObject createBloodEffect = Instantiate(blood, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+                guncter.GuncsterGetDamage(rifleDamage);
+            }
+
+            else if (boss != null)
+            {
+                GameObject createBloodEffect = Instantiate(blood, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+                boss.BossGetDamage(rifleDamage);
+            }
+
+            else
+            {
+                GameObject createMetalEffect = Instantiate(metalEffect, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+            }
+
+            //}
         }
     }
 }

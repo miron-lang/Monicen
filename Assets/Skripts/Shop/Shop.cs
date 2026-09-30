@@ -79,13 +79,13 @@ public class Shop : MonoBehaviour
                 {
                     whyNoBuying.gameObject.SetActive(true);
                     whyNoBuying.text = "You already own this weapon.";
-                    Invoke("DisableUI", 1f);
+                    Invoke("DisableUI", 3f);
                 }
                 else if (player.currentMoney <= currentGunShop.GetComponent<Gun>().itemPrice && whyNoBuying != null)
                 {
                     whyNoBuying.gameObject.SetActive(true);
                     whyNoBuying.text = "Not enough money";
-                    Invoke("DisableUI", 1f);
+                    Invoke("DisableUI", 3f);
                 }
             }
 

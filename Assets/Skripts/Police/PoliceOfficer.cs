@@ -18,6 +18,7 @@ public class PoliceOfficer : MonoBehaviour
     [SerializeField] float armorPolice = 0;
 
     [SerializeField] bool isVoidStarted = false;
+    private int timer = 0;
 
     [Range(0, 4)]
     [SerializeField] int startStars;
@@ -209,6 +210,15 @@ public class PoliceOfficer : MonoBehaviour
 
     void EvryTimeHeted()
     {
+        timer++;
+
+        if (timer >= 10)
+        {
+            timer = 0;
+            isVoidStarted = false;
+            return;
+        }
+
         PoliceGetDamage(1f);
         Invoke("EvryTimeHeted", 1f);
     }
