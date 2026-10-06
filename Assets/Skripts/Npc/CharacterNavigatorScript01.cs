@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 // Старая версия навигации NPC до добавления NavMesh.
 // ВАЖНО: не кладите этот файл в Assets одновременно с текущим
@@ -139,6 +138,30 @@ public class CharacterNavigatorScript01 : MonoBehaviour
 
     }
 
+    Vector3 GetFreeMoveDirection(Vector3 destinationDirection)
+    {
+        if (!IsPathBloked(destinationDirection))
+        {
+            return destinationDirection;
+        }
+
+        Vector3 rightDiraction = Quaternion.Euler(0f, 90f, 0f) * destinationDirection;
+
+        if (!IsPathBloked(rightDiraction))
+        {
+            return rightDiraction;
+        }
+
+        Vector3 leftDiraction = Quaternion.Euler(0f, -90f, 0f) * destinationDirection;
+
+        if (!IsPathBloked(leftDiraction))
+        {
+            return leftDiraction;
+        }
+
+        return Vector3.zero;
+    }
+
     public bool IsEscaping()
     {   
         if (isEscaping && Time.time >= escapeEndTime)
@@ -201,12 +224,14 @@ public class CharacterNavigatorScript01 : MonoBehaviour
             {
                 destinationReached = false;
 
-                if (IsPathBloked(destinationDirection.normalized))
+                Vector3 moveDiraction = GetFreeMoveDirection(destinationDirection.normalized);
+
+                if (moveDiraction == Vector3.zero)
                 {
                     return;
                 }
 
-                Quaternion targetRatation = Quaternion.LookRotation(destinationDirection);
+                Quaternion targetRatation = Quaternion.LookRotation(moveDiraction);
 
                 transform.rotation = Quaternion.RotateTowards(
                     transform.rotation,

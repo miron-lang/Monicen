@@ -3742,7 +3742,7 @@ MonoBehaviour:
   Guns:
   - {fileID: 2144611845}
   - {fileID: 117468355}
-  - {fileID: 599582144}
+  - {fileID: 1015346765}
   - {fileID: 198280413}
   - {fileID: 919132147992490419}
   - {fileID: 617368144}
@@ -19452,11 +19452,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 5075495aee058b241b44f157ae00dfeb, type: 3}
   m_PrefabInstance: {fileID: 599582142}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &599582144 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: 5075495aee058b241b44f157ae00dfeb, type: 3}
-  m_PrefabInstance: {fileID: 599582142}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &600833739
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33584,7 +33579,6 @@ MonoBehaviour:
   waypointWidth: 3
   branches:
   - {fileID: 1595234723}
-  - {fileID: 0}
   - {fileID: 1452017781}
   branchRatio: 0.5
 --- !u!4 &1014417764
@@ -43660,7 +43654,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2857b989c828950448ead142ca28e4a3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 52.37
+      value: 52.375572
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2857b989c828950448ead142ca28e4a3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -43668,7 +43662,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2857b989c828950448ead142ca28e4a3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.61
+      value: 7.6083117
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2857b989c828950448ead142ca28e4a3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -79718,11 +79712,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MainRifleSkript
   anim: {fileID: 724414999}
   nextTimeToShoot: 1.5
-  fireCharge: 10
-  shootLengthRange: 40
+  fireCharge: 16.03
+  shootLengthRange: 5724.7
   metalEffect: {fileID: 5343840240745376625, guid: 4c93fd30048d04ff18d55ab28da942ce, type: 3}
   blood: {fileID: 5343840240745376625, guid: 4c93fd30048d04ff18d55ab28da942ce, type: 3}
-  rifleDamage: 25
+  rifleDamage: 500
   localOrigin: {fileID: 1535207129}
   player: {fileID: 724414981}
   animationController: {fileID: 0}
@@ -79731,7 +79725,7 @@ MonoBehaviour:
   lazerOrigin: {fileID: 962521183}
   bullet: {fileID: 7063958728126943334, guid: 77a9b76645408dc4cae2607fee48375b, type: 3}
   lazer: {fileID: 1082494310}
-  maxAmmunition: 25
+  maxAmmunition: 1
   mag: 10
   presentAmmunition: 0
   reloadingTime: 10.5

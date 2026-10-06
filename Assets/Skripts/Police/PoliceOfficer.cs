@@ -47,6 +47,11 @@ public class PoliceOfficer : MonoBehaviour
 
     private bool dethPolice = false;
 
+    [SerializeField] float obstacleCheckRadiuse = 0.25f;
+    [SerializeField] float obstacleCheckDistance = 0.55f;
+    [SerializeField] LayerMask obstacelMask = ~0;
+    readonly RaycastHit[] obstacleHits = new RaycastHit[8];
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -140,11 +145,12 @@ public class PoliceOfficer : MonoBehaviour
         previuseShoot = false;
     }
 
-    void Walk()
+    public void Walk()
     {
         if (transform.position != destination)
         {
             Vector3 destinationDirection = destination - transform.position;
+
             destinationDirection.y = 0f;
 
             float destinationDistance = destinationDirection.magnitude;
@@ -152,19 +158,72 @@ public class PoliceOfficer : MonoBehaviour
             if (destinationDistance >= stopSpeed)
             {
                 destinationReached = false;
-                Quaternion targetRatation = Quaternion.LookRotation(destinationDirection);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRatation, turningSpeed * Time.deltaTime);
-                transform.Translate(Vector3.forward * walkingSpeed * Time.deltaTime);
-                anim.SetBool("Walk", true);
-                anim.SetBool("Shoot", false);
-                anim.SetBool("Run", false);
-            }
 
+                Vector3 moveDiraction = GetFreeMoveDirection(destinationDirection.normalized);
+
+                if (moveDiraction == Vector3.zero)
+                {
+                    return;
+                }
+
+                Quaternion targetRatation = Quaternion.LookRotation(moveDiraction);
+
+                transform.rotation = Quaternion.RotateTowards(
+                    transform.rotation,
+                    targetRatation,
+                    turningSpeed * Time.deltaTime
+                );
+
+                transform.Translate(Vector3.forward * walkingSpeed * Time.deltaTime);
+            }
             else
             {
                 destinationReached = true;
             }
         }
+    }
+
+    bool IsPathBloked(Vector3 moveDiraction)
+    {
+        Vector3 castOrigin = transform.position + Vector3.up * Mathf.Max(obstacleCheckRadiuse, 0.25f);
+        int hitCount = Physics.SphereCastNonAlloc(castOrigin, obstacleCheckRadiuse, moveDiraction, obstacleHits, obstacleCheckDistance, obstacelMask, QueryTriggerInteraction.Ignore);
+
+        for (int i = 0; i < hitCount; i++)
+        {
+            Transform hitTransform = obstacleHits[i].transform;
+
+            if (hitTransform != transform && !hitTransform.IsChildOf(transform))
+            {
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
+    Vector3 GetFreeMoveDirection(Vector3 destinationDirection)
+    {
+        if (!IsPathBloked(destinationDirection))
+        {
+            return destinationDirection;
+        }
+
+        Vector3 rightDiraction = Quaternion.Euler(0f, 90f, 0f) * destinationDirection;
+
+        if (!IsPathBloked(rightDiraction))
+        {
+            return rightDiraction;
+        }
+
+        Vector3 leftDiraction = Quaternion.Euler(0f, -90f, 0f) * destinationDirection;
+
+        if (!IsPathBloked(leftDiraction))
+        {
+            return leftDiraction;
+        }
+
+        return Vector3.zero;
     }
 
     public void PoliceGetDamage(float takeDamage)
