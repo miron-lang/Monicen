@@ -209,14 +209,14 @@ public class PoliceOfficer : MonoBehaviour
             return destinationDirection;
         }
 
-        Vector3 rightDiraction = Quaternion.Euler(0f, 90f, 0f) * destinationDirection;
+        Vector3 rightDiraction = Quaternion.Euler(0f, 110f, 0f) * destinationDirection;
 
         if (!IsPathBloked(rightDiraction))
         {
             return rightDiraction;
         }
 
-        Vector3 leftDiraction = Quaternion.Euler(0f, -90f, 0f) * destinationDirection;
+        Vector3 leftDiraction = Quaternion.Euler(0f, -110f, 0f) * destinationDirection;
 
         if (!IsPathBloked(leftDiraction))
         {

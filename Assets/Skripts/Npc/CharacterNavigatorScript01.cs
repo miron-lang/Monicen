@@ -40,6 +40,11 @@ public class CharacterNavigatorScript01 : MonoBehaviour
     [SerializeField] bool isVoidStarted = false;
     private int timer = 0;
 
+    [SerializeField] float avoidTime = 0.2f;
+    bool isAvoding;
+    float avoidEndTime;
+    Vector3 avoidDirection;
+
     void Start()
     {
         waypointNavigator = GetComponent<WaypointNavigator>();
@@ -140,30 +145,46 @@ public class CharacterNavigatorScript01 : MonoBehaviour
 
     Vector3 GetFreeMoveDirection(Vector3 destinationDirection)
     {
+        if (isAvoding)
+        {
+            if (Time.time < avoidEndTime && !IsPathBloked(avoidDirection))
+            {
+                return avoidDirection;
+            }
+
+            isAvoding = false;
+        }
+
         if (!IsPathBloked(destinationDirection))
         {
             return destinationDirection;
         }
 
-        Vector3 rightDiraction = Quaternion.Euler(0f, 90f, 0f) * destinationDirection;
+        Vector3 rightDiraction = Quaternion.Euler(0f, 110f, 0f) * destinationDirection;
 
         if (!IsPathBloked(rightDiraction))
         {
-            return rightDiraction;
+            isAvoding = true;
+            avoidDirection = rightDiraction;
+            avoidEndTime = Time.time + avoidTime;
+            return avoidDirection;
         }
 
-        Vector3 leftDiraction = Quaternion.Euler(0f, -90f, 0f) * destinationDirection;
+        Vector3 leftDiraction = Quaternion.Euler(0f, -110f, 0f) * destinationDirection;
 
         if (!IsPathBloked(leftDiraction))
         {
-            return leftDiraction;
+            isAvoding = true;
+            avoidDirection = leftDiraction;
+            avoidEndTime = Time.time + avoidTime;
+            return avoidDirection;
         }
 
         return Vector3.zero;
     }
 
     public bool IsEscaping()
-    {   
+    {
         if (isEscaping && Time.time >= escapeEndTime)
         {
             isEscaping = false;
@@ -215,16 +236,14 @@ public class CharacterNavigatorScript01 : MonoBehaviour
         if (transform.position != destination)
         {
             Vector3 destinationDirection = destination - transform.position;
-
             destinationDirection.y = 0f;
-
             float destinationDistance = destinationDirection.magnitude;
-
+            
             if (destinationDistance >= stopSpeed)
             {
                 destinationReached = false;
 
-                Vector3 moveDiraction = GetFreeMoveDirection(destinationDirection.normalized);
+               Vector3 moveDiraction = GetFreeMoveDirection(destinationDirection.normalized);
 
                 if (moveDiraction == Vector3.zero)
                 {

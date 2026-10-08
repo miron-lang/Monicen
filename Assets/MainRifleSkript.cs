@@ -23,8 +23,6 @@ public class MainRifleSkript : MonoBehaviour
 
     public bool isItemInInfertoryHandGunEdition = false;
 
-    public ParticleSystem shootEfect;
-
     [SerializeField] Transform lazerOrigin;
 
     //public CharacterRetarget characterRetarget;
@@ -186,7 +184,6 @@ public class MainRifleSkript : MonoBehaviour
         }
 
         presentAmmunition--;
-        shootEfect.Play();
 
         if (presentAmmunition <= 0 && mag > 0)
         {
@@ -210,8 +207,11 @@ public class MainRifleSkript : MonoBehaviour
         if (shootSound != null)
             shootSound.Play();
 
-        GameObject newBullet = Instantiate(bullet, localOrigin.position, localOrigin.rotation);
-        newBullet.transform.forward = ray.direction;
+        if (bullet != null)
+        {
+            GameObject newBullet = Instantiate(bullet, localOrigin.position, localOrigin.rotation);
+            newBullet.transform.forward = ray.direction;
+        }
 
         if (Physics.Raycast(ray, out hitInfo, shootLengthRange))
         {
