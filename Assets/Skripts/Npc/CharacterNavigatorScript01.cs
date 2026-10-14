@@ -105,7 +105,7 @@ public class CharacterNavigatorScript01 : MonoBehaviour
 
         escapeEndTime = Time.time + escapeTime;
 
-        if (waypointNavigator == null || waypointNavigator.StartEscape(dangerPosition))
+        if (waypointNavigator == null || !waypointNavigator.StartEscape(dangerPosition))
         {
             isEscaping = false;
             anim.SetBool("Run", false);
@@ -145,42 +145,44 @@ public class CharacterNavigatorScript01 : MonoBehaviour
 
     Vector3 GetFreeMoveDirection(Vector3 destinationDirection)
     {
-        if (isAvoding)
-        {
-            if (Time.time < avoidEndTime && !IsPathBloked(avoidDirection))
-            {
-                return avoidDirection;
-            }
+        //if (isAvoding)
+        //{
+        //    if (Time.time < avoidEndTime && !IsPathBloked(avoidDirection))
+        //    {
+        //        return avoidDirection;
+        //    }
 
-            isAvoding = false;
-        }
+        //    isAvoding = false;
+        //}
 
-        if (!IsPathBloked(destinationDirection))
-        {
-            return destinationDirection;
-        }
+        //if (!IsPathBloked(destinationDirection))
+        //{
+        //    return destinationDirection;
+        //}
 
-        Vector3 rightDiraction = Quaternion.Euler(0f, 110f, 0f) * destinationDirection;
+        //Vector3 rightDiraction = Quaternion.Euler(0f, 110f, 0f) * destinationDirection;
 
-        if (!IsPathBloked(rightDiraction))
-        {
-            isAvoding = true;
-            avoidDirection = rightDiraction;
-            avoidEndTime = Time.time + avoidTime;
-            return avoidDirection;
-        }
+        //if (!IsPathBloked(rightDiraction))
+        //{
+        //    isAvoding = true;
+        //    avoidDirection = rightDiraction;
+        //    avoidEndTime = Time.time + avoidTime;
+        //    return avoidDirection;
+        //}
 
-        Vector3 leftDiraction = Quaternion.Euler(0f, -110f, 0f) * destinationDirection;
+        //Vector3 leftDiraction = Quaternion.Euler(0f, -110f, 0f) * destinationDirection;
 
-        if (!IsPathBloked(leftDiraction))
-        {
-            isAvoding = true;
-            avoidDirection = leftDiraction;
-            avoidEndTime = Time.time + avoidTime;
-            return avoidDirection;
-        }
+        //if (!IsPathBloked(leftDiraction))
+        //{
+        //    isAvoding = true;
+        //    avoidDirection = leftDiraction;
+        //    avoidEndTime = Time.time + avoidTime;
+        //    return avoidDirection;
+        //}
 
-        return Vector3.zero;
+        //return Vector3.zero;
+
+        return NpcMovementUtility.GetClearDirection(transform, destinationDirection, obstacleCheckRadiuse, obstacleCheckRadiuse, obstacelMask);
     }
 
     public bool IsEscaping()

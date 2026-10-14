@@ -109,6 +109,7 @@ namespace StarterAssets
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
+        private bool _movementLocked;
 
         private bool IsCurrentDeviceMouse
         {
@@ -138,7 +139,7 @@ namespace StarterAssets
         private void Start()
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
@@ -193,6 +194,11 @@ namespace StarterAssets
             }
         }
 
+        public void SetMovementLocked(bool isLocked)
+        {
+            _movementLocked = isLocked;
+        }
+
         private void CameraRotation()
         {
             // if there is an input and camera position is not fixed
@@ -219,11 +225,18 @@ namespace StarterAssets
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
+            if (_movementLocked)
+            {
+                _speed = 0f;
+                _animationBlend = 0f;
+                targetSpeed = 0f;
+            }
+
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
             // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is no input, set the target speed to 0
-            if (_input.move == Vector2.zero || _animator.GetBool("Aim") || _animator.GetBool("Shoot")) targetSpeed = 0.0f;
+            if (_movementLocked || _input.move == Vector2.zero || _animator.GetBool("Aim") || _animator.GetBool("Shoot")) targetSpeed = 0.0f;
 
             // a reference to the players current horizontal velocity
             float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
@@ -256,7 +269,7 @@ namespace StarterAssets
 
             // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is a move input rotate player when the player is moving
-            if (_input.move != Vector2.zero || _animator.GetBool("Aim"))
+            if (_movementLocked || _input.move != Vector2.zero || _animator.GetBool("Aim"))
             {
                 if (_animator.GetBool("Aim"))
                 {

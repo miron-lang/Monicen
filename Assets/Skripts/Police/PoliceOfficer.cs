@@ -204,26 +204,44 @@ public class PoliceOfficer : MonoBehaviour
 
     Vector3 GetFreeMoveDirection(Vector3 destinationDirection)
     {
-        if (!IsPathBloked(destinationDirection))
-        {
-            return destinationDirection;
-        }
+        //if (isAvoding)
+        //{
+        //    if (Time.time < avoidEndTime && !IsPathBloked(avoidDirection))
+        //    {
+        //        return avoidDirection;
+        //    }
 
-        Vector3 rightDiraction = Quaternion.Euler(0f, 110f, 0f) * destinationDirection;
+        //    isAvoding = false;
+        //}
 
-        if (!IsPathBloked(rightDiraction))
-        {
-            return rightDiraction;
-        }
+        //if (!IsPathBloked(destinationDirection))
+        //{
+        //    return destinationDirection;
+        //}
 
-        Vector3 leftDiraction = Quaternion.Euler(0f, -110f, 0f) * destinationDirection;
+        //Vector3 rightDiraction = Quaternion.Euler(0f, 110f, 0f) * destinationDirection;
 
-        if (!IsPathBloked(leftDiraction))
-        {
-            return leftDiraction;
-        }
+        //if (!IsPathBloked(rightDiraction))
+        //{
+        //    isAvoding = true;
+        //    avoidDirection = rightDiraction;
+        //    avoidEndTime = Time.time + avoidTime;
+        //    return avoidDirection;
+        //}
 
-        return Vector3.zero;
+        //Vector3 leftDiraction = Quaternion.Euler(0f, -110f, 0f) * destinationDirection;
+
+        //if (!IsPathBloked(leftDiraction))
+        //{
+        //    isAvoding = true;
+        //    avoidDirection = leftDiraction;
+        //    avoidEndTime = Time.time + avoidTime;
+        //    return avoidDirection;
+        //}
+
+        //return Vector3.zero;
+
+        return NpcMovementUtility.GetClearDirection(transform, destinationDirection, obstacleCheckRadiuse, obstacleCheckRadiuse, obstacelMask);
     }
 
     public void PoliceGetDamage(float takeDamage)
