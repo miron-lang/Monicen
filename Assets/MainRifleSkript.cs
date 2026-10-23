@@ -1,5 +1,7 @@
+using Meta.XR.Simulator.Editor;
 using System.Collections;
 using TMPro;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class MainRifleSkript : MonoBehaviour
@@ -52,6 +54,17 @@ public class MainRifleSkript : MonoBehaviour
     [Header("Camera")]
     [SerializeField] GameObject aimCam;
     [SerializeField] GameObject thirdPersonCam;
+
+    [Header("RPG explosion")]
+    [SerializeField] bool useExplosion = false;
+    [SerializeField] float explosionRadius = 5f;
+    [SerializeField] LayerMask explosionMask = ~0;
+    readonly Collider[] explodeAttackResults = new Collider[32];
+
+    [Header("Shotgun")]
+    [SerializeField] bool useShootgun = false;
+    [SerializeField] int shotgunPelletCount = 10;
+    [SerializeField] float shotgunSpreadAngle = 7f;
 
     private void OnEnable()
     {
@@ -165,6 +178,8 @@ public class MainRifleSkript : MonoBehaviour
     {
         setReloading = true;
         anim.SetBool("Reload", true);
+        string name = anim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+        print(name);
         yield return new WaitForSeconds(reloadingTime);
         anim.SetBool("Reload", false);
         presentAmmunition = maxAmmunition;
@@ -177,6 +192,7 @@ public class MainRifleSkript : MonoBehaviour
     {
         isShootWaiting = false;
         AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
+
         if (mag <= 0 && presentAmmunition <= 0)
         {
             StartCoroutine(ShowAmmoOut());
@@ -207,6 +223,12 @@ public class MainRifleSkript : MonoBehaviour
         if (shootSound != null)
             shootSound.Play();
 
+        if (useShootgun)
+        {
+            ShootShootgun(ray);
+            return;
+        }
+
         if (bullet != null)
         {
             GameObject newBullet = Instantiate(bullet, localOrigin.position, localOrigin.rotation);
@@ -215,42 +237,85 @@ public class MainRifleSkript : MonoBehaviour
 
         if (Physics.Raycast(ray, out hitInfo, shootLengthRange))
         {
-            PoliceOfficer police = hitInfo.transform.GetComponent<PoliceOfficer>();
-            CharacterNavigatorScript01 npc = hitInfo.transform.GetComponent<CharacterNavigatorScript01>();
-            SimpleGuncsterSkript guncter = hitInfo.transform.GetComponent<SimpleGuncsterSkript>();
-            Boss boss = hitInfo.transform.GetComponent<Boss>();
-            //if (state.IsName("ShootPrimaryAim"))
-            //{
-            if (police != null)
+            if (useExplosion)
             {
-                GameObject createBloodEffect = Instantiate(blood, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-                police.PoliceGetDamage(rifleDamage);
+                ProcessExplode(hitInfo);
             }
-
-            else if (npc != null)
-            {
-                GameObject createBloodEffect = Instantiate(blood, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-                npc.NpcGetDamage(rifleDamage, player.transform, hitInfo.point);
-            }
-
-            else if (guncter != null)
-            {
-                GameObject createBloodEffect = Instantiate(blood, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-                guncter.GuncsterGetDamage(rifleDamage);
-            }
-
-            else if (boss != null)
-            {
-                GameObject createBloodEffect = Instantiate(blood, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-                boss.BossGetDamage(rifleDamage);
-            }
-
             else
             {
-                GameObject createMetalEffect = Instantiate(metalEffect, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+                DamageTareget(hitInfo.transform, hitInfo.point, hitInfo.normal);
             }
 
-            //}
+        }
+    }
+
+    void ProcessExplode(RaycastHit hitInfo)
+    {
+        if (metalEffect != null)
+        {
+            GameObject createMetalEffect = Instantiate(metalEffect, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+        }
+
+        int hitCount = Physics.OverlapSphereNonAlloc(hitInfo.point, explosionRadius, explodeAttackResults, explosionMask, QueryTriggerInteraction.Ignore);
+
+        for (int i = 0; i < hitCount; i++)
+        {
+            if (explodeAttackResults[i] == null)
+            {
+                continue;
+            }
+
+            DamageTareget(explodeAttackResults[i].transform, explodeAttackResults[i].transform.position, (explodeAttackResults[i].transform.position - hitInfo.point).normalized);
+        }
+    }
+
+    void DamageTareget(Transform hitTransofrm, Vector3 hitPoint, Vector3 hitNormal)
+    {
+        PoliceOfficer police = hitTransofrm.GetComponent<PoliceOfficer>();
+        CharacterNavigatorScript01 npc = hitTransofrm.GetComponent<CharacterNavigatorScript01>();
+        SimpleGuncsterSkript guncter = hitTransofrm.GetComponent<SimpleGuncsterSkript>();
+        Boss boss = hitTransofrm.GetComponent<Boss>();
+
+        if (police != null)
+        {
+            GameObject createBloodEffect = Instantiate(blood, hitPoint, Quaternion.LookRotation(hitNormal));
+            police.PoliceGetDamage(rifleDamage);
+        }
+
+        else if (npc != null)
+        {
+            GameObject createBloodEffect = Instantiate(blood, hitPoint, Quaternion.LookRotation(hitNormal));
+            npc.NpcGetDamage(rifleDamage, player.transform, hitPoint);
+        }
+
+        else if (guncter != null)
+        {
+            GameObject createBloodEffect = Instantiate(blood, hitPoint, Quaternion.LookRotation(hitNormal));
+            guncter.GuncsterGetDamage(rifleDamage);
+        }
+
+        else if (boss != null)
+        {
+            GameObject createBloodEffect = Instantiate(blood, hitPoint, Quaternion.LookRotation(hitNormal));
+            boss.BossGetDamage(rifleDamage);
+        }
+        else if (!useExplosion)
+        {
+            GameObject createMetalEffect = Instantiate(metalEffect, hitPoint, Quaternion.LookRotation(hitNormal));
+        }
+    }
+
+    void ShootShootgun(Ray ray)
+    {
+        for (int i = 0; i < shotgunPelletCount; i++)
+        {
+            Vector2 spread = Random.insideUnitCircle * shotgunSpreadAngle;
+            Vector3 pelletDirection = Quaternion.Euler(spread.y, spread.x, 0f) * ray.direction;
+
+            if (Physics.Raycast(ray.origin, pelletDirection, out RaycastHit pelletHit, shootLengthRange))
+            {
+                DamageTareget(pelletHit.transform, pelletHit.point, pelletHit.normal);
+            }
         }
     }
 }

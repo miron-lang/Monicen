@@ -52,6 +52,11 @@ public class PoliceOfficer : MonoBehaviour
     [SerializeField] LayerMask obstacelMask = ~0;
     readonly RaycastHit[] obstacleHits = new RaycastHit[8];
 
+    [SerializeField] float avoidTime = 0.5f;
+    bool isAvoding;
+    float avoidEndTime;
+    Vector3 avoidDirection;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -204,14 +209,29 @@ public class PoliceOfficer : MonoBehaviour
 
     Vector3 GetFreeMoveDirection(Vector3 destinationDirection)
     {
-        //if (isAvoding)
-        //{
-        //    if (Time.time < avoidEndTime && !IsPathBloked(avoidDirection))
-        //    {
-        //        return avoidDirection;
-        //    }
+        if (isAvoding)
+        {
+            if (Time.time < avoidEndTime && !IsPathBloked(avoidDirection))
+            {
+                return avoidDirection;
+            }
 
-        //    isAvoding = false;
+            isAvoding = false;
+        }
+
+        Vector3 freeDiraction = NpcMovementUtility.GetClearDirection(transform, destinationDirection, obstacleCheckRadiuse, obstacleCheckDistance, obstacelMask);
+
+        if (freeDiraction == Vector3.zero)
+        {
+            return destinationDirection;
+        }
+
+        if (Vector3.Dot(freeDiraction, destinationDirection.normalized) < 0.99f)
+        {
+            isAvoding = true;
+            avoidDirection = freeDiraction;
+            avoidEndTime = Time.time + avoidTime;
+        }
         //}
 
         //if (!IsPathBloked(destinationDirection))
@@ -234,14 +254,13 @@ public class PoliceOfficer : MonoBehaviour
         //if (!IsPathBloked(leftDiraction))
         //{
         //    isAvoding = true;
-        //    avoidDirection = leftDiraction;
-        //    avoidEndTime = Time.time + avoidTime;
+        //avoidDirection = leftDiraction;
+        //avoidEndTime = Time.time + avoidTime;
         //    return avoidDirection;
-        //}
 
         //return Vector3.zero;
 
-        return NpcMovementUtility.GetClearDirection(transform, destinationDirection, obstacleCheckRadiuse, obstacleCheckRadiuse, obstacelMask);
+        return freeDiraction;
     }
 
     public void PoliceGetDamage(float takeDamage)

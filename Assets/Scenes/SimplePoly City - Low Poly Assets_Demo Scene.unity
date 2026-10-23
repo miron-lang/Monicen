@@ -4481,6 +4481,14 @@ MonoBehaviour:
   ammoMagLeft: {fileID: 42185291}
   aimCam: {fileID: 1988386208}
   thirdPersonCam: {fileID: 366594920}
+  useExplosion: 0
+  explosionRadius: 5
+  explosionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  useShootgun: 0
+  shotgunPelletCount: 10
+  shotgunSpreadAngle: 7
 --- !u!114 &117468359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4520,6 +4528,14 @@ MonoBehaviour:
   ammoMagLeft: {fileID: 42185291}
   aimCam: {fileID: 1988386208}
   thirdPersonCam: {fileID: 366594920}
+  useExplosion: 0
+  explosionRadius: 5
+  explosionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  useShootgun: 0
+  shotgunPelletCount: 10
+  shotgunSpreadAngle: 7
 --- !u!1001 &119100821
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7492,19 +7508,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MainRifleSkript
   anim: {fileID: 724414999}
   nextTimeToShoot: 1.5
-  fireCharge: 10
-  shootLengthRange: 12
+  fireCharge: 7.47
+  shootLengthRange: 9.9
   metalEffect: {fileID: 100002, guid: 00fedc70b62a31e448e8ccc298257b56, type: 3}
   blood: {fileID: 3878957223712447328, guid: 650783597ab4c1a4893ddf0757924580, type: 3}
-  rifleDamage: 125
+  rifleDamage: 32
   localOrigin: {fileID: 453382473}
   player: {fileID: 724414981}
-  animationController: {fileID: 9100000, guid: c98393ad35725394081954285f16b85e, type: 2}
+  animationController: {fileID: 9100000, guid: 8cf53ac603f7da0419822cdb4f5012f1, type: 2}
   isItemInInfertoryHandGunEdition: 0
   lazerOrigin: {fileID: 52491913}
   bullet: {fileID: 36299118080659866, guid: 1ca9fec1bc64dff46b6e19af910427d6, type: 3}
   lazer: {fileID: 1082494310}
-  maxAmmunition: 2
+  maxAmmunition: 10
   mag: 10
   presentAmmunition: 0
   reloadingTime: 10.5
@@ -7517,6 +7533,14 @@ MonoBehaviour:
   ammoMagLeft: {fileID: 42185291}
   aimCam: {fileID: 1988386208}
   thirdPersonCam: {fileID: 366594920}
+  useExplosion: 0
+  explosionRadius: 5
+  explosionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  useShootgun: 1
+  shotgunPelletCount: 10
+  shotgunSpreadAngle: 7
 --- !u!1001 &199209788
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20716,7 +20740,7 @@ MonoBehaviour:
   playerAnimator: {fileID: 724414999}
   knifeAttackTrigger: KnifeAttack
   damageDelay: 0.8
-  moventLockDuration: 0.6
+  moventLockDuration: 0.57
   animationController: {fileID: 9100000, guid: 40db3173a05ae3242b1c182a09b0a183, type: 2}
   knifeDamage: 35
   attackDistance: 1.25
@@ -31982,7 +32006,7 @@ Transform:
   m_GameObject: {fileID: 962521182}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.30957693, y: -0.0000011790544, z: 0.0000020042062}
+  m_LocalPosition: {x: 0.3399274, y: 0.039743308, z: 0.0000031166344}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -34965,6 +34989,14 @@ MonoBehaviour:
   ammoMagLeft: {fileID: 42185291}
   aimCam: {fileID: 1988386208}
   thirdPersonCam: {fileID: 366594920}
+  useExplosion: 0
+  explosionRadius: 5
+  explosionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  useShootgun: 0
+  shotgunPelletCount: 10
+  shotgunSpreadAngle: 7
 --- !u!4 &1019830365 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 62125825e49febf4a89f76daf85d9ca7, type: 3}
@@ -47480,6 +47512,14 @@ MonoBehaviour:
   ammoMagLeft: {fileID: 42185291}
   aimCam: {fileID: 1988386208}
   thirdPersonCam: {fileID: 366594920}
+  useExplosion: 0
+  explosionRadius: 5
+  explosionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  useShootgun: 0
+  shotgunPelletCount: 10
+  shotgunSpreadAngle: 7
 --- !u!114 &1387925137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47519,6 +47559,14 @@ MonoBehaviour:
   ammoMagLeft: {fileID: 42185291}
   aimCam: {fileID: 1988386208}
   thirdPersonCam: {fileID: 366594920}
+  useExplosion: 0
+  explosionRadius: 5
+  explosionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  useShootgun: 0
+  shotgunPelletCount: 10
+  shotgunSpreadAngle: 7
 --- !u!4 &1388566167 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 4f32dfddb033d3e40b5841bc53cc1689, type: 3}
@@ -49208,6 +49256,14 @@ MonoBehaviour:
   ammoMagLeft: {fileID: 42185291}
   aimCam: {fileID: 1988386208}
   thirdPersonCam: {fileID: 366594920}
+  useExplosion: 0
+  explosionRadius: 5
+  explosionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  useShootgun: 0
+  shotgunPelletCount: 10
+  shotgunSpreadAngle: 7
 --- !u!114 &1425824232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49247,6 +49303,14 @@ MonoBehaviour:
   ammoMagLeft: {fileID: 42185291}
   aimCam: {fileID: 1988386208}
   thirdPersonCam: {fileID: 366594920}
+  useExplosion: 0
+  explosionRadius: 5
+  explosionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  useShootgun: 0
+  shotgunPelletCount: 10
+  shotgunSpreadAngle: 7
 --- !u!4 &1427548679 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 2509cc5763ca17f4598bf61fd585a93e, type: 3}
@@ -73644,6 +73708,14 @@ MonoBehaviour:
   ammoMagLeft: {fileID: 42185291}
   aimCam: {fileID: 1988386208}
   thirdPersonCam: {fileID: 366594920}
+  useExplosion: 0
+  explosionRadius: 5
+  explosionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  useShootgun: 0
+  shotgunPelletCount: 10
+  shotgunSpreadAngle: 7
 --- !u!114 &2144611847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73683,6 +73755,14 @@ MonoBehaviour:
   ammoMagLeft: {fileID: 42185291}
   aimCam: {fileID: 1988386208}
   thirdPersonCam: {fileID: 366594920}
+  useExplosion: 0
+  explosionRadius: 5
+  explosionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  useShootgun: 0
+  shotgunPelletCount: 10
+  shotgunSpreadAngle: 7
 --- !u!33 &987541491907821
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -81843,7 +81923,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 543450651641490185}
-  - component: {fileID: 919132147992490420}
   - component: {fileID: 919132147992490421}
   m_Layer: 0
   m_Name: RPG-7
@@ -81852,45 +81931,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &919132147992490420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132147992490419}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c96afeb017216664c9c16447a7ea6d28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HandGunRifle
-  anim: {fileID: 724414999}
-  nextTimeToShoot: 1.5
-  fireCharge: 10
-  shootLengthRange: 1000
-  metalEffect: {fileID: 5343840240745376625, guid: 4c93fd30048d04ff18d55ab28da942ce, type: 3}
-  blood: {fileID: 5343840240745376625, guid: 4c93fd30048d04ff18d55ab28da942ce, type: 3}
-  rifleDamage: 250
-  localOrigin: {fileID: 962521183}
-  player: {fileID: 724414981}
-  animationController: {fileID: 9100000, guid: 8cf53ac603f7da0419822cdb4f5012f1, type: 2}
-  isItemInInfertoryHandGunEdition: 0
-  lazerOrigin: {fileID: 1535207129}
-  bullet: {fileID: 7063958728126943334, guid: 77a9b76645408dc4cae2607fee48375b, type: 3}
-  lazer: {fileID: 1082494310}
-  maxAmmunition: 25
-  mag: 10
-  presentAmmunition: 0
-  reloadingTime: 10.5
-  setReloading: 0
-  isAutomaticFire: 0
-  shootSound: {fileID: 925651600}
-  ammoOutUi: {fileID: 54086736}
-  ammoLeft: {fileID: 1628675038}
-  magLeft: {fileID: 1463574365}
-  ammoMagLeft: {fileID: 42185291}
-  aimCam: {fileID: 1988386208}
-  thirdPersonCam: {fileID: 366594920}
 --- !u!114 &919132147992490421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81908,17 +81948,17 @@ MonoBehaviour:
   fireCharge: 2
   shootLengthRange: 225
   metalEffect: {fileID: 5343840240745376625, guid: 4c93fd30048d04ff18d55ab28da942ce, type: 3}
-  blood: {fileID: 5343840240745376625, guid: 4c93fd30048d04ff18d55ab28da942ce, type: 3}
+  blood: {fileID: 3878957223712447328, guid: 650783597ab4c1a4893ddf0757924580, type: 3}
   rifleDamage: 275
-  localOrigin: {fileID: 1535207129}
+  localOrigin: {fileID: 962521183}
   player: {fileID: 724414981}
-  animationController: {fileID: 9100000, guid: c98393ad35725394081954285f16b85e, type: 2}
+  animationController: {fileID: 9100000, guid: e81d0af158a3df449978bafc8386a91f, type: 2}
   isItemInInfertoryHandGunEdition: 0
-  lazerOrigin: {fileID: 962521183}
+  lazerOrigin: {fileID: 1535207129}
   bullet: {fileID: 7063958728126943334, guid: 77a9b76645408dc4cae2607fee48375b, type: 3}
   lazer: {fileID: 1082494310}
   maxAmmunition: 1
-  mag: 10
+  mag: 6075
   presentAmmunition: 0
   reloadingTime: 5
   setReloading: 0
@@ -81930,6 +81970,14 @@ MonoBehaviour:
   ammoMagLeft: {fileID: 42185291}
   aimCam: {fileID: 1988386208}
   thirdPersonCam: {fileID: 366594920}
+  useExplosion: 1
+  explosionRadius: 5
+  explosionMask:
+    serializedVersion: 2
+    m_Bits: 247
+  useShootgun: 0
+  shotgunPelletCount: 10
+  shotgunSpreadAngle: 7
 --- !u!33 &919861472424863131
 MeshFilter:
   m_ObjectHideFlags: 0

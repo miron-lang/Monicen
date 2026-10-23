@@ -2465,6 +2465,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 136
   isVoidStarted: 0
+  avoidTime: 0.5
 --- !u!1 &7210395434713973526
 GameObject:
   m_ObjectHideFlags: 0

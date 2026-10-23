@@ -2769,6 +2769,12 @@ MonoBehaviour:
   giveDamage: 25
   oilBlood: {fileID: 100002, guid: 879fcaf16bc1a384798c6fd85e2e8150, type: 3}
   anim: {fileID: 8905054050756526696}
+  obstacleCheckRadiuse: 0.25
+  obstacleCheckDistance: 0.55
+  obstacelMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  avoidTime: 0.5
 --- !u!114 &7129421603272668536
 MonoBehaviour:
   m_ObjectHideFlags: 0
