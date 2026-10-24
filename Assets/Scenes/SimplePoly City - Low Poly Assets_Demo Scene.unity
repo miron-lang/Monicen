@@ -4464,6 +4464,7 @@ MonoBehaviour:
   localOrigin: {fileID: 457734235}
   player: {fileID: 724414981}
   animationController: {fileID: 9100000, guid: c98393ad35725394081954285f16b85e, type: 2}
+  animShootDelay: 0.5
   isItemInInfertoryHandGunEdition: 0
   lazerOrigin: {fileID: 52491913}
   bullet: {fileID: 36299118080659866, guid: 1ca9fec1bc64dff46b6e19af910427d6, type: 3}
@@ -4512,6 +4513,7 @@ MonoBehaviour:
   localOrigin: {fileID: 457734235}
   player: {fileID: 724414981}
   animationController: {fileID: 9100000, guid: c98393ad35725394081954285f16b85e, type: 2}
+  animShootDelay: 0.15
   isItemInInfertoryHandGunEdition: 0
   lazerOrigin: {fileID: 52491913}
   bullet: {fileID: 36299118080659866, guid: 1ca9fec1bc64dff46b6e19af910427d6, type: 3}
@@ -7437,43 +7439,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0d6d04fa720f715449cabe450f817801, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.019299073
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0d6d04fa720f715449cabe450f817801, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.2611343
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0d6d04fa720f715449cabe450f817801, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.021181846
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0d6d04fa720f715449cabe450f817801, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.19120723
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0d6d04fa720f715449cabe450f817801, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.74934965
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0d6d04fa720f715449cabe450f817801, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.63178974
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0d6d04fa720f715449cabe450f817801, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.052504547
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0d6d04fa720f715449cabe450f817801, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -12.722
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0d6d04fa720f715449cabe450f817801, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -160.831
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0d6d04fa720f715449cabe450f817801, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 97.574
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7518,6 +7520,7 @@ MonoBehaviour:
   localOrigin: {fileID: 453382473}
   player: {fileID: 724414981}
   animationController: {fileID: 9100000, guid: 8cf53ac603f7da0419822cdb4f5012f1, type: 2}
+  animShootDelay: 0.75
   isItemInInfertoryHandGunEdition: 0
   lazerOrigin: {fileID: 52491913}
   bullet: {fileID: 36299118080659866, guid: 1ca9fec1bc64dff46b6e19af910427d6, type: 3}
@@ -7525,10 +7528,10 @@ MonoBehaviour:
   maxAmmunition: 10
   mag: 10
   presentAmmunition: 0
-  reloadingTime: 10.5
+  reloadingTime: 4
   setReloading: 0
   isAutomaticFire: 0
-  damageDelay: 0.5
+  damageDelay: 0.35
   shootSound: {fileID: 0}
   ammoOutUi: {fileID: 54086736}
   ammoLeft: {fileID: 1628675038}
@@ -7542,8 +7545,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   useShootgun: 1
-  shotgunPelletCount: 10
-  shotgunSpreadAngle: 7
+  shotgunPelletCount: 12
+  shotgunSpreadAngle: 8.5
 --- !u!1001 &199209788
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20754,8 +20757,8 @@ MonoBehaviour:
     m_Bits: 4294967295
   attackOrigin: {fileID: 1119039007}
   player: {fileID: 724415000}
-  showAttackArea: 1
-  showHitArea: 1
+  showAttackArea: 0
+  showHitArea: 0
   hitAreaDuration: 1
   hitSphere: {fileID: 435619987}
   blood: {fileID: 3878957223712447328, guid: 650783597ab4c1a4893ddf0757924580, type: 3}
@@ -34975,6 +34978,7 @@ MonoBehaviour:
   localOrigin: {fileID: 1015346764}
   player: {fileID: 724414981}
   animationController: {fileID: 9100000, guid: 8cf53ac603f7da0419822cdb4f5012f1, type: 2}
+  animShootDelay: 0.15
   isItemInInfertoryHandGunEdition: 0
   lazerOrigin: {fileID: 1535207129}
   bullet: {fileID: 36299118080659866, guid: 1ca9fec1bc64dff46b6e19af910427d6, type: 3}
@@ -47499,6 +47503,7 @@ MonoBehaviour:
   localOrigin: {fileID: 895224644}
   player: {fileID: 724414981}
   animationController: {fileID: 9100000, guid: c98393ad35725394081954285f16b85e, type: 2}
+  animShootDelay: 0.5
   isItemInInfertoryHandGunEdition: 0
   lazerOrigin: {fileID: 869095850}
   bullet: {fileID: 36299118080659866, guid: 1ca9fec1bc64dff46b6e19af910427d6, type: 3}
@@ -47547,6 +47552,7 @@ MonoBehaviour:
   localOrigin: {fileID: 895224644}
   player: {fileID: 724414981}
   animationController: {fileID: 9100000, guid: c98393ad35725394081954285f16b85e, type: 2}
+  animShootDelay: 0.15
   isItemInInfertoryHandGunEdition: 0
   lazerOrigin: {fileID: 869095850}
   bullet: {fileID: 36299118080659866, guid: 1ca9fec1bc64dff46b6e19af910427d6, type: 3}
@@ -49245,6 +49251,7 @@ MonoBehaviour:
   localOrigin: {fileID: 957895819}
   player: {fileID: 724414981}
   animationController: {fileID: 9100000, guid: c98393ad35725394081954285f16b85e, type: 2}
+  animShootDelay: 0.5
   isItemInInfertoryHandGunEdition: 0
   lazerOrigin: {fileID: 869095850}
   bullet: {fileID: 36299118080659866, guid: 1ca9fec1bc64dff46b6e19af910427d6, type: 3}
@@ -49293,6 +49300,7 @@ MonoBehaviour:
   localOrigin: {fileID: 957895819}
   player: {fileID: 724414981}
   animationController: {fileID: 9100000, guid: c98393ad35725394081954285f16b85e, type: 2}
+  animShootDelay: 0.15
   isItemInInfertoryHandGunEdition: 0
   lazerOrigin: {fileID: 869095850}
   bullet: {fileID: 36299118080659866, guid: 1ca9fec1bc64dff46b6e19af910427d6, type: 3}
@@ -73699,6 +73707,7 @@ MonoBehaviour:
   localOrigin: {fileID: 1247157995}
   player: {fileID: 724414981}
   animationController: {fileID: 9100000, guid: c98393ad35725394081954285f16b85e, type: 2}
+  animShootDelay: 0.5
   isItemInInfertoryHandGunEdition: 0
   lazerOrigin: {fileID: 52491913}
   bullet: {fileID: 36299118080659866, guid: 1ca9fec1bc64dff46b6e19af910427d6, type: 3}
@@ -73747,6 +73756,7 @@ MonoBehaviour:
   localOrigin: {fileID: 1247157995}
   player: {fileID: 724414981}
   animationController: {fileID: 9100000, guid: c98393ad35725394081954285f16b85e, type: 2}
+  animShootDelay: 0.15
   isItemInInfertoryHandGunEdition: 0
   lazerOrigin: {fileID: 52491913}
   bullet: {fileID: 36299118080659866, guid: 1ca9fec1bc64dff46b6e19af910427d6, type: 3}
@@ -81963,6 +81973,7 @@ MonoBehaviour:
   localOrigin: {fileID: 962521183}
   player: {fileID: 724414981}
   animationController: {fileID: 9100000, guid: e81d0af158a3df449978bafc8386a91f, type: 2}
+  animShootDelay: 0.6
   isItemInInfertoryHandGunEdition: 0
   lazerOrigin: {fileID: 1535207129}
   bullet: {fileID: 7063958728126943334, guid: 77a9b76645408dc4cae2607fee48375b, type: 3}
@@ -81973,7 +81984,7 @@ MonoBehaviour:
   reloadingTime: 5
   setReloading: 0
   isAutomaticFire: 0
-  damageDelay: 0.15
+  damageDelay: 0.5
   shootSound: {fileID: 925651600}
   ammoOutUi: {fileID: 54086736}
   ammoLeft: {fileID: 1628675038}

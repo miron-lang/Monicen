@@ -23,6 +23,8 @@ public class MainRifleSkript : MonoBehaviour
     public GameObject player;
     [SerializeField] RuntimeAnimatorController animationController;
 
+    [SerializeField] float animShootDelay = 0.5f;
+
     public bool isItemInInfertoryHandGunEdition = false;
 
     [SerializeField] Transform lazerOrigin;
@@ -128,6 +130,7 @@ public class MainRifleSkript : MonoBehaviour
             if (Time.time >= nextTimeToShoot)
             {
                 anim.SetBool("Shoot", true);
+                Invoke("StopShootAnimation", animShootDelay);
                 nextTimeToShoot = Time.time + 1f / fireCharge;
                 if (!isShootWaiting)
                 {
@@ -136,10 +139,6 @@ public class MainRifleSkript : MonoBehaviour
                 }
                 //Shoot();
             }
-        }
-        else
-        {
-            anim.SetBool("Shoot", false);
         }
     }
 
@@ -318,5 +317,10 @@ public class MainRifleSkript : MonoBehaviour
                 DamageTareget(pelletHit.transform, pelletHit.point, pelletHit.normal);
             }
         }
+    }
+
+    void StopShootAnimation()
+    {
+        anim.SetBool("Shoot", false);
     }
 }
