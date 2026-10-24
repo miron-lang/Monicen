@@ -41,6 +41,7 @@ public class MainRifleSkript : MonoBehaviour
     public float reloadingTime = 10.5f;
     public bool setReloading = false;
     public bool isAutomaticFire;
+    public float damageDelay = 0.15f;
 
     [Header("Sounds")]
     [SerializeField] AudioSource shootSound;
@@ -131,7 +132,7 @@ public class MainRifleSkript : MonoBehaviour
                 if (!isShootWaiting)
                 {
                     isShootWaiting = true;
-                    Invoke("Shoot", 0.15f);
+                    Invoke("Shoot", damageDelay);
                 }
                 //Shoot();
             }

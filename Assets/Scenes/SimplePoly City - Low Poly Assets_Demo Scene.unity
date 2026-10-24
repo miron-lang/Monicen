@@ -4474,6 +4474,7 @@ MonoBehaviour:
   reloadingTime: 10.5
   setReloading: 0
   isAutomaticFire: 1
+  damageDelay: 0.15
   shootSound: {fileID: 0}
   ammoOutUi: {fileID: 54086736}
   ammoLeft: {fileID: 1628675038}
@@ -4521,6 +4522,7 @@ MonoBehaviour:
   reloadingTime: 10.5
   setReloading: 0
   isAutomaticFire: 0
+  damageDelay: 0.15
   shootSound: {fileID: 0}
   ammoOutUi: {fileID: 54086736}
   ammoLeft: {fileID: 1628675038}
@@ -7526,6 +7528,7 @@ MonoBehaviour:
   reloadingTime: 10.5
   setReloading: 0
   isAutomaticFire: 0
+  damageDelay: 0.5
   shootSound: {fileID: 0}
   ammoOutUi: {fileID: 54086736}
   ammoLeft: {fileID: 1628675038}
@@ -34982,6 +34985,7 @@ MonoBehaviour:
   reloadingTime: 4
   setReloading: 0
   isAutomaticFire: 1
+  damageDelay: 0.15
   shootSound: {fileID: 0}
   ammoOutUi: {fileID: 54086736}
   ammoLeft: {fileID: 1628675038}
@@ -47505,6 +47509,7 @@ MonoBehaviour:
   reloadingTime: 10.5
   setReloading: 0
   isAutomaticFire: 0
+  damageDelay: 0.15
   shootSound: {fileID: 0}
   ammoOutUi: {fileID: 54086736}
   ammoLeft: {fileID: 1628675038}
@@ -47552,6 +47557,7 @@ MonoBehaviour:
   reloadingTime: 4
   setReloading: 0
   isAutomaticFire: 0
+  damageDelay: 0.15
   shootSound: {fileID: 0}
   ammoOutUi: {fileID: 54086736}
   ammoLeft: {fileID: 1628675038}
@@ -49249,6 +49255,7 @@ MonoBehaviour:
   reloadingTime: 10.5
   setReloading: 0
   isAutomaticFire: 1
+  damageDelay: 0.15
   shootSound: {fileID: 0}
   ammoOutUi: {fileID: 54086736}
   ammoLeft: {fileID: 1628675038}
@@ -49296,6 +49303,7 @@ MonoBehaviour:
   reloadingTime: 10.5
   setReloading: 0
   isAutomaticFire: 0
+  damageDelay: 0.15
   shootSound: {fileID: 0}
   ammoOutUi: {fileID: 54086736}
   ammoLeft: {fileID: 1628675038}
@@ -73701,6 +73709,7 @@ MonoBehaviour:
   reloadingTime: 4
   setReloading: 0
   isAutomaticFire: 0
+  damageDelay: 0.15
   shootSound: {fileID: 0}
   ammoOutUi: {fileID: 54086736}
   ammoLeft: {fileID: 1628675038}
@@ -73748,6 +73757,7 @@ MonoBehaviour:
   reloadingTime: 4
   setReloading: 0
   isAutomaticFire: 0
+  damageDelay: 0.15
   shootSound: {fileID: 0}
   ammoOutUi: {fileID: 54086736}
   ammoLeft: {fileID: 1628675038}
@@ -81963,6 +81973,7 @@ MonoBehaviour:
   reloadingTime: 5
   setReloading: 0
   isAutomaticFire: 0
+  damageDelay: 0.15
   shootSound: {fileID: 925651600}
   ammoOutUi: {fileID: 54086736}
   ammoLeft: {fileID: 1628675038}
