@@ -1,7 +1,15 @@
+using System.Collections;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Vechicle : MonoBehaviour
 {
+    [Header("Cool things")]
+    [SerializeField] RectTransform helpUi;
+    [SerializeField] TMP_Text helpUiText;
+    [SerializeField] float uiMoveTime = 0.3f;
+
     [Header("Wheel's and object's")]
     public WheelCollider[] wheelsColliders;
     public Transform[] wheelsTransform;
@@ -79,9 +87,15 @@ public class Vechicle : MonoBehaviour
         //Debug.Log(rb.linearVelocity.magnitude * 3.6f + " κμ/χÿρ");
         if (Vector3.Distance(player.position, transform.position) <= radius)
         {
+            helpUi.gameObject.SetActive(true);
+            helpUiText.text = "Press: F";
+            StartCoroutine(SmootHellpingUi(false));
             if (Input.GetKeyDown(KeyCode.F) && !inOpened)
             {
                 carCamera.gameObject.SetActive(true);
+
+                StartCoroutine(SmootHellpingUi(true));
+                helpUi.gameObject.SetActive(false);
 
                 inOpened = true;
                 radius = 999999f;
@@ -121,6 +135,27 @@ public class Vechicle : MonoBehaviour
         }
     }
 
+    IEnumerable SmootHellpingUi(bool show)
+    {
+        float targetStartXPosition = helpUi.anchoredPosition.x;
+        float targetXposition = show ? 250 : -250;
+        float time = 0f;
+
+        while (time < uiMoveTime)
+        {
+            time += Time.deltaTime;
+
+            float progress = time/uiMoveTime;
+            float newx = Mathf.Lerp(targetStartXPosition, targetXposition, progress);
+
+            helpUi.anchoredPosition = new Vector2(newx, helpUi.anchoredPosition.y);
+
+            yield return null;
+        }
+
+        helpUi.anchoredPosition = new Vector2(targetXposition, helpUi.anchoredPosition.y);
+    }
+
     void MoveVechicle()
     {
         //presentAcceleration = accelerationForce * Input.GetAxis("Vertical");
@@ -158,11 +193,11 @@ public class Vechicle : MonoBehaviour
             presentAcceleration = 0f;
         }
 
-        for (int i = 0;i < wheelsColliders.Length; i++)
+        for (int i = 0; i < wheelsColliders.Length; i++)
         {
             bool rearWheel = i >= 2;
 
-            wheelsColliders[i].motorTorque = !drifting || rearWheel ? presentAcceleration:0f;
+            wheelsColliders[i].motorTorque = !drifting || rearWheel ? presentAcceleration : 0f;
         }
 
         if (verticalInput > 0f && belowMaximumSpeed && !drifting)
@@ -237,7 +272,7 @@ public class Vechicle : MonoBehaviour
         }
     }
 
-    void SteeringWheels(WheelCollider wC,Transform wT)
+    void SteeringWheels(WheelCollider wC, Transform wT)
     {
         Vector3 positon;
         Quaternion rotation;

@@ -44,6 +44,12 @@ public class CharacterNavigatorScript01 : MonoBehaviour
     bool isAvoding;
     float avoidEndTime;
     Vector3 avoidDirection;
+    [SerializeField] WantedPlayer wantedPlayer;
+
+    private void Awake()
+    {
+        wantedPlayer = GameObject.FindFirstObjectByType<WantedPlayer>();
+    }
 
     void Start()
     {
@@ -62,6 +68,8 @@ public class CharacterNavigatorScript01 : MonoBehaviour
 
     public void NpcGetDamage(float takeDamage, Transform attacker, Vector3 bulletPositon)
     {
+        wantedPlayer.firstDamage = true;
+
         healthNpc -= takeDamage;
 
         if (healthNpc <= 0f && !dedth)
