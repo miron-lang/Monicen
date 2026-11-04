@@ -50,6 +50,7 @@ public class Vechicle : MonoBehaviour
     private Rigidbody rb;
     private float[] normalSidewaysStiffness;
     private bool isStoping;
+    private bool uiShow;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -87,15 +88,18 @@ public class Vechicle : MonoBehaviour
         //Debug.Log(rb.linearVelocity.magnitude * 3.6f + " κμ/χÿρ");
         if (Vector3.Distance(player.position, transform.position) <= radius)
         {
-            helpUi.gameObject.SetActive(true);
-            helpUiText.text = "Press: F";
-            StartCoroutine(SmootHellpingUi(false));
+            if (!uiShow)
+            {
+                uiShow = true;
+                helpUi.gameObject.SetActive(true);
+                helpUiText.text = "Press: F";
+                StartCoroutine(SmoothHelpingUi(true));
+            }
             if (Input.GetKeyDown(KeyCode.F) && !inOpened)
             {
                 carCamera.gameObject.SetActive(true);
 
-                StartCoroutine(SmootHellpingUi(true));
-                helpUi.gameObject.SetActive(false);
+                StartCoroutine(SmoothHelpingUi(false));
 
                 inOpened = true;
                 radius = 999999f;
@@ -123,6 +127,16 @@ public class Vechicle : MonoBehaviour
                 mainCamera.gameObject.SetActive(true);
 
                 isStoping = true;
+
+                uiShow = false;
+            }
+        }
+        else
+        {
+            if (uiShow)
+            {
+                uiShow = false;
+                StartCoroutine(SmoothHelpingUi(false));
             }
         }
         if (inOpened)
@@ -135,10 +149,10 @@ public class Vechicle : MonoBehaviour
         }
     }
 
-    IEnumerable SmootHellpingUi(bool show)
+    IEnumerator SmoothHelpingUi(bool show)
     {
         float targetStartXPosition = helpUi.anchoredPosition.x;
-        float targetXposition = show ? 250 : -250;
+        float targetXposition = show ? -250 : 250;
         float time = 0f;
 
         while (time < uiMoveTime)

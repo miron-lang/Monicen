@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -17,8 +18,11 @@ public class Player : MonoBehaviour
 
     [SerializeField] Vechicle car;
 
-    public PlayerBar playerBar;
     private int timer = 0;
+
+    [SerializeField] GameObject boss;
+
+    [SerializeField] TMP_Text maneyText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -26,32 +30,22 @@ public class Player : MonoBehaviour
     {
         car = FindFirstObjectByType<Vechicle>();
 
-        //playerBar.SetArmor(armor);
-        //playerBar.SetHealth(health);
-
         if (MainMeny.inctance != null && MainMeny.inctance.peremenay)
         {
             LoadPlayer();
         }
     }
 
-    void Start()
-    {
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            LoadPlayer();
-        }
-
         if (isISothing && isVoidStarted)
         {
             isVoidStarted = true;
             EvryTimeHeted();
         }
+
+        maneyText.text = "Maney: " + currentMoney + "$";
     }
 
     public void SavePlayer()
@@ -82,6 +76,11 @@ public class Player : MonoBehaviour
         }
 
         car.gameObject.SetActive(true);
+
+        if (misions.cuurentMission == 4)
+        {
+            boss.SetActive(true);
+        }
     }
 
     public void PlayerGetDamage(float takeDamage)

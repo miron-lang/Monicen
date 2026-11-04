@@ -9,6 +9,7 @@ public class Misions : MonoBehaviour
     public string[] misionsText;
     public TMP_Text currentMission;
     public TMP_Text currentMissionText;
+    [SerializeField] GameObject boss;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,6 +34,11 @@ public class Misions : MonoBehaviour
 
             currentMission.text = "Curent mision: " + (cuurentMission + 1);
             currentMissionText.text = misionsText[cuurentMission];
+        }
+
+        if (cuurentMission == 4)
+        {
+            boss.SetActive(true);
         }
     }
 }
