@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;   
 
 // Старая версия навигации NPC до добавления NavMesh.
 // ВАЖНО: не кладите этот файл в Assets одновременно с текущим
@@ -32,6 +33,16 @@ public class CharacterNavigatorScript01 : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] GameObject regdolGameObject;
 
+    [Header("Vehicle impact")]
+    [SerializeField] float vehiceleRegdolTime = 4f;
+    [SerializeField] float vehicleImpactForceMultiplier = 45f;
+    [SerializeField] float vehicleUpForce = 3f;
+    [SerializeField] bool isKnockedDown; // NPC сечяс лежит регдолом
+    [SerializeField] GameObject activeRagdoll; // Созданый регдол
+    [SerializeField] Rigidbody activeRagdollHips; // Rigidbody таза регдола - по нему узнаём новое место NPC
+    [SerializeField] Renderer[] chatacterRenderers; // Все видимые чясти исходной модели
+    [SerializeField] Collider[] characterColliders; // Коллайдеры исходного NPC
+
     [SerializeField] float obstacleCheckRadiuse = 0.25f;
     [SerializeField] float obstacleCheckDistance = 0.55f;
     [SerializeField] LayerMask obstacelMask = ~0;
@@ -55,12 +66,18 @@ public class CharacterNavigatorScript01 : MonoBehaviour
     {
         waypointNavigator = GetComponent<WaypointNavigator>();
         player = FindAnyObjectByType<Player>();
+
         healthNpc = maxHealthNpc;
+
+        chatacterRenderers = GetComponentsInChildren<Renderer>(true);
+        characterColliders = GetComponentsInChildren<Collider>(true);
     }
 
     // Вызывается каждый кадр и запускает движение NPC.
     void Update()
     {
+        if (dedth || isKnockedDown) return;
+
         IsEscaping();
 
         Walk();
@@ -149,6 +166,118 @@ public class CharacterNavigatorScript01 : MonoBehaviour
 
         return false;
 
+    }
+
+    public void HitByVehicle(float damage, Vector3 vehicleVelocity, Vector3 hitPosition)
+    {
+        // Не обрабатывоем второй удар, если NPC уже мёртв или уже лежит
+        if (dedth || isKnockedDown) return;
+
+        healthNpc -= damage;
+
+        // Урон от удара - создаём регдол на 10 секунд и удоляем NPC
+        if (healthNpc <= 0f)
+        {
+            dedth = true;
+            SpawnRagdoll(vehicleVelocity, hitPosition, 10f, vehicleImpactForceMultiplier);
+            Destroy(gameObject);
+            return;
+        }
+
+        // Выжел - времено ложится регдолом, затем возращяется к маошруту
+        StartCoroutine(RecoverAfterVehicleImpact(vehicleVelocity, hitPosition));
+    }
+
+    IEnumerator RecoverAfterVehicleImpact(Vector3 vehicleVelosity, Vector3 hitPosition)
+    {
+        isKnockedDown = true;
+        isEscaping = false;
+
+        // Остонавливоем внимации исходной модели
+        if (anim != null)
+        {
+            anim.SetBool("Walk", false);
+            anim.SetBool("Run", false);
+            anim.enabled = false;
+        }
+
+        // Скрываем живого NPC, что бы оставлся токо регдол
+        SetCharacterVisibleAndCollideble(false);
+
+        // Создаём и толкаем регдол
+        SpawnRagdoll(vehicleVelosity, hitPosition, 0f, vehicleImpactForceMultiplier);
+
+        // NPC лежит указеное время
+        yield return new WaitForSeconds(vehiceleRegdolTime);
+
+        // Переносим NPC туда, куда упал регдол
+        if (activeRagdollHips != null)
+        {
+            transform.position = new Vector3 (activeRagdollHips.position.x, transform.position.y, activeRagdollHips.position.z);
+        }
+
+        Destroy(activeRagdoll);
+
+        activeRagdoll = null;
+        activeRagdollHips = null;
+
+        // Возоащаем модель и коллайдеры
+        SetCharacterVisibleAndCollideble(true);
+
+        if (anim != null)
+        {
+            anim.enabled = true;
+            anim.Rebind();
+            anim.Update(0f);
+        }
+
+        // После этого обычны Update снова продлжит WayPoint-логику
+        isKnockedDown = false;
+    }
+
+    void SetCharacterVisibleAndCollideble(bool enabled)
+    {
+        for (int i = 0; i < chatacterRenderers.Length; i++)
+        {
+            chatacterRenderers[i].enabled = enabled;
+        }
+
+        for (int i = 0; i < characterColliders.Length; i++)
+        {
+            characterColliders[i].enabled = enabled;
+        }
+    }
+
+
+    void SpawnRagdoll(Vector3 impactVelocity, Vector3 hitPosition, float destroyAdterSeconds, float forceMultiper)
+    {
+        if (regdolGameObject == null)
+        {
+            return;
+        }
+
+        activeRagdoll = Instantiate(regdolGameObject, transform.position, transform.rotation);
+
+        activeRagdollHips = activeRagdoll.GetComponentInChildren<Rigidbody>();
+
+        if (activeRagdollHips != null)
+        {
+        Vector3 impactDiraction = new Vector3(impactVelocity.x, 0, impactVelocity.z);
+
+            // Запосное наровление, если бибика почти не движица
+            if (impactDiraction.sqrMagnitude < 0.01f)
+            {
+                impactDiraction = transform.forward;
+            }
+
+            activeRagdollHips.AddForceAtPosition(impactDiraction.normalized * impactVelocity.magnitude * forceMultiper + Vector3.up * vehicleUpForce, hitPosition, ForceMode.Impulse);
+        }
+
+        // Для смерти: удалить регдол через 10 секунд
+        if (destroyAdterSeconds > 0f)
+        {
+            Destroy(activeRagdoll, destroyAdterSeconds);
+        }
     }
 
     Vector3 GetFreeMoveDirection(Vector3 destinationDirection)

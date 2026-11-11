@@ -9,6 +9,7 @@ public class Vechicle : MonoBehaviour
     [SerializeField] RectTransform helpUi;
     [SerializeField] TMP_Text helpUiText;
     [SerializeField] float uiMoveTime = 0.3f;
+    private bool uiShow;
 
     [Header("Wheel's and object's")]
     public WheelCollider[] wheelsColliders;
@@ -50,7 +51,10 @@ public class Vechicle : MonoBehaviour
     private Rigidbody rb;
     private float[] normalSidewaysStiffness;
     private bool isStoping;
-    private bool uiShow;
+
+    [Header("NPC impact")]
+    [SerializeField] float minimumNpcImpactSpeedKmh = 1f;
+    [SerializeField] float npcDamagePerKmh = 1.5f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -308,5 +312,28 @@ public class Vechicle : MonoBehaviour
 
         rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity, Vector3.zero, 8f * Time.deltaTime);
         rb.angularVelocity = Vector3.MoveTowards(rb.angularVelocity, Vector3.zero, 8f * Time.deltaTime);
+    }
+
+    private void OnCollisionEnter(Collision hit)
+    {
+        if (rb == null)
+        {
+            return;
+        }
+
+        CharacterNavigatorScript01 npc = hit.collider.GetComponentInParent<CharacterNavigatorScript01>();
+
+        float speedKhm = rb.linearVelocity.magnitude * 3.6f;
+
+        if (npc == null || speedKhm < minimumNpcImpactSpeedKmh)
+        {
+            return;
+        }
+
+        Vector3 hitPosition = hit.contactCount > 0 ? hit.GetContact(0).point : npc.transform.position;
+
+        float damage = speedKhm * npcDamagePerKmh;
+
+        npc.HitByVehicle(damage, rb.linearVelocity, hitPosition);
     }
 }

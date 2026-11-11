@@ -5,7 +5,7 @@ using System.IO;
 public class MainMeny : MonoBehaviour
 {
     public static MainMeny inctance;
-    public bool peremenay;
+    public static bool peremenay;
     public GameObject countiniun;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

@@ -1885,9 +1885,10 @@ MonoBehaviour:
   obstacleCheckDistance: 0.55
   obstacelMask:
     serializedVersion: 2
-    m_Bits: 136
+    m_Bits: 137
   isVoidStarted: 0
   avoidTime: 0.5
+  wantedPlayer: {fileID: 0}
 --- !u!1 &5887225709387502083
 GameObject:
   m_ObjectHideFlags: 0

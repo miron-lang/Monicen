@@ -2,7 +2,9 @@ using System.Data;
 using System.Linq;
 using TMPro;
 using Unity.Cinemachine;
+using UnityEditor;
 using UnityEngine;
+using System.Collections;
 
 public class Shop : MonoBehaviour
 {
@@ -24,6 +26,12 @@ public class Shop : MonoBehaviour
 
     public TMP_Text whyNoBuying;
 
+    [Header("Cool things")]
+    [SerializeField] RectTransform helpUi;
+    [SerializeField] TMP_Text helpUiText;
+    [SerializeField] float uiMoveTime = 0.3f;
+    private bool uiShow;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,9 +47,16 @@ public class Shop : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Vector3.Distance(player.transform.position, transform.position) <= distence)
         {
-            if (Vector3.Distance(player.transform.position, transform.position) <= distence && !isYouInShop)
+            if (!uiShow)
+            {
+                uiShow = true;
+                helpUi.gameObject.SetActive(true);
+                helpUiText.text = "Press: H";
+                StartCoroutine(SmoothHelpingUi(true));
+            }
+            if (Input.GetKeyDown(KeyCode.H))
             {
                 if (isYouInShop)
                 {
@@ -54,15 +69,17 @@ public class Shop : MonoBehaviour
                     cinemachineVirtualCamera.Follow = currentGunShop.GetComponent<Gun>().cameraPosition.transform;
                 }
             }
-            else 
-            { 
-                isYouInShop = false;
-                cinemachineVirtualCamera.Follow = normalCameraPositon.transform;
-            }
+        }
+        else if (uiShow)
+        {
+            uiShow = false;
+            StartCoroutine(SmoothHelpingUi(false));
         }
 
         if (isYouInShop)
         {
+            helpUiText.text = "Press: E";
+
             if (Input.GetKeyDown(KeyCode.E))
             {
                 if (!inventory.isWeaponPicked[currentGunShop.GetComponent<Gun>().weaponIndex] && player.currentMoney >= currentGunShop.GetComponent<Gun>().itemPrice)
@@ -122,6 +139,27 @@ public class Shop : MonoBehaviour
             }
         }
 
+    }
+
+    IEnumerator SmoothHelpingUi(bool show)
+    {
+        float targetStartXPosition = helpUi.anchoredPosition.x;
+        float targetXposition = show ? -250 : 250;
+        float time = 0f;
+
+        while (time < uiMoveTime)
+        {
+            time += Time.deltaTime;
+
+            float progress = time / uiMoveTime;
+            float newx = Mathf.Lerp(targetStartXPosition, targetXposition, progress);
+
+            helpUi.anchoredPosition = new Vector2(newx, helpUi.anchoredPosition.y);
+
+            yield return null;
+        }
+
+        helpUi.anchoredPosition = new Vector2(targetXposition, helpUi.anchoredPosition.y);
     }
 
     public void DisableUI()

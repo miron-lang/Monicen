@@ -22,15 +22,16 @@ public class Player : MonoBehaviour
 
     [SerializeField] GameObject boss;
 
-    [SerializeField] TMP_Text maneyText;
+    [SerializeField] TMP_Text moneyText;
+
+    private int lastMoney = -1;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     private void Awake()
     {
         car = FindFirstObjectByType<Vechicle>();
-
-        if (MainMeny.inctance != null && MainMeny.inctance.peremenay)
+        if (MainMeny.peremenay)
         {
             LoadPlayer();
         }
@@ -45,7 +46,11 @@ public class Player : MonoBehaviour
             EvryTimeHeted();
         }
 
-        maneyText.text = "Maney: " + currentMoney + "$";
+        if (currentMoney != lastMoney)
+        {
+            lastMoney = currentMoney;
+            moneyText.text = "Money: " + currentMoney + "$";
+        }
     }
 
     public void SavePlayer()

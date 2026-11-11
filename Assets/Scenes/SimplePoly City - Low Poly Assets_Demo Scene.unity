@@ -4461,9 +4461,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: bd5808a53db6a064198dd02e8f7e7c57, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 117468356}
-    - targetCorrespondingSourceObject: {fileID: 100000, guid: bd5808a53db6a064198dd02e8f7e7c57, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 117468359}
   m_SourcePrefab: {fileID: 100100000, guid: bd5808a53db6a064198dd02e8f7e7c57, type: 3}
 --- !u!4 &117468354 stripped
@@ -4476,55 +4473,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: bd5808a53db6a064198dd02e8f7e7c57, type: 3}
   m_PrefabInstance: {fileID: 117468353}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &117468356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 117468355}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c96afeb017216664c9c16447a7ea6d28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HandGunRifle
-  anim: {fileID: 724414999}
-  nextTimeToShoot: 1.5
-  fireCharge: 10
-  shootLengthRange: 40
-  metalEffect: {fileID: 100002, guid: 00fedc70b62a31e448e8ccc298257b56, type: 3}
-  blood: {fileID: 3878957223712447328, guid: 650783597ab4c1a4893ddf0757924580, type: 3}
-  rifleDamage: 17
-  localOrigin: {fileID: 457734235}
-  player: {fileID: 724414981}
-  animationController: {fileID: 9100000, guid: c98393ad35725394081954285f16b85e, type: 2}
-  animShootDelay: 0.5
-  isItemInInfertoryHandGunEdition: 0
-  lazerOrigin: {fileID: 52491913}
-  bullet: {fileID: 36299118080659866, guid: 1ca9fec1bc64dff46b6e19af910427d6, type: 3}
-  lazer: {fileID: 1082494310}
-  maxAmmunition: 25
-  mag: 10
-  presentAmmunition: 0
-  reloadingTime: 10.5
-  setReloading: 0
-  isAutomaticFire: 1
-  damageDelay: 0.15
-  shootSound: {fileID: 0}
-  ammoOutUi: {fileID: 54086736}
-  ammoLeft: {fileID: 1628675038}
-  magLeft: {fileID: 1463574365}
-  ammoMagLeft: {fileID: 42185291}
-  aimCam: {fileID: 1988386208}
-  thirdPersonCam: {fileID: 366594920}
-  useExplosion: 0
-  explosionRadius: 5
-  explosionMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  useShootgun: 0
-  shotgunPelletCount: 10
-  shotgunSpreadAngle: 7
 --- !u!114 &117468359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13550,7 +13498,7 @@ GameObject:
   - component: {fileID: 399867676}
   - component: {fileID: 399867675}
   m_Layer: 5
-  m_Name: Maney
+  m_Name: Money
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20128,7 +20076,7 @@ Transform:
   m_GameObject: {fileID: 576617831}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: -3}
+  m_LocalPosition: {x: 0, y: 0, z: -2.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25207,6 +25155,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 515998568809669632, guid: 6caf198193dcb08469299e80779b77fe, type: 3}
+      propertyPath: _gunsShop
+      value: 
+      objectReference: {fileID: 1068174065}
+    - target: {fileID: 515998568809669632, guid: 6caf198193dcb08469299e80779b77fe, type: 3}
       propertyPath: GroundLayers.m_Bits
       value: 1
       objectReference: {fileID: 0}
@@ -25562,7 +25514,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7497392259522787182, guid: 6caf198193dcb08469299e80779b77fe, type: 3}
+    - {fileID: 7185320323559208942, guid: 6caf198193dcb08469299e80779b77fe, type: 3}
+    - {fileID: 4869737401850851910, guid: 6caf198193dcb08469299e80779b77fe, type: 3}
+    - {fileID: 7654219028189740617, guid: 6caf198193dcb08469299e80779b77fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 892523454919802545, guid: 6caf198193dcb08469299e80779b77fe, type: 3}
@@ -25641,9 +25597,9 @@ MonoBehaviour:
   isVoidStarted: 0
   inventory: {fileID: 108960940}
   misions: {fileID: 561204833}
-  car: {fileID: 0}
+  car: {fileID: 5621057211987833497}
   boss: {fileID: 2317645578671419942}
-  maneyText: {fileID: 974555740}
+  moneyText: {fileID: 974555740}
 --- !u!114 &724414983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33563,7 +33519,7 @@ GameObject:
   - component: {fileID: 974555741}
   - component: {fileID: 974555740}
   m_Layer: 5
-  m_Name: ManeyText
+  m_Name: MoneyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33608,7 +33564,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Maney: -26$'
+  m_text: 'Money: -26$'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -36231,7 +36187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MainRifleSkript
   anim: {fileID: 724414999}
   nextTimeToShoot: 1.5
-  fireCharge: 10
+  fireCharge: 15
   shootLengthRange: 150
   metalEffect: {fileID: 100002, guid: 00fedc70b62a31e448e8ccc298257b56, type: 3}
   blood: {fileID: 3878957223712447328, guid: 650783597ab4c1a4893ddf0757924580, type: 3}
@@ -37901,6 +37857,9 @@ MonoBehaviour:
   distence: 5.5
   misionsEmpty: {fileID: 561204833}
   whyNoBuying: {fileID: 219741316}
+  helpUi: {fileID: 2141628824}
+  helpUiText: {fileID: 2050778569}
+  uiMoveTime: 0.3
 --- !u!4 &1068613650 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: b8ee657c6800ab849bb30b4375d02323, type: 3}
@@ -63681,7 +63640,7 @@ GameObject:
   - component: {fileID: 1789197103}
   - component: {fileID: 1789197102}
   m_Layer: 5
-  m_Name: ManeyPanel
+  m_Name: MoneyPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

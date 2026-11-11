@@ -130,7 +130,7 @@ public class MainRifleSkript : MonoBehaviour
             if (Time.time >= nextTimeToShoot)
             {
                 anim.SetBool("Shoot", true);
-                Invoke("StopShootAnimation", animShootDelay);
+                if (!isAutomaticFire) Invoke("StopShootAnimation", animShootDelay);
                 nextTimeToShoot = Time.time + 1f / fireCharge;
                 if (!isShootWaiting)
                 {

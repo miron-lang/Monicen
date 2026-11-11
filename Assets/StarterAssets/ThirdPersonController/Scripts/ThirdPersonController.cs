@@ -111,6 +111,8 @@ namespace StarterAssets
         private bool _hasAnimator;
         private bool _movementLocked;
 
+        public Shop _gunsShop;
+
         private bool IsCurrentDeviceMouse
         {
             get
@@ -236,7 +238,7 @@ namespace StarterAssets
 
             // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is no input, set the target speed to 0
-            if (_movementLocked || _input.move == Vector2.zero || _animator.GetBool("Aim") || _animator.GetBool("Shoot") || _animator.GetBool("Reload")) targetSpeed = 0.0f;
+            if (_movementLocked || _input.move == Vector2.zero || _animator.GetBool("Aim") || _animator.GetBool("Shoot") || _animator.GetBool("Reload") || _gunsShop.isYouInShop) targetSpeed = 0.0f;
 
             // a reference to the players current horizontal velocity
             float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
